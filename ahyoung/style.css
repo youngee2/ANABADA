@@ -1,38 +1,410 @@
-*{
-    @import url(https://hangeul.pstatic.net/hangeul_static/css/nanum-barun-gothic.css);
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+header,
+section,
+footer,
+nav,
+img,
+form,
+figcaption,
+figure,
+i,
+p {
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+}
+* {
+    /* @import url(https://hangeul.pstatic.net/hangeul_static/css/nanum-barun-gothic.css); */
     font-family: 'NanumBarunGothic';
+    justify-content: center;
     text-align: center;
     color: gray;
+
+}
+a {
+    text-decoration: none;
+    color: inherit
+}
+
+
+:root {
+    --main-color: #c3d8dc;
+    --header-color: #9ed6ef;
+    --dark-main-color: #2B5566;
+    --hoverMenu-color:#979c9f;
+    --text-bright-color: #fff;
+    --icon-color: #fff;
+    --icon-bk-color: #ddd;
+    --large-width: 1000px;
+}
+
+/*헤더영역*/
+/* .header{
+    background-color: var(--main-color);
+} */
+
+/*HeaderA 로그인, 회원가입*/
+.HeaderA {
+    background-color: var(--main-color);
+    display: block;
+    width: 100%;
+
+}
+
+.HeaderA ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    padding-right: 10px;
+}
+
+.HeaderA .login {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.HeaderA a {
+    font-size: 1.5vh;
+    padding: 10px;
+    display: flex;
+}
+
+.HeaderA a:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/*HeaderB 로고와 제목*/
+
+.HeaderB {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.HeaderB .LogoImg {
+    margin: 10px;
+    height: 5.7vw;
+    width: 5.9vw;
+    vertical-align: middle;
+
+}
+
+.HeaderB span {
+    font-size: larger;
+    font-weight: bolder;
+    font-size: 3vw;
+    color: var(--dark-main-color); 
+    vertical-align: middle;
+    text-align: center;
+    text-shadow:1px 1px 3px rgb(38, 61, 60);
+    letter-spacing:0.7vw;
+
+
+}
+
+
+/*HeaderC 게시판 메뉴*/
+
+
+.HeaderC {
+    white-space: nowrap;
+    text-align: center;
+    padding: 0px;
+    margin-bottom: 2vh;
+    font-size: 1.5vw;
+    display: flex;
+    justify-content: center;
+
+}
+
+.HeaderC ul {
+    padding: 2vw;
     
 }
 
-header{
-    height: 150px;
-    background-color: yellow;
+.HeaderC li {
+    list-style: none;
+
 }
-nav{
-    height: 50px;
-    background-color:antiquewhite;
+
+.HeaderC li:hover {
+
+    text-decoration: none;
+    transition: 0.2s linear;
+    border-bottom: 1.5px solid rgb(68, 129, 208);
+    color: var(--dark-main-color)
+  
+
+
 }
+
+/*subA 호버하면 소개메뉴나오게*/
+
+.HeaderC .subA {
+    list-style: none;
+}
+
+
+.HeaderC .subDetailA {
+    overflow: hidden;
+    display: none;
+
+}
+
+.HeaderC .subA:hover .subDetailA {
+    text-align: center;
+    display: block;
+    list-style: none;
+    padding: 0;
+    font-size: 1vw;
+    line-height: 320%;
+    color: var(--hoverMenu-color);
+
+}
+
+/*subB 호버하면 거래메뉴나오게*/
+
+
+.HeaderC .subB {
+    list-style: none;
+}
+
+
+.HeaderC .subDetailB {
+    overflow: hidden;
+    display: none;
+}
+
+.HeaderC .subB:hover .subDetailB {
+    text-align: center;
+    display: block;
+    list-style: none;
+    padding: 0;
+    font-size: 1vw;
+    line-height: 320%;
+    transition: 5s;
+    color: var(--hoverMenu-color);
+}
+
+
+/*subF 호버하면 고객센터 나오게*/
+
+
+.HeaderC .subF {
+    list-style: none;
+}
+
+
+.HeaderC .subDetailF {
+    overflow: hidden;
+    display: none;
+}
+
+.HeaderC .subF:hover .subDetailF {
+    text-align: center;
+    display: block;
+    list-style: none;
+    padding: 0;
+    font-size: 1vw;
+    line-height: 320%;
+    color: var(--hoverMenu-color);
+
+}
+
+@media (min-width:768px) {
+    .HeaderC {
+        display: flex;
+    }
+
+    .HeaderC .subA {
+        padding: 50;
+
+    }
+
+}
+
+/*푸터A : 사이트 정보*/
+.footA {
+    margin-bottom: 20px;
+}
+
+footer {
+    color: #fff;
+    color: var(--text-bright-color);
+    background-color: #2B5566;
+    background-color: var(--dark-main-color);
+
+}
+
+footer .container {
+    padding: 30px 20px;
+}
+
+.footA h2 {
+
+    margin-top: 0;
+    margin-bottom: 10;
+    font-size: 2ren;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.2em;
+}
+
+.footA a {
+    color: inherit;
+    /*컬러를 부모요소의 색을 상속받겠다*/
+    text-decoration: none;
+}
+
+/*푸터B : 푸터메뉴*/
+
+.footB div {
+    margin-bottom: 3.5vw;
+}
+
+.footB h3 {
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 0;
+    margin-bottom: 10px;
+    border-bottom: solid 1px currentColor;
+    font-size: 0.5rem;
+}
+
+.footB ul {
+    margin: 0;
+    /*불필요한 여백 없애기*/
+    padding: 0;
+    list-style: none;
+}
+
+.footB a {
+    /*li에 하면 안되고 a에 해야 먹힌다*/
+    margin-left: 25px;
+    color: #fff;
+    color: var(--text-bright-color);
+    font-size: 1vw;
+    text-decoration: none;
+    display: block;
+    /*블록박스를 구성해라- 옆으로 긴 박스가 나옴*/
+    padding: 5px;
+}
+
+.footB a:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+
+@media (min-width:768px) {
+    .footB {
+        display: flex;
+    }
+
+    .footB div {
+        flex: 1;
+        /*3갸의 푸터메뉴를 1:1:1 비율로 나눌 수 있게 display를 flex, <div>flex 1로 지정*/
+    }
+
+    .footB div:not(:first-child) {
+        /*★첫번째 자식 요소를 제외한 div가 선택*/
+        margin-left: 40px;
+    }
+
+}
+
+/*푸터C :저작권*/
+.footC {
+    text-align: center;
+    font-size: 1vw;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/*푸터 내부 요소 레이아웃 조정하기*/
+
+@media (min-width:768px) {
+    footer .container {
+        display: flex;
+        flex-wrap: wrap;
+        /*flex-wrap: 나열된 요소들의 총 넓아거 부모넓이보다 크면 이 요소들을 다음줄에 이어서 나열*/
+        max-width: 1000px;
+        max-width: var(--large-width);
+        margin-left: 0;
+        margin-right: auto;
+    }
+
+    .footA {
+        flex: 0 0 40%;
+    }
+
+    .footB {
+        flex: 0 0 60%;
+    }
+
+    .footC {
+        flex: 0 0 100%;
+    }
+}
+
+/*푸터D SNS공유 아이콘*/
+.footD {
+    margin-top: 20px;
+}
+
+.footD ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+
+.footD a {
+    margin-right: 8px;
+    display: block;
+    padding: 5px;
+    color: inherit;
+    font-size: 0.5rem;
+    text-decoration: none;
+    border: solid 1px currentColor;
+    width: 2em;
+    line-height: 2em;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.footD a:hover {
+    background-color: rgba(0, 0, 0, 0.1)
+}
+
+
 section{
     height : 1000px;
     /* background-color: green; */
 }
-footer{
-    height:150px;
-    background-color: blue;
-}
+
 
 section .mini_title {
     font-size: 34px;
     align-content: center;
     justify-content: center;
-
 }
 
-hr{
-    border-top: 3px solid #4C6D81 ;
-    width: 400px;
+.blue_line{
+    border-bottom: 2px solid #4C6D81 ;
+    width: 20vw;
+    align-content: center;
+    justify-content: center;
+    margin-left: 40vw;
+    margin-right: 40vw;
 }
 
  .signup_menu{
@@ -42,14 +414,35 @@ hr{
 
 ul{
     list-style: none;
-    width: 300px;
-    display: table;
-    margin-left: auto;
-    margin-right: auto;
+    display: flex;
+    margin:auto;
+    /* flex-direction: row; */
+    padding: 0;
+}
+
+li{
+    font-size: 20px;
+    padding: 10px;
+}
+
+.font_manual{
+    font-size: 12px;
+}
+
+.b_line{
+    border-bottom: 1px solid #4C6D81 ;
+}
+
+.blue_line_mini{
+    display: flex;
+    width: 100px;
+    text-decoration: overline;
+    text-decoration-color: #B9D8E0;
+    text-decoration-thickness: 7px;
 
 }
-li{
-    float: right;
-    padding-right: 33px;
-    font-size: 20px;
+
+.progress li{
+    color: aqua;
+
 }
