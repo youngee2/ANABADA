@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>상세페이지</title>
 
     <link rel="stylesheet" href="style.css">
 
@@ -26,7 +25,7 @@
 </head>
 <body>
      
-    <div style="margin-left: 10%; margin-top: 2%;">
+    <div style="margin: 2% 10%">
         <a href="">HOME</a>
         >
         <a href="">교환</a>
@@ -36,8 +35,7 @@
     
      <!--상단-->
      <div class="detail top">
-        <div class="img details" style="background-image: url('./img/slide1.jpg');">
-            사진 넣는 곳</div>
+        <div class="img details" style="text-align: center; background-image: url('./img/slide1.jpg');">사진 넣는 곳</div>
 
         <div style="float: left;">
         <ul>
@@ -66,9 +64,41 @@
             </li>
         </ul>
         </div>
-     </div>
+    </div>
 
-    
+    <!--내용-->
+    <div style="margin:0 12%; overflow: hidden;">
+        <hr>
+        <div class="content">
+            <ul>
+                 ♥ (아이디) 님께서 교환 희망하는 물품이에요.
+                 <hr>
+                <li class="content li">11211211211211211211211211211212112112</li>
+                <li class="content li"></li>
+            </ul>
+        </div>
+        <div class="content">
+            <ul>
+                상품정보
+                <hr>
+                <li class="content li">내용작성11211211211211211211211211211211211211211211211211211211211211211121121121121121121121121121121121121121121121121121121121121121</li>
+            </ul>
+        </div>
 
+    </div>
+
+
+    <!--하단(댓글)-->
+    <div style="margin:12%; overflow: hidden;">
+        <hr>
+        <div class="comment" >
+        <h3><b>댓글</b></h3>
+        <br>
+        <div class="comment-box">
+        <input type="text" placeholder="댓글을 입력해주세요." class="comment-text"> 
+        <button class="comment-btn" type="submit">등록</button>
+    </div>
+    </div>
+    </div>
 </body>
 </html>

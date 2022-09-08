@@ -152,19 +152,21 @@ margin: 15px 20px;
   }
 
   .btnOrange {
-      background: #337a98;
+      background: #B9D8E0;
     }
   .btnNormal{
     background: transparent;
   }
 
   .btnFade.btnOrange:hover {
-    background: #225469;
+    background: #7096a7;
   }
   
 .detail.top{
-    margin: 5%;
-    padding: 0% 10%;
+    margin: 5% 5% 0% 5%;
+    padding:0 10%;
+    overflow: hidden;
+    
 }
 
 img{
@@ -199,4 +201,52 @@ img{
 .detail.high.btn{
     font-size: 12pt;
     width: 100%;
+}
+
+
+.content{
+    margin: 15px 0;
+    padding: 0 5%;
+    text-align: left;
+    width: 50%;
+    float: left;
+    font-size: 13pt;
+}
+
+.content.li{
+    width: auto;
+    word-break: break-all;
+    clear: left;
+}
+
+.comment{
+    margin: 0 5% 5% 5%;
+    padding: 25px;
+    
+}
+
+.comment-text{
+    width: 90%;
+    padding: 5px 15px;
+    height: 50px;
+   border: none;
+   border-radius: 10px;
+   outline: none;
+    font-size: 13pt;
+}
+
+.comment-box{
+    width: 100%;
+    border:1px solid #818181;
+    border-radius: 7px;
+}
+.comment-btn{
+    outline: 0;
+    border: 0;
+    background-color: transparent;
+    color: #337A98;
+}
+
+::placeholder{
+color: #c5c5c5;
 }
