@@ -40,8 +40,9 @@ a {
 
 :root {
     --main-color: #c3d8dc;
-    --accent-color: #BF6A7A;
+    --header-color: #9ed6ef;
     --dark-main-color: #2B5566;
+    --hoverMenu-color:#979c9f;
     --text-bright-color: #fff;
     --icon-color: #fff;
     --icon-bk-color: #ddd;
@@ -58,6 +59,7 @@ a {
     background-color: var(--main-color);
     display: block;
     width: 100%;
+
 }
 
 .HeaderA ul {
@@ -88,6 +90,7 @@ a {
 
 .HeaderB {
     text-align: center;
+    margin-top: 15px;
 }
 
 .HeaderB .LogoImg {
@@ -102,8 +105,13 @@ a {
     font-size: larger;
     font-weight: bolder;
     font-size: 3vw;
-    color: #2B5566;
+    color: var(--dark-main-color); 
     vertical-align: middle;
+    text-align: center;
+    text-shadow:1px 1px 3px rgb(38, 61, 60);
+    letter-spacing:0.7vw;
+
+
 }
 
 
@@ -117,12 +125,13 @@ a {
     margin-bottom: 2vh;
     font-size: 1.5vw;
     display: flex;
-
     justify-content: center;
 
 }
-.HeaderC  ul{
+
+.HeaderC ul {
     padding: 2vw;
+    
 }
 
 .HeaderC li {
@@ -135,6 +144,8 @@ a {
     text-decoration: none;
     transition: 0.2s linear;
     border-bottom: 1.5px solid rgb(68, 129, 208);
+    color: var(--dark-main-color)
+  
 
 
 }
@@ -159,6 +170,7 @@ a {
     padding: 0;
     font-size: 1vw;
     line-height: 320%;
+    color: var(--hoverMenu-color);
 
 }
 
@@ -183,6 +195,7 @@ a {
     font-size: 1vw;
     line-height: 320%;
     transition: 5s;
+    color: var(--hoverMenu-color);
 }
 
 
@@ -206,6 +219,7 @@ a {
     padding: 0;
     font-size: 1vw;
     line-height: 320%;
+    color: var(--hoverMenu-color);
 
 }
 
@@ -215,7 +229,7 @@ a {
     }
 
     .HeaderC .subA {
-      padding: 50;
+        padding: 50;
 
     }
 
@@ -239,7 +253,7 @@ footer .container {
 }
 
 .footA h2 {
-    
+
     margin-top: 0;
     margin-bottom: 10;
     font-size: 2ren;
