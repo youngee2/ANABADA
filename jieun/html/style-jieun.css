@@ -276,10 +276,6 @@ color: #c5c5c5;
     position: absolute;
     text-align: center;
     height: 80px;
+    width: 100px;
 }
 
-.more-li{
-    clear: left;
-    margin-top: 5px;
-    color: #c5c5c5;
-}
