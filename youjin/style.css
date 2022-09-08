@@ -3,10 +3,10 @@
 @import url("https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css");
 
 * {
-    font-family: 'NanumSquareRoundBold';
+    font-family: 'NanumBarunGothic';
 }
 
-body, 
+body,
 div,
 span,
 h1,
@@ -39,9 +39,10 @@ a {
 
 
 :root {
-    --main-color: #5D9AB2;
-    --accent-color: #BF6A7A;
+    --main-color: #c3d8dc;
+    --header-color: #9ed6ef;
     --dark-main-color: #2B5566;
+    --hoverMenu-color:#979c9f;
     --text-bright-color: #fff;
     --icon-color: #fff;
     --icon-bk-color: #ddd;
@@ -54,10 +55,11 @@ a {
 } */
 
 /*HeaderA 로그인, 회원가입*/
-.HeaderA{
+.HeaderA {
     background-color: var(--main-color);
     display: block;
     width: 100%;
+
 }
 
 .HeaderA ul {
@@ -68,7 +70,7 @@ a {
     padding-right: 10px;
 }
 
-.HeaderA .login{
+.HeaderA .login {
     display: flex;
     align-items: center;
     justify-content: end;
@@ -77,7 +79,7 @@ a {
 .HeaderA a {
     font-size: 1.5vh;
     padding: 10px;
-    display: flex;    
+    display: flex;
 }
 
 .HeaderA a:hover {
@@ -86,54 +88,152 @@ a {
 
 /*HeaderB 로고와 제목*/
 
-.HeaderB{
-    text-align:center;
+.HeaderB {
+    text-align: center;
+    margin-top: 15px;
 }
 
-.HeaderB .LogoImg{
+.HeaderB .LogoImg {
     margin: 10px;
     height: 5.7vw;
     width: 5.9vw;
-    vertical-align:middle;
+    vertical-align: middle;
 
 }
 
-.HeaderB span{
-font-size: larger;
-font-weight: bolder;
-font-size: 3vw;
-color: #2B5566;
-vertical-align:middle;
+.HeaderB span {
+    font-size: larger;
+    font-weight: bolder;
+    font-size: 3vw;
+    color: var(--dark-main-color); 
+    vertical-align: middle;
+    text-align: center;
+    text-shadow:1px 1px 3px rgb(38, 61, 60);
+    letter-spacing:0.7vw;
+
+
 }
 
 
 /*HeaderC 게시판 메뉴*/
 
 
-.HeaderC{
+.HeaderC {
+    white-space: nowrap;
+    text-align: center;
+    padding: 0px;
+    margin-bottom: 2vh;
+    font-size: 1.5vw;
+    display: flex;
+    justify-content: center;
 
 }
 
 .HeaderC ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+    padding: 2vw;
     
 }
 
+.HeaderC li {
+    list-style: none;
 
-.HeaderC li ol {
-    font-size: 14px;
+}
+
+.HeaderC li:hover {
+
     text-decoration: none;
+    transition: 0.2s linear;
+    border-bottom: 1.5px solid rgb(68, 129, 208);
+    color: var(--dark-main-color)
+  
+
+
+}
+
+/*subA 호버하면 소개메뉴나오게*/
+
+.HeaderC .subA {
+    list-style: none;
+}
+
+
+.HeaderC .subDetailA {
+    overflow: hidden;
+    display: none;
+
+}
+
+.HeaderC .subA:hover .subDetailA {
+    text-align: center;
     display: block;
-    padding: 5px;
+    list-style: none;
+    padding: 0;
+    font-size: 1vw;
+    line-height: 320%;
+    color: var(--hoverMenu-color);
+
 }
 
-.HeaderC a:hover {
-    background-color: rgba(0, 0, 0, 0.3);
+/*subB 호버하면 거래메뉴나오게*/
+
+
+.HeaderC .subB {
+    list-style: none;
 }
 
 
+.HeaderC .subDetailB {
+    overflow: hidden;
+    display: none;
+}
+
+.HeaderC .subB:hover .subDetailB {
+    text-align: center;
+    display: block;
+    list-style: none;
+    padding: 0;
+    font-size: 1vw;
+    line-height: 320%;
+    transition: 5s;
+    color: var(--hoverMenu-color);
+}
+
+
+/*subF 호버하면 고객센터 나오게*/
+
+
+.HeaderC .subF {
+    list-style: none;
+}
+
+
+.HeaderC .subDetailF {
+    overflow: hidden;
+    display: none;
+}
+
+.HeaderC .subF:hover .subDetailF {
+    text-align: center;
+    display: block;
+    list-style: none;
+    padding: 0;
+    font-size: 1vw;
+    line-height: 320%;
+    color: var(--hoverMenu-color);
+
+}
+
+@media (min-width:768px) {
+    .HeaderC {
+        display: flex;
+    }
+
+    .HeaderC .subA {
+        padding: 50;
+
+    }
+
+}
 
 /*푸터A : 사이트 정보*/
 .footA {
@@ -153,17 +253,12 @@ footer .container {
 }
 
 .footA h2 {
+
     margin-top: 0;
     margin-bottom: 10;
-    font-size: 25px;
+    font-size: 2ren;
     font-family: 'Montserrat', sans-serif;
     letter-spacing: 0.2em;
-}
-
-.footA p {
-    margin-top: 0;
-    margin-bottom: 0;
-    font-size: 12px;
 }
 
 .footA a {
@@ -175,15 +270,16 @@ footer .container {
 /*푸터B : 푸터메뉴*/
 
 .footB div {
-    /*하나의 div끝나면 아래에 여백 30px 줌*/
-    margin-bottom: 20px;
+    margin-bottom: 3.5vw;
 }
 
 .footB h3 {
+    margin-left: 25px;
+    margin-right: 25px;
     margin-top: 0;
     margin-bottom: 10px;
     border-bottom: solid 1px currentColor;
-    font-size: 12px;
+    font-size: 0.5rem;
 }
 
 .footB ul {
@@ -195,9 +291,10 @@ footer .container {
 
 .footB a {
     /*li에 하면 안되고 a에 해야 먹힌다*/
+    margin-left: 25px;
     color: #fff;
     color: var(--text-bright-color);
-    font-size: 14px;
+    font-size: 1vw;
     text-decoration: none;
     display: block;
     /*블록박스를 구성해라- 옆으로 긴 박스가 나옴*/
@@ -229,7 +326,7 @@ footer .container {
 /*푸터C :저작권*/
 .footC {
     text-align: center;
-    font-size: 13px;
+    font-size: 1vw;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -276,7 +373,7 @@ footer .container {
     display: block;
     padding: 5px;
     color: inherit;
-    font-size: 12px;
+    font-size: 0.5rem;
     text-decoration: none;
     border: solid 1px currentColor;
     width: 2em;
