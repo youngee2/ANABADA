@@ -4,7 +4,8 @@
 margin: 0;
 padding: 0;
 font-family: 'NanumBarunGothic';
-color: #818181;;
+text-decoration: none !important;
+color: inherit;
 }
 
 .slide-img{
@@ -32,7 +33,7 @@ ul{
     list-style-type: none;
 }
 
-li{
+.li-tradePage{
     float: left;
     margin-left:10px; 
     margin-right: 10px; 
@@ -40,7 +41,7 @@ li{
     color: #818181;
     text-align: center;
 }
-.category-li{
+.li-tradePage.category-li{
 margin: 15px 20px;
 }
 
@@ -182,7 +183,8 @@ img{
     width: 450px;
     height: 380px;
 }
-.detail.high{
+
+.li-tradePage.detail.high{
     clear: left;
     text-align: left;
     font-size: 25pt;
@@ -198,7 +200,7 @@ img{
     color: #c5c5c5;
 }
 
-.detail.high.btn{
+.li-tradePage.detail.high.btn{
     font-size: 12pt;
     width: 100%;
 }
@@ -251,7 +253,7 @@ img{
     color: #337A98;
 }
 
-.comment-li{
+.li-tradePage.comment-li{
     clear: left;
     width: 100%;
     text-align: left;
