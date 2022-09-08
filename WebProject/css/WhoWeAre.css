@@ -1,0 +1,158 @@
+@charset "UTF-8";
+
+* {
+    font-family: 'NanumBarunGothic';
+}
+
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+header,
+section,
+footer,
+nav,
+img,
+form,
+figcaption,
+figure,
+i,
+p {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+ol,
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+* {
+    font-family: "Montserrat", "Nanum Gothic", sans-serif;
+    scroll-behavior: smooth;
+    /*클릭했을때 샤라랑 부드럽게 넘겨주기*/
+}
+
+
+:root {
+    --main-color: #c3d8dc;
+    --header-color: #9ed6ef;
+    --dark-main-color: #2B5566;
+    --dark-body-color: #4C6D81;
+    --hoverMenu-color: #979c9f;
+    --text-bright-color: #fff;
+    --icon-color: #fff;
+    --icon-bk-color: #ddd;
+    --large-width: 1000px;
+}
+
+body a:link {
+    color: var(--text-bright-color);
+    text-decoration: none;
+}
+
+/*사이트 방문했어도 보라색으로 안뜨게*/
+body a:visited {
+    color: var(--text-bright-color);
+    text-decoration: none;
+}
+
+.header {
+    display: flex;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    /* Position the navbar at the top of the page */
+    width: 100%;
+    /* Full width */
+}
+
+/* TitleA 로고와 제목 */
+
+.header {
+    background-color: var(--dark-main-color);
+    /* position: fixed; */
+}
+
+.TitleA {
+    text-align: left;
+}
+
+.TitleA .LogoImg {
+    margin: 10px;
+    height: 2vw;
+    width: 2vw;
+    vertical-align: middle;
+
+}
+
+.TitleA span {
+    font-weight: bolder;
+    font-size: 1.5vw;
+    color: #2B5566;
+    vertical-align: middle;
+    /* text-align: ; */
+}
+
+
+/*TitleB 메뉴들*/
+
+.TitleB {
+    margin-left: 45vw;
+}
+
+.TitleB li {
+
+    float: left;
+    padding: 10px;
+
+}
+
+.TitleB:hover {
+    animation-play-state: paused;
+}
+
+
+.TitleB ul a:hover {
+    /* background-color: var(--accent-color); */
+    color: var(--header-color);
+    text-decoration: none;
+    transition: 0.2s linear;
+    border-bottom: 3px solid rgb(126, 209, 240);
+    /* padding-bottom: 3px; */
+}
+
+
+
+.ConA {
+    padding-top: 50px;
+    height: 1000px;
+}
+
+.ConB {
+    padding-top: 100px;
+    height: 1000px;
+}
+
+.ConC {
+    padding-top: 150px;
+    height: 1000px;
+}
+
+.ConD {
+    padding-top: 200px;
+    height: 1000px;
+}
