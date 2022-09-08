@@ -152,19 +152,20 @@ margin: 15px 20px;
   }
 
   .btnOrange {
-      background: #337a98;
+      background: #B9D8E0;
     }
   .btnNormal{
     background: transparent;
   }
 
   .btnFade.btnOrange:hover {
-    background: #225469;
+    background: #7096a7;
   }
   
 .detail.top{
-    margin: 5%;
-    padding: 0% 10%;
+    margin: 3%;
+    padding:0 10%;
+    overflow: hidden;
 }
 
 img{
