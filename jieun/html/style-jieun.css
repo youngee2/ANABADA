@@ -328,122 +328,184 @@ img {
 
 .introduce {
     text-align: center;
-}
-
-.donation{
-    text-align: center;
-    margin: 5%;
+    margin: 12% 12% 5% 12% ;
 }
 
 
 :root {
     --surface-color: #fff;
     --curve: 40;
-  }
-  
+}
 
-  .cards {
+
+.cards {
+    overflow: auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    height: 650px;
+    height: 700px;
     margin: 4rem 3vw;
     padding: 0;
     list-style-type: none;
-  }
-  
-  .card {
+}
+
+.cards::-webkit-scrollbar {
+    display: none;
+}
+
+
+.card {
     position: relative;
     display: block;
-    height: 100%;  
+    height: 100%;
     border-radius: calc(var(--curve) * 1px);
     overflow: hidden;
     text-decoration: none;
-  }
-  
-  .card__image {      
+}
+
+.card__image {
     width: 100%;
     height: auto;
-  }
-  
-  .card__overlay {
+}
+
+.card__overlay {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 1;      
-    border-radius: calc(var(--curve) * 1px);    
-    background-color: var(--surface-color);      
+    z-index: 1;
+    border-radius: calc(var(--curve) * 1px);
+    background-color: var(--surface-color);
     transform: translateY(100%);
     transition: .2s ease-in-out;
-  }
-  
-  .card:hover .card__overlay {
+}
+
+.card:hover .card__overlay {
     transform: translateY(0);
-  }
-  
-  .card__header {
+}
+
+.card__header {
     position: relative;
     display: flex;
     align-items: center;
     gap: 2em;
     padding: 2em;
-    border-radius: calc(var(--curve) * 1px) 0 0 0;    
+    border-radius: calc(var(--curve) * 1px) 0 0 0;
     background-color: var(--surface-color);
     transform: translateY(-100%);
     transition: .2s ease-in-out;
-  }
-  
-  .card__arc {
+}
+
+.card__arc {
     width: 80px;
     height: 80px;
     position: absolute;
     bottom: 100%;
-    right: 0;      
+    right: 0;
     z-index: 1;
-  }
-  
-  .card__arc path {
+}
+
+.card__arc path {
     fill: var(--surface-color);
     d: path("M 40 80 c 22 0 40 -22 40 -40 v 40 Z");
-  }       
-  
-  .card:hover .card__header {
+}
+
+.card:hover .card__header {
     transform: translateY(0);
-  }
-  
-  .card__thumb {
+}
+
+.card__thumb {
     flex-shrink: 0;
     width: 50px;
-    height: 50px;      
-    border-radius: 50%;      
-  }
-  
-  .card__title {
+    height: 50px;
+    border-radius: 50%;
+}
+
+.card__title {
     font-size: 1em;
     margin: 0 0 .3em;
     color: #6A515E;
-  }
-  
-  .card__tagline {
+}
+
+.card__tagline {
     display: block;
     margin: 1em 0;
-    font-family: "MockFlowFont";  
-    font-size: .8em; 
-    color: #D7BDCA;  
-  }
-  
-  .card__status {
     font-size: .8em;
-    color: #D7BDCA;
-  }
-  
-  .card__description {
+    color: #B9D8E0;
+}
+
+.card__status {
+    font-size: .8em;
+    color: #B9D8E0;
+}
+
+.card__description {
     padding: 0 2em 2em;
     margin: 0;
-    color: #D7BDCA;
+    color: #B9D8E0;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     overflow: hidden;
-  }    
+}
+
+.donation-detail{
+    margin: 0% 12% 12% 12%;
+    padding: 3%;
+}
+
+
+.item-text{
+    position: absolute;
+    background-color: #ffffff;
+    box-shadow: 3px 3px 10px 0px rgb(0 0 0 / 20%);
+    width: 350px;
+}
+
+.item-img{
+    background-position: center;
+    background-size: cover;
+    width: 350px;
+    height: 300px;
+}
+
+.detail-strong{
+    width: 100%;
+    margin: 20px 0;
+    font-size: 20pt;
+    font-weight: bold;
+}
+
+
+@media (min-width: 768px){
+    .detail-strong{
+        font-weight: bold;
+        font-size: 2vw;
+       margin-left: 10%;
+    }
+
+    .item-text {
+    position: relative;
+    float: left;
+    top: 40px;
+    left: 10%;
+    width: 750px;
+    height: 300px;
+    background-color: #ffffffb3;
+    z-index: 1;
+    -webkit-box-shadow: 3px 3px 10px 0px rgb(0 0 0 / 20%);
+    box-shadow: 3px 3px 10px 0px rgb(0 0 0 / 20%);
+    padding: 40px 60px;
+    margin-left: -40px;
+    font-size: 20px;
+    color: #818181;
+}
+.item-img{
+    float: right;
+    padding: 5%;
+    background-position: center;
+    background-size: cover;
+    width: 30vw;
+    height: 30vw;
+}
+}
