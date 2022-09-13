@@ -19,20 +19,46 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
+
+    <script>
+        //댓글달기 버튼 클릭시 스크롤 이동
+        button.addEventListener('click', function () {
+        const scrollPosition = document.querySelector(this.dataset.target).offsetTop;
+
+        window.scrollTo({ top: scrollPosition, behavior: 'smooth' })});
+    </script>
+
+      
+  <script>
+    //TOP 스크롤
+    $(window).scroll(function () {
+      if ($(this).scrollTop() > 300) {
+        $('.btn_gotop').show();
+      } else {
+        $('.btn_gotop').hide();
+      }
+    });
+    $('.btn_gotop').click(function () {
+      $('html, body').animate({ scrollTop: 0 }, 400);
+      return false;
+    });
+  </script>
+
+  <title>물품 상세보기</title>
 </head>
 
 <body>
 
 
-    <div style="margin: 2% 10%">
-        <a href="">HOME</a>
+    <div style="margin: 2% 10%;">
+        <a href="" class="a link">HOME</a>
         >
-        <a href="">교환</a>
+        <a href="./ExchangeListPage.html" class="a link">교환</a>
         > 물품 상세보기
     </div>
 
 
-    <!--상단-->
+    <!--상단-->    
     <div class="detail top">
         <div class="img details" style="text-align: center; background-image: url('./img/slide1.jpg');">사진 넣는 곳</div>
 
@@ -59,7 +85,7 @@
                     <a href="" title="신고하기" class="button btnNormal" style="color: #bebebe;">
                         <img src="./img/siren.png" style="width: 20px;">
                         &nbsp; 신고하기</a>
-                    <a href="" title="댓글달기" class="button btnFade btnOrange">댓글달기</a>
+                    <a href="#comment" title="댓글달기" class="button btnFade btnOrange">댓글달기</a>
                 </li>
             </ul>
         </div>
@@ -92,7 +118,7 @@
     <!--하단(댓글)-->
     <div style="margin:12%; ">
         <hr>
-        <div class="comment">
+        <div class="comment" id="comment">
             <h3><b>댓글</b></h3>
             <br>
             <div class="comment-box">
@@ -106,7 +132,9 @@
                             <ul style="float: left;">
                                 <li class="comment-li">작성자</li>
                                 <li class="comment-li">댓글내용</li>
-                                <li class="comment-li" style="color: #c5c5c5;">작성일</li>
+                                <li class="comment-li edit">작성일</li>
+                                <li class="comment-li edit"><button class="button btnNormal">수정</button></li>
+                                <li class="comment-li edit"><button class="button btnNormal">삭제</button></li>
                             </ul>
                             <ul style="float: right;">
                                 <li>
@@ -127,8 +155,17 @@
             </ul>
         </div>
 
-
     </div>
+
+     <!--TOP 버튼-->
+  <div class="floating">
+    <a href="" class="btn_gotop" id="click">
+      <span class="glyphicon glyphicon-chevron-up">
+        <img src="./img/top-arrow-svgrepo-com.svg" style="width: 50px; height:50px;">
+      </span>
+    </a>
+  </div>
+
 </body>
 
 </html>
