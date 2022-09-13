@@ -6,6 +6,7 @@
     font-family: 'NanumBarunGothic';
     text-decoration: none !important;
     color: inherit;
+    scroll-behavior: smooth;
 }
 
 textarea:focus {
@@ -23,14 +24,16 @@ input:focus {
 ::placeholder {
     color: #c5c5c5;
 }
-.a.link{
+
+.a.link {
     color: #818181;
 }
+
 .slide-img {
     margin-top: 3%;
     margin-left: 10%;
     width: 80%;
-    
+
 }
 
 .carousel-inner {
@@ -46,6 +49,7 @@ img {
     display: table;
     margin-left: auto;
     margin-right: auto;
+
 }
 
 ul {
@@ -57,7 +61,6 @@ ul {
     margin-left: 10px;
     margin-right: 10px;
     padding-left: 10px;
-    color: #818181;
     text-align: center;
 }
 
@@ -186,7 +189,8 @@ a.button {
     background: transparent;
     border: none;
 }
-.btnNormal:focus{
+
+.btnNormal:focus {
     outline: none;
 }
 
@@ -284,9 +288,11 @@ img {
     background-color: transparent;
     color: #337A98;
 }
-.comment-btn:focus{
+
+.comment-btn:focus {
     outline: none;
 }
+
 .comment-li-more {
     float: right;
     background-color: transparent;
@@ -296,7 +302,7 @@ img {
     height: 40px;
 }
 
-.comment-li-more:focus{
+.comment-li-more:focus {
     outline: none;
 }
 
@@ -318,4 +324,24 @@ img {
 .comment-li.edit {
     float: left;
     color: #c5c5c5;
+}
+
+.introduce {
+    text-align: center;
+}
+
+.donation-cop-li {
+    display: inline-block;
+    flex: 1;
+    height: 35vw;
+    min-height: 250px;
+    margin:3%;
+    width: calc(80%/3);
+    min-width: 200px;
+    background-color: #7096a7;
+}
+
+.donation{
+    text-align: center;
+    margin: 5%;
 }
