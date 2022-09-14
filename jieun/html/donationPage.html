@@ -24,6 +24,11 @@
     </script>
 
     <script>
+        //모달창
+
+    </script>
+
+    <script>
         //TOP스크롤
         $(window).scroll(function () {
             if ($(this).scrollTop() > 200) {
@@ -104,7 +109,7 @@
         <div style="margin: 5% 0;">
             <ul class="cards">
                 <li>
-                    <a href="" class="card">
+                    <a href="#" class="card" data-toggle="modal" data-target="#moaModal">
                         <img src="./img/1.png" class="card__image" alt="" />
                         <div class="card__overlay">
                             <div class="card__header">
@@ -158,7 +163,8 @@
                                         안전하고 건강한 사회를 만드는 비영리재단</span>
                                 </div>
                             </div>
-                            <p class="card__description">숲과나눔은 가정·일터·지역사회의 환경이 숲과 같이 건강하고 안전하며 지속가능한 곳이어야 한다는 우리 사회의 여망이 모여 만들어진 비영리 재단입니다.</p>
+                            <p class="card__description">숲과나눔은 가정·일터·지역사회의 환경이 숲과 같이 건강하고 안전하며 지속가능한 곳이어야 한다는 우리 사회의 여망이
+                                모여 만들어진 비영리 재단입니다.</p>
                         </div>
                     </a>
                 </li>
@@ -202,7 +208,7 @@
                     </div>
                 </li>
                 <li>
-                    <div class="item-img" style="background-image: url('./img/with2.jpg');;"> </div>
+                    <div class="item-img" style="background-image: url('./img/with2.jpg');"> </div>
                 </li>
             </ul>
         </div>
@@ -215,41 +221,43 @@
         <span class="detail-strong" style="color: #fff; font-family: 'NanumBarunGothic';">❔ 자주 묻는 질문(FAQ)</span>
         <div class="tabs">
             <div class="tab">
-               <input type="checkbox" id="chck1" class="inputFAQ">
-               <label class="tab-label" for="chck1">Q. &nbsp; 기부금 영수증을 다른 사람 이름으로 발급 가능한가요?</label>
-               <div class="tab-content">
-                기부금 영수증은 다른 사람의 이름으로 변경하여 발급이 불가하며 본인 명의로 발급됩니다.
-                본인 명의로 발급된 기부금 영수증은 연간 소득 금액 100만원 이하인 기본공제대상(배우자, 직계존속, 직계비속, 형제자매 등)이 발급받은 것을 합산하여 공제가 가능합니다.
-                자세한 사항은 각 후원처 사이트에 문의 부탁드립니다.
-               </div>
+                <input type="checkbox" id="chck1" class="inputFAQ">
+                <label class="tab-label" for="chck1">Q. &nbsp; 기부금 영수증을 다른 사람 이름으로 발급 가능한가요?</label>
+                <div class="tab-content">
+                    기부금 영수증은 다른 사람의 이름으로 변경하여 발급이 불가하며 본인 명의로 발급됩니다.
+                    본인 명의로 발급된 기부금 영수증은 연간 소득 금액 100만원 이하인 기본공제대상(배우자, 직계존속, 직계비속, 형제자매 등)이 발급받은 것을 합산하여 공제가 가능합니다.
+                    자세한 사항은 각 후원처 사이트에 문의 부탁드립니다.
+                </div>
             </div>
             <div class="tab">
-               <input type="checkbox" id="chck2" class="inputFAQ">
-               <label class="tab-label" for="chck2">Q. &nbsp; 후원금이 어떻게 사용되는지 알고 싶습니다.</label>
-               <div class="tab-content">
-                <a href="http://kfem.or.kr/?cat=74">▶ 환경운동연합</a>
-                <br>
-                <a href="http://greenfund.org/board/board.php?bo_table=bogo&cate=%EC%A7%80%EC%86%8D%EA%B0%80%EB%8A%A5%EB%B3%B4%EA%B3%A0%EC%84%9C">▶ 환경재단</a>
-                <br>
-                <a href="https://koreashe.org/about/#about04">▶ 숲과나눔</a>
-                <br>
-                사업보고서와 소식지는 각 후원처의 링크를 첨부하오니, 확인 부탁드립니다.
-               </div>
+                <input type="checkbox" id="chck2" class="inputFAQ">
+                <label class="tab-label" for="chck2">Q. &nbsp; 후원금이 어떻게 사용되는지 알고 싶습니다.</label>
+                <div class="tab-content">
+                    <a href="http://kfem.or.kr/?cat=74">▶ 환경운동연합</a>
+                    <br>
+                    <a
+                        href="http://greenfund.org/board/board.php?bo_table=bogo&cate=%EC%A7%80%EC%86%8D%EA%B0%80%EB%8A%A5%EB%B3%B4%EA%B3%A0%EC%84%9C">▶
+                        환경재단</a>
+                    <br>
+                    <a href="https://koreashe.org/about/#about04">▶ 숲과나눔</a>
+                    <br>
+                    사업보고서와 소식지는 각 후원처의 링크를 첨부하오니, 확인 부탁드립니다.
+                </div>
             </div>
             <div class="tab">
-               <input type="checkbox" id="chck3" class="inputFAQ">
-               <label class="tab-label" for="chck3">Q. &nbsp; 후원 관련 1:1 문의를 하고 싶은데 어떻게 하면 되나요?</label>
-               <div class="tab-content">
-                  아나바다 메일 주소(anabada@anabada.com)로 문의 주시면 확인 후 최대한 빠르게 답변 드리겠습니다.
-               </div>
+                <input type="checkbox" id="chck3" class="inputFAQ">
+                <label class="tab-label" for="chck3">Q. &nbsp; 후원 관련 1:1 문의를 하고 싶은데 어떻게 하면 되나요?</label>
+                <div class="tab-content">
+                    아나바다 메일 주소(anabada@anabada.com)로 문의 주시면 확인 후 최대한 빠르게 답변 드리겠습니다.
+                </div>
             </div>
-         </div>
+        </div>
     </div>
 
 
     <!--TOP 버튼-->
     <div class="floating">
-        <a href="" class="btn_gotop" id="click">
+        <a href="#" class="btn_gotop" id="click">
             <span class="glyphicon glyphicon-chevron-up">
                 <img src="./img/top-arrow-svgrepo-com.svg" style="width: 50px; height:50px;">
             </span>
@@ -257,6 +265,41 @@
     </div>
 
 
+    <!--후원 사이트 모달창-->
+    <div class="modal fade" id="moaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width: 750px; height:800px;">
+                <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">x</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-img" style="background-image: url('./img/kfem.JPG');">
+                    </div>
+                    <div class="detail-strong" style="margin:20px 0 0 0;">환경운동연합</div>
+                    <div>
+                        <h5>전국 8개의 환경단체들이 통합되어 아시아 최대 규모의 환경단체</h5>
+                    </div>
+                    <div class="modal-detail">
+                        환경운동연합은 창립 이후 지금까지 현장성, 대중성, 전문성을 바탕으로  아시아 최대의 환경단체로 성장했습니다.
+                        <br>
+                        현재 환경연합에는 현장을 지키는 전국의 풀뿌리 지역조직 54개와 시민환경연구소, 환경법률센터 등 전문성과 대중성을 높이기 위한 전문기관과 협력기관들이 있습니다.또한 핵물질 이용 반대, 멸종위기종 및 고래 보호, 기후변화 대응과 같은 지구환경문제 해결을 위하여 리우회의 참석 등 국제 연대에 적극적으로 참여하고 있습니다.
+                    </div>
+                    <div class="modal-detail second">
+                        사단법인 환경운동연합 대표 : 이철수
+                        <br>고유번호 : 275-82-00406
+                        <br>대표전화 : 02-735-7000
+                        <br>Fax : 02-735-7020<br>
+                        주소 : 03039 서울특별시 종로구 필운대로 23, 2층(누하동) <br>
+                        대표 메일 : web@kfem.or.kr
+                        <br>후원 : 우리은행 1005-801-085917(예금주 : 사단법인 환경운동연합)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 </body>
