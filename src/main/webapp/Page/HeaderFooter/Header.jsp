@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="HeaderFooter.css">
+    <link rel="stylesheet" type="text/css" href="./css/HeaderFooter.css">
     <script src="https://kit.fontawesome.com/e4982ae3c4.js" crossorigin="anonymous"></script>
     <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-barun-gothic.css" rel="stylesheet">
     <title>Document</title>
@@ -79,7 +79,7 @@
             </ul>
 
             <ul class="subB">
-                <li><a href="#">거래하기</a>
+                <li><a href="tradeListPage.jsp">거래하기</a>
                     <ol class="subDetailB">
                         <li><a href="#">전체</a></li>
                         <li><a href="#">테크/가전</a></li>
@@ -94,13 +94,13 @@
             </ul>
 
             <ul class="subC">
-                <li><a href="#">교환</a></li>
+                <li><a href="exchangeListPage.jsp">교환</a></li>
             </ul>
             <ul class="subD">
                 <li><a href="#">자유게시판</a></li>
             </ul>
             <ul class="subE">
-                <li><a href="#">후원하기</a></li>
+                <li><a href="donationPage.jsp">후원하기</a></li>
             </ul>
 
             <ul class="subF">
