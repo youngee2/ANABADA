@@ -59,15 +59,27 @@
         <!-- 슬라이드 쇼 -->
         <div class="carousel-item active">
           <!--가로-->
-          <img src="./img/banner1-donation.png">
+          <picture>
+            <source srcset="./img/banner1-exchange.png" media="(min-width: 768px)" />
+            <source srcset="./img/banner1(mini)-exchange.png" media="(min-width:370px)" />
+            <img src="./img/banner1-exchange.png">
+        </picture>
           <div class="carousel-caption d-none d-md-block">
           </div>
         </div>
         <div class="carousel-item">
-          <img src="./img/slide2.jpg">
+          <picture>
+            <source srcset="./img/banner2-exchange.png" media="(min-width: 768px)" />
+            <source srcset="./img/banner2(mini)-exchange.png" media="(min-width:370px)" />
+            <img src="./img/banner2-exchange.png">
+        </picture>
         </div>
         <div class="carousel-item">
-          <img src="./img/slide1.jpg">
+          <picture>
+            <source srcset="./img/banner3-exchange.png" media="(min-width: 768px)" />
+            <source srcset="./img/banner3(mini)-exchange.png" media="(min-width:370px)" />
+            <img src="./img/banner3-exchange.png">
+        </picture>
         </div>
 
         <!-- / 슬라이드 쇼 끝 -->
@@ -115,7 +127,7 @@
 
   <!--게시글 리스트(기능 넣으면 수정예정)-->
   <div class="container-fluid">
-
+    <h4>교환 물품 목록</h4> 
     <hr>
     <div class="row">
       <div class="col-6 col-md-3">
