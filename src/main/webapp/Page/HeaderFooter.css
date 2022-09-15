@@ -82,6 +82,7 @@ a {
 
 .HeaderA a:hover {
     background-color: rgba(0, 0, 0, 0.3);
+    color:#000000;
 }
 
 
@@ -304,6 +305,10 @@ a {
 
 }
 
+.HeaderB a:hover{
+	color:var(--dark-main-color);
+}
+
 
 /*HeaderC 게시판 메뉴*/
 
@@ -317,6 +322,10 @@ a {
     display: flex;
     justify-content: center;
 
+}
+
+.HeaderC a:hover{
+	color:var(--dark-main-color);
 }
 
 .HeaderC ul {
@@ -333,7 +342,7 @@ a {
     text-decoration: none;
     transition: 0.2s linear;
     border-bottom: 1.5px solid rgb(68, 129, 208);
-    color: var(--dark-main-color)
+    color: #2B5566;
 }
 
 /*subA 호버하면 소개메뉴나오게*/
