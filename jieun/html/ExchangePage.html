@@ -83,7 +83,7 @@
                     </table>
                 </li>
                 <li class="li-tradePage detail high btn">
-                    <a href="" title="신고하기" class="button btnNormal" style="color: #bebebe;">
+                    <a href="#" title="신고하기" class="button btnNormal" style="color: #bebebe;"  data-toggle="modal" data-target="#moaModal1" >
                         <img src="./img/siren.png" style="width: 20px;">
                         &nbsp; 신고하기</a>
                     <a href="#comment" title="댓글달기" class="button btnFade btnOrange">댓글달기</a>
@@ -144,8 +144,9 @@
                                         <img src="./img/more.svg">
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">1:1 채팅하기</a>
-                                        <a class="dropdown-item" href="#">신고하기</a>
+                                        <a class="dropdown-item" href="ChatPage.html" target="_blank"
+                                        onClick="window.open(this.href, '', 'width=550, height=750'); return false;">1:1 채팅하기</a>
+                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#moaModal1" >신고하기</a>
                                     </div>
                                 </li>
                             </ul>
@@ -158,9 +159,39 @@
 
     </div>
 
+     <!--신고버튼(모달)-->
+     <div class="modal fade" id="moaModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+     <div class="modal-dialog" role="document">
+         <div class="modal-content" style="width: 550px; height:400px;">
+             <div class="modal-header">
+                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">x</span>
+                 </button>
+             </div>
+             <div class="modal-body">
+                 <h4>🚨 신고하기</h4>
+                 <div>
+                     <textarea style="width:100%; height:100px; resize: none;" placeholder="신고 사유를 작성해주세요."></textarea>
+                     <hr>
+                 </div>
+                 <div style="color: #bebebe;">
+                     · 정상적인 게시물을 신고하는 경우 본인이 제재를 당할 수 있습니다.
+                     <br>
+                     · 신고하게 된 이유를 자세히 써주시면 운영자의 관련 결정에 도움이 됩니다.
+                 </div>
+                 <div>
+                     <button type="submit" class="chat-btn btnFade btnRed">신고하기</button>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+
+
      <!--TOP 버튼-->
   <div class="floating">
-    <a href="" class="btn_gotop" id="click">
+    <a href="#" class="btn_gotop" id="click">
       <span class="glyphicon glyphicon-chevron-up">
         <img src="./img/top-arrow-svgrepo-com.svg" style="width: 50px; height:50px;">
       </span>
