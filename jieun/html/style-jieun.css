@@ -633,8 +633,14 @@ img {
 }
 
 .modal-detail.second{
+    height: 300px;
     float: right;
     border-left: #afafaf 1px solid;
+}
+
+.modal-detail-bottom{
+    width: 100%;
+    display: inline-block;
 }
 
 /* 채팅 */
