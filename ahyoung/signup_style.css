@@ -62,7 +62,7 @@ padding: 10%;
     padding-top:40px;
 }
 .check_style{
-    padding: 5px;
+    padding-top: 5px;
     font-size: 17px;
 }
 
@@ -71,7 +71,8 @@ padding: 10%;
 }
 
 .next_btn{
-    margin-top: 10%;
+    margin-top: 8%;
+   width: 100%;
     border : 2px solid #b9D8E0;
     color: #2B5566;
     background-color: #b9D8E0;
@@ -99,20 +100,20 @@ padding: 10%;
     padding-top: 20px;
     text-align:left;
     font-size: 15px;
-
+    margin-left: 5px;
 }
  
 .input_body{
     display: flex;
     justify-content:center; 
 
+
 } 
 
 .form_style{
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    align-content: center;   
+    align-items: center;
 }
 
 .next_btn_back.next_btn{
@@ -139,4 +140,14 @@ padding: 10%;
     color: #2B5566;
     background-color: #b9D8E0;
     padding:10px;
+}
+
+#check_button{
+    display: flex;
+    margin-top: 1%;
+    background-color: #b9D8E0;
+    margin-left : auto;
+    border : 2px solid #b9D8E0;
+    color: #2B5566;
+    
 }
