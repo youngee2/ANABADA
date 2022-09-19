@@ -13,6 +13,13 @@
     font-weight: normal;
     font-style: normal;
 }
+body{
+    -ms-overflow-style: none;
+    }
+    
+   ::-webkit-scrollbar {
+     display: none;
+   }
 
 body,
 div,
@@ -82,7 +89,6 @@ body a:link {
     text-decoration: none;
 }
 
-/*사이트 방문했어도 보라색으로 안뜨게*/
 body a:visited {
     color: var(--text-bright-color);
     text-decoration: none;
@@ -94,16 +100,14 @@ body a:visited {
     z-index: 1;
     top: 0;
     width: 100%;
-    /* Full width */
     justify-content: space-between;
 }
 
 /* TitleA 로고와 제목 */
-
 .header {
     background-color: var(--dark-main-color);
     align-items: center;
-    height: 4rem;
+    height: 6rem;
 }
 
 
@@ -118,7 +122,7 @@ body a:visited {
 
 .TitleA span {
     font-weight: bolder;
-    font-size: 2.1rem;
+    font-size: 2.5rem;
     color: #2B5566;
     vertical-align: middle;
 
@@ -137,10 +141,10 @@ body a:visited {
 
 .TitleB .menuA li {
     float: left;
-    padding: 10px;
-    font-size: 1.4rem;
+    padding: 2rem;
+    font-size: 1.8rem;
     font-weight: bold;
-    padding-left: 2rem;
+    padding-right: 3rem;
 }
 
 .TitleB ul a:hover {
@@ -180,7 +184,7 @@ body a:visited {
 
 
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1200px) {
 
     .TitleB .menuB {
         display: none;
@@ -191,7 +195,7 @@ body a:visited {
     }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1200px) {
 
     .TitleB .menuA {
         display: none;
@@ -215,37 +219,92 @@ body a:visited {
 
 section {
 background-color: var(--light-body-color);
-    height: 900px;
+
     margin: auto;
     display: grid;
 }
 
-/*conA 우리 회사가 뭐하는 회사인지 소개*/
-/* .ConA {
-    padding-top: 6rem;
-    height: 15rem;
-} */
+/*conA svg 마스크*/
 
+ .svg{
+    display: flex;
+ }
+
+ .ConA .text2{
+font-size: 1.5vw;
+ }
 .ConA div {
     position: absolute;
-    font-size: 8vw;
+    font-size: 6vw;
 }
 
-/*콘탠츠 B 우리가 왜 만들었느기?*/
+/*콘탠츠 B 우리가 왜 만들었는가?*/
+.ConBPic{
+    margin-top: 27vw;
+    width: 33vw;
+    height: 23vw;
+    object-fit: cover;
+    display: flex;
+}
 
+.ConB{
+   margin-top:  45vw;
+}
 .ConBwrap .mean{
     padding-top: 3rem;
 }
 
-.ConB h3{
+.title{
+    font-size: 3vw;
+    color: var(--light-body-color);
+    padding-bottom: 3vw;
+  }
+
+  .ConB p span{
+font-size: 2vw;
+  }
+
+  .ConB p{
+    font-size: 1.2vw;
+    text-align: center;
+    padding-bottom: 35px;
+  }
+
+/*텍스트 옆에 줄*/
+
+.lineA {
+    display: flex;
+    flex-basis: 100%;
+    align-items: center;
+  }
+  
+.lineA::after, .lineA::before {
+    content: "";
+    flex-grow: 1;
+    background: rgba(0, 0, 0, 0.35);
+    height: 1px;
+    font-size: 0px;
+    line-height: 0px;
+    margin: 0px 16px;
+  }
+
+
+  /*WhatIsMean 무슨뜻인지*/
+
+
+.WhyDo h3{
+    padding:3vw;
+    font-size: 2.5vw;
     color: #868f94;
     font-family: 'SUIT-Medium';
 }
 
 .ConB span, h1{
+    font-size: 1.5vw;
     color: #979c9f;
     font-family: 'SUIT-Medium';
 }
+
 
 /*콘텐츠 B 길이 조정*/
 .ConB-Mockup{
@@ -253,13 +312,6 @@ background-color: var(--light-body-color);
     width: 100%;
     text-align: center;
 
-}
-
-.ConBPic {
-    width: 44px;
-    height: 244px;
-    object-fit: cover;
-    display: flex;
 }
 
 .ConBwrap{
@@ -368,23 +420,6 @@ font-size: 2vw;
     
 }
 
-/*텍스트 옆에 줄*/
-
-.lineA {
-    display: flex;
-    flex-basis: 100%;
-    align-items: center;
-  }
-  
-.lineA::after, .lineA::before {
-    content: "";
-    flex-grow: 1;
-    background: rgba(0, 0, 0, 0.35);
-    height: 1px;
-    font-size: 0px;
-    line-height: 0px;
-    margin: 0px 16px;
-  }
 
 
 .lineB {
@@ -403,47 +438,64 @@ font-size: 2vw;
     margin: 0px 16px;
   }
 
-  .title{
-    font-size: 2.5vw;
-    color: var(--light-body-color);
-  }
 
 
   /*container 사진*/
   .container {
-    display: grid;
-    grid-template-columns: repeat(3, 130px);
-    grid-template-rows: repeat(4, 130px);
-  }
-  
-  .item1 {
-    grid-column: 1 / 4;
-    background-color: aquamarine;
-  }
-  
-  .item2 {
-    grid-row: 2 / 4;  background-color: rgb(65, 78, 73);
-  }
-  
-  .item3 {
-    grid-column: 2 / span 2;  background-color: rgb(0, 0, 0);
-  }
-  
-  .item6 {
-    grid-column: 1 / span 3;  background-color: rgb(58, 40, 72);
-  }
-  
-  
-  .item {
+    width: 70%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.images {
+    width: 100%;
+    height: auto;
+}
+
+.images img {
     width: 100%;
     height: 100%;
-    text-align: center;
-    color: rgb(226, 0, 0);
-    font-size: 30px;
-    font-weight: bold;
-    font-family: "Shrikhand";
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    object-fit: contain;
+}
+
+.images img:hover{
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transition: .5s ease;
+
   }
-  
+
+  .ConC .WhatWeDo{
+    padding: 10vw;
+    font-size: 1.5vw;
+    text-align: center;
+  }
+
+
+
+@media (min-width: 640px) {
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 30px;
+        grid-auto-flow: row dense;
+    }
+
+    .imageFlex1 {
+        display: grid;
+        row-gap: 20px;
+    }
+
+    .imageFlex2 {
+        display: grid;
+        row-gap: 20px;
+    }
+
+    .imageFlex3 {
+        display: grid;
+        row-gap: 20px;
+    }
+}
