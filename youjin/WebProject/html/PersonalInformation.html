@@ -13,96 +13,60 @@
 </head>
 
 
-    <body>
-        <!--헤더 부분-->
-        <header class="header">
-    
-            <div class="HeaderA">
-                <!--헤더 부분-->
-                <header class="header">
-    
-                    <div class="HeaderA">
-                        <ul class="login">
-                            <li><a href="#">SIGNUP</a></li>
-                            <li><a href="#">MY PAGE</a></li>
-                            <li class="btn LoginBtn">Login</li>
-                   
-                            <div class="modal">
-                                <div class="login-modal">
-                                  
-                                        <span class="close">&times;</span>
-                                        <div class="Login_form">
-                                            <h3>Login to ANABADA</h3>
-                                            <form>
-                                                <div class="form-group">
-                                                    <input type="text" required /><label>ID</label>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="password" required /><label>Password</label>
-                                                </div>
-                                                <input type="button" value="Login" class="submit">
-    
-                                                <div class="forgot">
-                                                <a href="#">Forgot your password?</a>
-                                            </div>
-                                            
-                                                <div class="GoSignUp">
-                                                    <p>Not Yet Registered? <a href="#">Sign Up</a></p>
-                                                </div>
-                                            </form>
-                                            
+<body>
+    <!--헤더 부분-->
+    <header class="header">
+
+        <div class="HeaderA">
+            <!--헤더 부분-->
+            <header class="header">
+
+                <div class="HeaderA">
+                    <ul class="login">
+                        <li><a href="#">SIGNUP</a></li>
+                        <li><a href="#">MY PAGE</a></li>
+                        <li class="btn LoginBtn">Login</li>
+
+                        <div class="modal">
+                            <div class="login-modal">
+
+                                <span class="close">&times;</span>
+                                <div class="Login_form">
+                                    <h3>Login to ANABADA</h3>
+
+                                    <form  name="Login" action="" method="get">
+                                        <div class="form-group">
+                                            <input type="text" name="login" required /><label>ID</label>
                                         </div>
-                                    </div>
+                                        <div class="form-group">
+                                            <input type="password" name="password" required /><label>Password</label>
+                                        </div>
+                                        <input type="button" value="Login" class="submit" onclick="check_onclick()">
+
+                                        <div class="forgot">
+                                            <a href="#">Forgot your password?</a>
+                                        </div>
+
+                                        <div class="GoSignUp">
+                                            <p>Not Yet Registered? <a href="#">Sign Up</a></p>
+                                        </div>
+                                    </form>
+
                                 </div>
                             </div>
-                        </ul>
-                    </div>
-                    <script>
-                        // Modal을 가져옵니다.
-                        var modals = document.getElementsByClassName("modal");
-                        // Modal을 띄우는 클래스 이름을 가져옵니다.
-                        var btns = document.getElementsByClassName("btn");
-                        // Modal을 닫는 close 클래스를 가져옵니다.
-                        var spanes = document.getElementsByClassName("close");
-                        var funcs = [];
-                
-                        // Modal을 띄우고 닫는 클릭 이벤트를 정의한 함수
-                        function Modal(num) {
-                            return function () {
-                                // 해당 클래스의 내용을 클릭하면 Modal을 띄웁니다.
-                                btns[num].onclick = function () {
-                                    modals[num].style.display = "block";
-                                    console.log(num);
-                                };
-                
-                                // <span> 태그(X 버튼)를 클릭하면 Modal이 닫습니다.
-                                spanes[num].onclick = function () {
-                                    modals[num].style.display = "none";
-                                };
-                            };
-                        }
-                
-                        // 원하는 Modal 수만큼 Modal 함수를 호출해서 funcs 함수에 정의합니다.
-                        for (var i = 0; i < btns.length; i++) {
-                            funcs[i] = Modal(i);
-                        }
-                
-                        // 원하는 Modal 수만큼 funcs 함수를 호출합니다.
-                        for (var j = 0; j < btns.length; j++) {
-                            funcs[j]();
-                        }
-                
-                        // Modal 영역 밖을 클릭하면 Modal을 
-                        window.onclick = function (event) {
-                            if (event.target.className == "modal") {
-                                event.target.style.display = "none";
-                            }
-                        };
-                
-                    </script>
-                </header>
-            </div>
-    
+                        </div>
+                </div>
+                </ul>
+        </div>
+        <script>
+            function check_onclick() {
+                theForm = document.Login;
+
+                if (theForm.login.value == "" || theForm.password.value == "") {
+                    alert("아이디 혹은 비밀번호를 입력해주세요.");
+                }
+            }
+        </script>
 
     <div class="HeaderB">
         <img class="LogoImg" src="/WebProject/img/LogoPolarBear.png">
@@ -165,31 +129,31 @@
         <table class="PersonalC-table">
             <tr>
                 <th>이름</th>
-                <td>송*진</td>
+                <td><%=dto.getName()%></td>
             </tr>
             <tr>
                 <th>닉네임</th>
-                <td>노래해연</td>
+                <td><%=dto.getNICKNAME()%></td>
             </tr>
             <tr>
                 <th>아이디</th>
-                <td> songsunkite</td>
+                <td> <%=dto.getUSER_ID()%></td>
             </tr>
             <tr>
                 <th>비밀번호</th>
-                <td>비밀번호 변경하기</td>
+                <td><%=dto.getUSER_PASSWD()%></td>
             </tr>
             <tr>
                 <th>생년월일</th>
-                <td>1999년 6월 16일</td>
+                <td><%=dto.getBirth()%></td>
             </tr>
             <tr>
                 <th>연락처</th>
-                <td>010-****-3928</td>
+                <td><%=dto.getPHONE_NUM()%></td>
             </tr>
             <tr>
                 <th>이메일 주소</th>
-                <td>songsunkite@gmail.com</td>
+                <td><%=dto.getEMAIL()%></td>
             </tr>
             <tr>
                 <th>프로필 사진</th>
@@ -200,17 +164,15 @@
         <h3 class="personalB-subtitle">회원 탈퇴</h3>
         <hr class="personal-lineB">
         <div class="PersonalE-SignOut">
-            <!-- 첫 번째 Modal을 여는 클래스 -->
             <h3 class="btn SignOutBtn">탈퇴하기</h3>
 
-            <!-- 첫 번째 Modal -->
             <div class="modal">
-                <!-- 첫 번째 Modal의 내용 -->
+                <form  name="SignOut" action="" method="get">
                 <div class="SignOutModal">
                     <span class="close">&times;</span>
                     <p class="confirmSignOutA">정말 탈퇴하시겠습니까?</p>
                     <p class="confirmSignOutB">비밀번호를 입력해주세요.</p>       <input type="password" required />
-                    <button onclick="javascript:SignOutbtn()" class="SignoutBtn"> 탈퇴하기 </button>
+                    <button onclick="javascript:SignOutbtn()" class="SignoutBtn"> 탈퇴하기 </button></form>
                 </div>
               <script>
                 </script>
@@ -259,7 +221,6 @@
 
         <div class="footC">
             © All rights reserved.
-            <!--Alt + 0169-->
         </div>
         </div>
     </footer>
@@ -267,6 +228,37 @@
 
 </html>
 
+<script>
+    var modals = document.getElementsByClassName("modal");
+    var btns = document.getElementsByClassName("btn");
+    var spanes = document.getElementsByClassName("close");
+    var funcs = [];
 
+    function Modal(num) {
+        return function () {
+            btns[num].onclick = function () {
+                modals[num].style.display = "block";
+                console.log(num);
+            };
 
-<script type="text/javascript" src="/WebProject/js/page.js"></script>
+            spanes[num].onclick = function () {
+                modals[num].style.display = "none";
+            };
+        };
+    }
+
+    for (var i = 0; i < btns.length; i++) {
+        funcs[i] = Modal(i);
+    }
+
+    for (var j = 0; j < btns.length; j++) {
+        funcs[j]();
+    }
+
+    window.onclick = function (event) {
+        if (event.target.className == "modal") {
+            event.target.style.display = "none";
+        }
+    };
+
+</script>
