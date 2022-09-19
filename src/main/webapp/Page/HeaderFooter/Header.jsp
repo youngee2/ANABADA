@@ -72,7 +72,7 @@
             <ul class="subA">
                 <li><a href="#">아나바다란?</a>
                     <ol class="subDetailA">
-                        <li><a href="#">회사소개</a></li>
+                        <li><a href="whoWeArePage.jsp">회사소개</a></li>
                         <li><a href="#">개발자</a></li>
                     </ol>
                 </li>
