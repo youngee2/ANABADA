@@ -82,3 +82,61 @@ padding: 10%;
     font-weight: bold;
 }
 
+.step_point_2{
+    text-decoration: overline 5px #b9D8E0;
+}
+
+.essential_ments{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    font-size: 12px;
+    padding: 20px;
+    padding-bottom: 50px;
+}
+
+.input_style{
+    padding-top: 20px;
+    text-align:left;
+    font-size: 15px;
+
+}
+ 
+.input_body{
+    display: flex;
+    justify-content:center; 
+
+} 
+
+.form_style{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;   
+}
+
+.next_btn_back.next_btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+.signup_finish_ment{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 5%;
+
+}
+
+
+.next_btn_finish{
+    display: flex;
+    justify-content: center;
+    margin-top: 30%;
+    border : 2px solid #b9D8E0;
+    color: #2B5566;
+    background-color: #b9D8E0;
+    padding:10px;
+}
