@@ -94,7 +94,7 @@
             </ul>
 
             <ul class="subC">
-                <li><a href="exchangeListPage.jsp">교환</a></li>
+                <li><a href="../Page/exchangeListPage.do">교환</a></li>
             </ul>
             <ul class="subD">
                 <li><a href="#">자유게시판</a></li>
