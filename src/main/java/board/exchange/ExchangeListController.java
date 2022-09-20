@@ -8,12 +8,12 @@ import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import utils.BoardPage;
+
 
 public class ExchangeListController extends HttpServlet {
 	/**
@@ -59,7 +59,7 @@ public class ExchangeListController extends HttpServlet {
 		
 	
 		//게시물 목록 받기
-		List<ExchangeBoardDTO> boardLists = dao.getList();
+		List<ExchangeBoardDTO> boardLists = dao.selectListPage(map);
 		dao.close();
 		
 		String command = req.getParameter("command");

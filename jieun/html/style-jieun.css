@@ -144,7 +144,10 @@ ul {
     border-radius: 25px 25px 0 0;
 }
 
-
+.page-list{
+    text-align: center;
+    height: 60px;
+}
 
 .icon {
     width: 100px;

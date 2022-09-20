@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="./HeaderFooter/Header.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -123,18 +123,20 @@
 
 	<!--검색창-->
 	<form method="get">
-	<div class="search-category">
-		<div class="searchbox">
-			<input class="search-text" type="text" name="searchword" placeholder="키워드를 검색하세요.">
-			<button class="search-btn" type="submit">
-				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-					fill="#337a98" class="bi bi-search" viewBox="0 0 16 16">
-          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+		<div class="search-category">
+			<div class="searchbox">
+				<input class="search-text" type="text" name="searchword"
+					placeholder="키워드를 검색하세요.">
+				<button class="search-btn" type="submit">
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+						fill="#337a98" class="bi bi-search" viewBox="0 0 16 16">
+          <path
+							d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
         </svg>
 
-			</button>
+				</button>
+			</div>
 		</div>
-	</div>
 	</form>
 
 	<!--게시글 리스트(기능 넣으면 수정예정)-->
@@ -142,46 +144,44 @@
 	<div class="container-fluid">
 		<h4>교환 물품 목록</h4>
 		<hr>
-		
-	<c:choose>
-	<c:when test="${empty boardLists}">
+
+		<c:choose>
+			<c:when test="${empty boardLists}">
 		등록된 게시물이 없습니다.
 	</c:when>
-	<c:otherwise>
-			<div class="row">
-		<c:forEach items="${boardLists }" var="list_item" varStatus="loop">
-			<div class="col-6 col-md-3">
-				<div class="ex-list">
-					<p style="background-image: url(${user_picture});" class="listimg">
-					<p class>
-					<ul>
-						<li class="li-tradePage" style="color: #ff6666;">♥</li>
-						<li class="li-tradePage">교환 희망 물품 : </li>
-					</ul>
-					</p>
-					<p> ${list_item.exc_wish}</p>
-					<p style="text-align: center;">
-					${list_item.exc_title } </p>
+			<c:otherwise>
+				<div class="row">
+					<c:forEach items="${boardLists }" var="list_item" varStatus="loop">
+						<div class="col-6 col-md-3">
+							<div class="ex-list">
+								<p style="background-image: url(${user_picture});"
+									class="listimg">
+								<p class>
+								<ul>
+									<li class="li-tradePage" style="color: #ff6666;">♥</li>
+									<li class="li-tradePage">교환 희망 물품 :</li>
+								</ul>
+								</p>
+								<p>${list_item.exc_wish}</p>
+								<p style="text-align: center;">${list_item.exc_title }</p>
+							</div>
+						</div>
+					</c:forEach>
 				</div>
-			</div>
-		</c:forEach>
-		</div>
-		</c:otherwise>
-</c:choose>
-		
+			</c:otherwise>
+		</c:choose>
 
 
-
-
-		
+		<!-- 하단 -->
 		<hr>
-		<a href="" title="글쓰기" class="button btnFade btnOrange">글쓰기</a>
-	</div>
+		<ul>
+			<li><a href="" title="글쓰기" class="button btnFade btnOrange" style="font-size:12pt;">글쓰기</a>
+			</li>
+			<li>
+				<div style="text-align:center; font-size:15pt;'">${map.pagingImg }</div>
+			</li>
+		</ul>
 	<p style="margin: 20% 0;"></p>
-
-	<!--글 목록 번호-->
-	<div>
-	${map.pagingImg }
 	</div>
 	<!--TOP 버튼-->
 	<div class="floating">
