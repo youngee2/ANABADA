@@ -112,6 +112,10 @@ ul {
     margin-right: 10px;
 }
 
+.search-field{
+	margin-right:5px;
+}
+
 .container-fluid {
     margin-top: 10%;
     padding-left: 12%;

@@ -10,7 +10,7 @@ public class BoardPage {
 		
 		if(pageTemp !=1) {
 			pagingStr += "<a href='"+reqUrl+"?pageNum=1'> << </a>";
-			pagingStr += "&nbsp;";
+			pagingStr += "&nbsp;&nbsp;";
 			pagingStr += "<a href='" + reqUrl +"?pageNum="+(pageTemp -1)+"'> 이전 </a>";
 		}
 		
@@ -29,7 +29,7 @@ public class BoardPage {
 		
 		if(pageTemp<=totalPages) {
 			pagingStr +="<a href ='"+reqUrl+"?pageNum="+pageTemp+"'> 다음 </a>";
-			pagingStr += "&nbsp;";
+			pagingStr += "&nbsp;&nbsp;";
 			pagingStr +="<a href='"+reqUrl+"?pageNum="+totalPages+"'> >> </a>";
 		}
 		

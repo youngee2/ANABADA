@@ -62,10 +62,8 @@ public class ExchangeListController extends HttpServlet {
 		List<ExchangeBoardDTO> boardLists = dao.selectListPage(map);
 		dao.close();
 		
-		String command = req.getParameter("command");
-		System.out.println(command);
 		
-		String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "/Page/exchageListPage.do");
+		String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "/webproject/Page/exchageListPage.do");
 		
 		map.put("pagingImg", pagingImg);
 		map.put("totalCount", totalCount);

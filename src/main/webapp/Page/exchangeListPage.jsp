@@ -125,7 +125,11 @@
 	<form method="get">
 		<div class="search-category">
 			<div class="searchbox">
-				<input class="search-text" type="text" name="searchword"
+				<select name="searchField" class="search-field">
+				<option value="exc_title">제목</option>
+				<option value="exc_contents">내용</option>
+				</select>
+				<input class="search-text" type="text" name="searchWord"
 					placeholder="키워드를 검색하세요.">
 				<button class="search-btn" type="submit">
 					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -154,7 +158,7 @@
 					<c:forEach items="${boardLists }" var="list_item" varStatus="loop">
 						<div class="col-6 col-md-3">
 							<div class="ex-list">
-								<p style="background-image: url(${user_picture});"
+								<p style="background-image: url('${list_item.user_picture}');"
 									class="listimg">
 								<p class>
 								<ul>

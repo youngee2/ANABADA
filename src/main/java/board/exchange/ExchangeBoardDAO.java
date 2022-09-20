@@ -1,10 +1,5 @@
 package board.exchange;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -74,6 +69,8 @@ public class ExchangeBoardDAO extends DBConnPool{
 
 					board.add(dto);
 				}
+				System.out.println(map.get("searchWord"));
+			System.out.println(query);
 			} catch(Exception e) {
 				System.out.println("게시물 조회 중 예외 발생");
 				e.printStackTrace();
@@ -85,7 +82,7 @@ public class ExchangeBoardDAO extends DBConnPool{
 		
 		public List<ExchangeBoardDTO> getList(){
 			List<ExchangeBoardDTO> list = new ArrayList<>();
-			String sql = "select * from exchangeTB oredr by exc_num desc";
+			String sql = "select * from exchangeTB oredr by exc_num";
 			
 			try {
 				psmt = con.prepareStatement(sql);
