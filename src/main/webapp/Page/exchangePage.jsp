@@ -1,5 +1,8 @@
+<%@page import="board.exchange.ExchangeBoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="./HeaderFooter/Header.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,34 +60,39 @@
 
 
 	<div style="margin: 2% 10%;">
-		<a href="" class="a link">HOME</a> > <a href="./exchangeListPage.jsp"
-			class="a link">교환</a> > 물품 상세보기
+		<a href="" class="a link">HOME</a> > <a
+			href="/webproject/Page/exchangeListPage.do" class="a link">교환</a> >
+		물품 상세보기
 	</div>
 
 
 	<!--상단-->
 	<div class="detail top">
 		<div class="img details"
-			style="text-align: center; background-image: url('./img/slide1.jpg');">사진
-			넣는 곳</div>
+			style="text-align: center; background-image: url('${dto.user_picture}');"></div>
 
 		<div style="float: left;">
 			<ul>
-				<li class="li-tradePage detail high">제목 넣는 곳제목 넣는 곳 제목 넣는 곳 제목
-					넣는 곳 제목 넣는 곳 제목 넣는 곳</li>
+				<li class="li-tradePage detail high">${dto.exc_title }</li>
 				<li class="li-tradePage detail high title">
 					<table style="width: 100%; font-size: 13pt;">
 						<tr>
 							<td class="detail-table">· 상품 상태</td>
-							<td>123</td>
+							<td>
+							${condition }
+							</td>
 						</tr>
 						<tr>
 							<td class="detail-table">· 차액 흥정 여부</td>
-							<td>123</td>
+							<td>
+							${diff }
+							</td>
 						</tr>
 						<tr>
-							<td class="detail-table">· 거래지역</td>
-							<td>성남</td>
+							<td class="detail-table">· 작성자</td>
+							<td>
+							 ${dto.nickname }
+							</td>
 						</tr>
 					</table>
 				</li>
@@ -103,19 +111,18 @@
 		<hr>
 		<div class="content">
 			<ul>
-				♥ (아이디) 님께서 교환 희망하는 물품이에요.
+				♥ &nbsp; ${dto.nickname } &nbsp; 님께서 교환 희망하는 물품이에요.
 				<hr>
-				<li class="li-tradePage content li">11211211211211211211211211211212112112</li>
-				<li class="li-tradePage content li"></li>
+
+				<li class="li-tradePage content li">${dto.exc_wish }</li>
+
 			</ul>
 		</div>
 		<div class="content">
 			<ul>
 				상품정보
 				<hr>
-				<li class="li-tradePage content li">
-					내용작성11211211211211211211211211211211211211211211211211211211211211211121121121121121121121121121121121121121121121121121121121121121
-				</li>
+				<li class="li-tradePage content li">${dto.exc_contents }</li>
 			</ul>
 		</div>
 
@@ -210,7 +217,7 @@
 		</span>
 		</a>
 	</div>
-<%@ include file="./HeaderFooter/Footer.jsp"%>
+	<%@ include file="./HeaderFooter/Footer.jsp"%>
 </body>
 
 </html>

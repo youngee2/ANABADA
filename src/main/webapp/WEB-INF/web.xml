@@ -64,7 +64,9 @@
 
 	<servlet-mapping>
 	<servlet-name>ExchangeListController</servlet-name>
-	<url-pattern>*.do</url-pattern>
+	<url-pattern>/Page/exchangeListPage.do</url-pattern>
 	</servlet-mapping>
+	
+		
 </web-app>
 	

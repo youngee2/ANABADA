@@ -125,7 +125,7 @@
 	<form method="get">
 		<div class="search-category">
 			<div class="searchbox">
-				<select name="searchField" class="search-field">
+				<select name="searchField" style="border:none; margin-right:15px;">
 				<option value="exc_title">제목</option>
 				<option value="exc_contents">내용</option>
 				</select>
@@ -158,16 +158,14 @@
 					<c:forEach items="${boardLists }" var="list_item" varStatus="loop">
 						<div class="col-6 col-md-3">
 							<div class="ex-list">
-								<p style="background-image: url('${list_item.user_picture}');"
-									class="listimg">
-								<p class>
+								<a href="/webproject/Page/exchangePage.do?exc_num=${list_item.exc_num }"><p style="background-image: url('${list_item.user_picture}');"
+									class="listimg"></p></a>
 								<ul>
 									<li class="li-tradePage" style="color: #ff6666;">♥</li>
 									<li class="li-tradePage">교환 희망 물품 :</li>
 								</ul>
-								</p>
-								<p>${list_item.exc_wish}</p>
-								<p style="text-align: center;">${list_item.exc_title }</p>
+								<p class="li-exchange-wish">${list_item.exc_wish}</p>
+								<p class="li-exchange-wish" style="text-align: center;">${list_item.exc_title }</p>
 							</div>
 						</div>
 					</c:forEach>
@@ -182,11 +180,12 @@
 			<li><a href="" title="글쓰기" class="button btnFade btnOrange" style="font-size:12pt;">글쓰기</a>
 			</li>
 			<li>
-				<div style="text-align:center; font-size:15pt;'">${map.pagingImg }</div>
+				<div style="text-align:center; font-size:15pt;">${map.pagingImg }</div>
 			</li>
 		</ul>
 	<p style="margin: 20% 0;"></p>
 	</div>
+	
 	<!--TOP 버튼-->
 	<div class="floating">
 		<a href="#" class="btn_gotop" id="click"> <span

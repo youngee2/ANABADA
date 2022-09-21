@@ -79,7 +79,7 @@
             </ul>
 
             <ul class="subB">
-                <li><a href="tradeListPage.jsp">거래하기</a>
+                <li><a href="../Page/tradeListPage.do">거래하기</a>
                     <ol class="subDetailB">
                         <li><a href="#">전체</a></li>
                         <li><a href="#">테크/가전</a></li>

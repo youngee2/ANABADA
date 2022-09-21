@@ -11,6 +11,7 @@ public class ExchangeBoardDTO {
 		private String exc_wish;
 		private String user_picture;
 		private int board_num;
+		private String nickname;
 		
 		public int getIdx() {
 			return idx;
@@ -65,6 +66,12 @@ public class ExchangeBoardDTO {
 		}
 		public void setBoard_num(int board_num) {
 			this.board_num = board_num;
+		}
+		public String getNickname() {
+			return nickname;
+		}
+		public void setNickname(String nickname) {
+			this.nickname = nickname;
 		}
 	
 

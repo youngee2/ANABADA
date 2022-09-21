@@ -1,7 +1,8 @@
-package board.exchange;
+package board.trade;
 
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,19 +16,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import utils.BoardPage;
 
-public class ExchangeListController extends HttpServlet {
+@WebServlet("/Page/tradeListPage.do")
+public class SellListController extends HttpServlet {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public ExchangeListController() {
+	public SellListController() {
 		super();
 	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-		ExchangeBoardDAO dao = new ExchangeBoardDAO();
+		SellBoardDAO dao = new SellBoardDAO();
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -59,11 +61,11 @@ public class ExchangeListController extends HttpServlet {
 		
 	
 		//게시물 목록 받기
-		List<ExchangeBoardDTO> boardLists = dao.selectListPage(map);
+		List<SellBoardDTO> boardList = dao.selectListPage(map);
 		dao.close();
 		
 		
-		String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "../Page/exchangeListPage.do");
+		String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "/webproject/Page/tradeListPage.do");
 		
 		map.put("pagingImg", pagingImg);
 		map.put("totalCount", totalCount);
@@ -71,9 +73,9 @@ public class ExchangeListController extends HttpServlet {
 		map.put("pageNum", pageNum);
 		
 		//전달할 데이터를 req영역에 저장 후 포워드
-		req.setAttribute("boardLists", boardLists);
+		req.setAttribute("boardList", boardList);
 		req.setAttribute("map", map);
-		req.getRequestDispatcher("/Page/exchangeListPage.jsp").forward(req, resp);
+		req.getRequestDispatcher("/Page/tradeListPage.jsp").forward(req, resp);
 		
 	
 	}

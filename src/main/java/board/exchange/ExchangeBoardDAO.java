@@ -1,10 +1,8 @@
 package board.exchange;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
-
 
 import common.DBConnPool;
 
@@ -43,7 +41,7 @@ public class ExchangeBoardDAO extends DBConnPool{
 			if(map.get("searchWord") != null) {
 				query += " where "+map.get("searchField")+" like '%"+map.get("searchWord")+"%'";
 			}
-			query += "		order by idx desc "
+			query += "		order by exc_num desc "
 					+"		)Tb "
 					+" ) "
 					+" where rNum between ? and ? ";		
@@ -66,7 +64,8 @@ public class ExchangeBoardDAO extends DBConnPool{
 					dto.setExc_wish(rs.getString(7));
 					dto.setUser_picture(rs.getString(8));
 					dto.setBoard_num(rs.getInt(9));
-
+					dto.setNickname(rs.getString(10));
+					
 					board.add(dto);
 				}
 				System.out.println(map.get("searchWord"));
@@ -77,43 +76,38 @@ public class ExchangeBoardDAO extends DBConnPool{
 			} return board;
 		}
 
-		
-		
-		
-		public List<ExchangeBoardDTO> getList(){
-			List<ExchangeBoardDTO> list = new ArrayList<>();
-			String sql = "select * from exchangeTB oredr by exc_num";
-			
+		//일련번호에 해당하는 게시물을 DTO 에 담아 반환하기(글 상세보기)
+		public ExchangeBoardDTO selectView(String exc_num) {
+			ExchangeBoardDTO dto = new ExchangeBoardDTO();
+			String query = "select * from exchangeTB where exc_num = ?";
+
 			try {
-				psmt = con.prepareStatement(sql);
+				psmt = con.prepareStatement(query);
+				psmt.setString(1,exc_num);
 				rs = psmt.executeQuery();
-				
-				while(rs.next()) {
-					ExchangeBoardDTO dto = new ExchangeBoardDTO();
+
+				if(rs.next()) {
 					
-					dto.setIdx(rs.getInt("idx"));
-					dto.setExc_num(rs.getInt("exc_num"));
-					dto.setExc_title(rs.getString("exc_title"));
-					dto.setExc_contents(rs.getString("exc_contents"));
-					dto.setExc_condition(rs.getInt("exc_condition"));
-					dto.setExc_diff(rs.getInt("exc_diff"));
-					dto.setExc_wish(rs.getString("exc_wish"));
-					dto.setUser_picture(rs.getString("user_picture"));
-					dto.setBoard_num(rs.getInt("board_num"));
-					
-					list.add(dto);
+					dto.setIdx(rs.getInt(1));
+					dto.setExc_num(rs.getInt(2));
+					dto.setExc_title(rs.getString(3));
+					dto.setExc_contents(rs.getString(4));
+					dto.setExc_condition(rs.getInt(5));
+					dto.setExc_diff(rs.getInt(6));
+					dto.setExc_wish(rs.getString(7));
+					dto.setUser_picture(rs.getString(8));
+					dto.setBoard_num(rs.getInt(9));
+					dto.setNickname(rs.getString(10));
 					
 				}
-				System.out.println(sql);
-			}catch(Exception e) {
-				System.out.println("게시물 조회 중 예외 발생");
+			} catch(Exception e) {
+				System.out.println("게시물 상세보기 중 예외 발생");
 				e.printStackTrace();
-			} finally {
-				close();
 			}
-			return list;
+			return dto;
 		}
 		
+	
 		
 		
 		
