@@ -3,18 +3,10 @@
 <%@ page import="board.trade.SellBoardDAO"%>
 <%@ page import="board.trade.SellBoardDTO"%>
 <%
-String title = (String) pageContext.getAttribute("sell_title");
-String contents = (String) pageContext.getAttribute("sell_contents");
+request.setCharacterEncoding("UTF-8");
 
-if(title != null){
-	title = title.split("=")[1];
-}else{
-	title ="x_x";
-}
-
-if(contents == null){
-	contents = "이거 오류";
-}
+String title = request.getParameter("title");
+String contents = request.getParameter("contents");
 
 SellBoardDTO dto = new SellBoardDTO();
 dto.setSell_title(title);
@@ -28,5 +20,4 @@ if(result == 1 ){
  response.sendRedirect("../Page/tradeListPage.do");
 }else {
 }
-
 %>

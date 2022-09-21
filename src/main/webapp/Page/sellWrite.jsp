@@ -31,10 +31,11 @@
 		<p class="RequiredInput">* 필수항목</p>
 		<hr>
 
-		<form name="SellBoard" action="../Page/sellWriteProcess.jsp" method="post" enctype="multipart/form-data" >
+		<form name="SellBoard" action="../Page/sellWriteProcess.jsp" method="get" enctype="multipart/form-data" >
 			<span class="RequiredInput">* </span>제목 <br> <input type="text"
-				name="sell_title" maxlength=50 size="30vw" placeholder="제목을 입력해주세요."
-				required><br>
+				name="title" maxlength=50 size="30vw" placeholder="제목을 입력해주세요."
+				required>
+				<br>
 
 			<hr>
 
@@ -222,8 +223,8 @@
 			<hr>
 			<p class="formfield">
 				<span class="RequiredInput">* </span><label for="sell_description">상품설명</label><br>
-				<textarea class="sell_description" type="text"
-					name="sell_contents" maxlength=1000
+				<textarea class="sell_description" 
+					name="contents" maxlength=1000
 					placeholder="상품에 대한 내용을 자세하게 설명해주세요.&#13;&#10;(가품 및 판매 금지 물품은 게시가 제한 될 수 있어요.)"
 					required></textarea>
 			</p>
