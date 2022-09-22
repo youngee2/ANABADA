@@ -177,7 +177,7 @@
 		<!-- 하단 -->
 		<hr>
 		<ul>
-			<li><a href="" title="글쓰기" class="button btnFade btnOrange" style="font-size:12pt;">글쓰기</a>
+			<li><a href="../Page/exchangeWrite.jsp" title="글쓰기" class="button btnFade btnOrange" style="font-size:12pt;">글쓰기</a>
 			</li>
 			<li>
 				<div style="text-align:center; font-size:15pt;">${map.pagingImg }</div>

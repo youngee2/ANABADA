@@ -110,20 +110,23 @@ public class SellBoardDAO extends DBConnPool{
 			return dto;
 		}
 		
-	//게시글 DB에 저장하기
+	//게시글 DB에 저장하기 (idx,nickname 수정요망-로그인한 회원 받아와야함)
 		public int insertWrite(SellBoardDTO dto) {
 			int result = 0;
 			try {
 				String query = "insert into sellTB ("
 						+"idx, sell_num, sell_title, sell_contents, sell_category, sell_price, user_picture, board_num, sell_condition, nickname)"
-						+" values (0, seq_board.NEXTVAL, ?,?,5,2616,'./img/1.png',0,2,'홍길동')";
+						+" values (0, seq_board.NEXTVAL, ?,?,?,?,?,0,?,'홍길동')";
 
 				psmt = con.prepareStatement(query);
 				psmt.setString(1, dto.getSell_title());
 				psmt.setString(2, dto.getSell_contents());
+				psmt.setInt(3, dto.getSell_category());
+				psmt.setInt(4, dto.getSell_price());
+				psmt.setString(5, dto.getUser_picture());
+				psmt.setInt(6, dto.getSell_condition());
+				
 				result = psmt.executeUpdate();
-
-				System.out.println(query);
 			}catch(Exception e) {
 				System.out.println("게시물 입력 중 예외 발생");
 				e.printStackTrace();

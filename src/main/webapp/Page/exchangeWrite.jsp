@@ -27,13 +27,13 @@
 
 
 	<section class="sale">
-		<h2>판매글 작성하기</h2>
+		<h2>교환글 작성하기</h2>
 		<p class="RequiredInput">* 필수항목</p>
 		<hr>
 
-		<form name="SellBoard" method="post" enctype="multipart/form-data" action="../Page/sellWriteProcess.jsp">
+		<form name="ExchangeBoard" method="post" enctype="multipart/form-data" action="../Page/exchangeWriteProcess.jsp">
 			<span class="RequiredInput">* </span>제목 <br> <input type="text"
-				name="title" maxlength=50 size="30vw" placeholder="제목을 입력해주세요."
+				name="exc_title" maxlength=50 size="30vw" placeholder="제목을 입력해주세요."
 				required>
 				<br>
 
@@ -178,8 +178,8 @@
 
 			<div class="sell_select_state">
 				<span class="RequiredInput">* </span><span>상품상태</span><br> <input
-					type="radio" name="sell_condition" required> <label
-					for="select" value="used">중고</label> <input type="radio" name="sell_condition"
+					type="radio" name="exc_condition" required> <label
+					for="select" value="used">중고</label> <input type="radio" name="exc_condition"
 					name="shop" value="new"><label for="select2">새상품</label>
 
 
@@ -187,44 +187,31 @@
 			</div>
 			<hr>
 
-			<span class="RequiredInput">* </span><label for="sell_price">가격</label><br>
-			<input type="number" name="sell_price" placeholder="0" maxlength="10"
-				oninput="maxLengthCheck(this)" style="text-align: right;">원
+			<div class="sell_select_state">
+				<span class="RequiredInput">* </span><span>차액 흥정 여부</span><br> <input
+					type="radio" name="exc_diff" required> <label
+					for="select" value="yes">가능</label> <input type="radio" name="exc_diff"
+					name="shop" value="no"><label for="select2">불가능</label>
+
+
+
+			</div>
 			<hr>
-			<script>
-				function maxLengthCheck(object) {
-					if (object.value.length > object.maxLength) {
-						object.value = object.value.slice(0, object.maxLength);
-					}
-				}
-			</script>
+
+		<label for="sell_price">교환 희망 물품</label><br>
+			<input type="text" name="exc_wish"
+				 style="width:80%;">
+			<hr>
+			
 
 
-
-			<span class="RequiredInput">* </span><span>카테고리 선택 &nbsp;</span><br>
-
-			<select class="sell_category" id="sell_category" name="category"
-				onchange="selectBox(this.value)">
-				<option value="sell_choose">카테고리 선택</option>
-				<option value="sell_category0">패션/잡화/뷰티</option>
-				<option value="sell_category1">테크/가전</option>
-				<option value="sell_category2">홈/리빙</option>
-				<option value="sell_category3">베이비/키즈</option>
-				<option value="sell_category4">반려동물</option>
-				<option value="sell_category5">게임/취미(문화)</option>
-				<option value="sell_category6">기타</option>
-			</select>
-
-
-			<script>
-				
-			</script>
+	
 
 			<hr>
 			<p class="formfield">
 				<span class="RequiredInput">* </span><label for="sell_description">상품설명</label><br>
 				<textarea class="sell_description" 
-					name="contents" maxlength=1000
+					name="exc_contents" maxlength=1000
 					placeholder="상품에 대한 내용을 자세하게 설명해주세요.&#13;&#10;(가품 및 판매 금지 물품은 게시가 제한 될 수 있어요.)"
 					required></textarea>
 			</p>

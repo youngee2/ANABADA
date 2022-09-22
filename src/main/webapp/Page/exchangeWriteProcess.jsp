@@ -1,3 +1,5 @@
+<%@page import="board.exchange.ExchangeBoardDAO"%>
+<%@page import="board.exchange.ExchangeBoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="board.trade.SellBoardDAO"%>
@@ -12,7 +14,7 @@ request.setCharacterEncoding("UTF-8");
 
 //이미지 파일 저장
 ServletContext context = request.getServletContext();
-String saveFolder ="./Page/img/sellWriteImg";
+String saveFolder ="./Page/img/excWriteImg";
 String realFolder = "";
 int maxImgSize = 10*1024*1024;
 String encoding = "UTF-8";
@@ -23,11 +25,11 @@ MultipartRequest mr = new MultipartRequest(request, realFolder, maxImgSize, enco
 
 
 String org_img = mr.getFilesystemName("img-upload-input");
-String title = mr.getParameter("title");
-String contents = mr.getParameter("contents");
-String category = mr.getParameter("category");
-String condition = mr.getParameter("sell_condition");
-int price = Integer.parseInt(mr.getParameter("sell_price"));
+String title = mr.getParameter("exc_title");
+String contents = mr.getParameter("exc_contents");
+String diff = mr.getParameter("exc_diff");
+String condition = mr.getParameter("exc_condition");
+String wish = mr.getParameter("exc_wish");
 
 String ext = org_img.substring(org_img.lastIndexOf("."));
 String now = new SimpleDateFormat("yyyyMMdd_MmsS").format(new Date());
@@ -38,14 +40,6 @@ File newFile = new File(realFolder + File.separator + new_img);
 
 oldFile.renameTo(newFile);
 
-//카테고리 숫자 받아오기 - 반복문(아스키코드 변환)
-int category_num = 6;
-
-for(int i=48; i<55; i++){
-	if(category.charAt(13) == i){
-				category_num = i-48;
-	}
-};
 
 //상품 상태 숫자 받아오기 
 int condition_num = 0;
@@ -55,20 +49,28 @@ if(condition.equals("new")){
 	condition_num = 2;
 }
 
-SellBoardDTO dto = new SellBoardDTO();
-dto.setSell_title(title);
-dto.setSell_contents(contents.replace("\r\n", "<br/>"));
-dto.setSell_category(category_num);
-dto.setSell_price(price);
-dto.setSell_condition(condition_num);
-dto.setUser_picture("./img/sellWriteImg/"+new_img);
+int diff_num = 0;
+if(diff.equals("no")){
+	diff_num = 2;
+}else{
+	diff_num = 1;
+}
 
-SellBoardDAO dao = new SellBoardDAO();
+ExchangeBoardDTO dto = new ExchangeBoardDTO();
+dto.setExc_title(title);
+dto.setExc_contents(contents.replace("\r\n", "<br/>"));
+dto.setExc_condition(condition_num);
+dto.setExc_wish(wish);
+dto.setExc_diff(diff_num);
+dto.setUser_picture("./img/excWriteImg/"+new_img);
+
+
+ExchangeBoardDAO dao = new ExchangeBoardDAO();
 int result = dao.insertWrite(dto);
 dao.close();
 
 if(result == 1 ){
-response.sendRedirect("../Page/tradeListPage.do");
+response.sendRedirect("../Page/exchangeListPage.do");
 }else {
 }
 
