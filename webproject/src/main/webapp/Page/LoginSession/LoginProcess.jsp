@@ -13,7 +13,7 @@ String oracleURL = application.getInitParameter("OracleURL");
 String oracleId = application.getInitParameter("OracleId");
 String oraclePwd = application.getInitParameter("OraclePwd");
 
-// 회원 테이블 DAO를 통해 회원 정보 DTO 획득
+// 회원 테이블 DAO를 통해 회원 정보 DTO 획득 
 MemberDAO dao = new MemberDAO(oracleDriver, oracleURL, oracleId, oraclePwd);
 MemberDTO memberDTO = dao.getMemberDTO(UserId, userPwd);
 dao.close();
