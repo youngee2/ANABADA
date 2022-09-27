@@ -24,7 +24,15 @@
 </head>
 
 <body>
+ <%
+ String user_id = (String) session.getAttribute("UserId");
+String nickname = (String) session.getAttribute("Nickname");
 
+if (user_id == null) {
+   out.println("<script>alert('로그인 후 사용주세요.'); location.href='exchangeListPage.do';</script>");
+   return;
+}
+%>
 
 	<section class="sale">
 		<h2>교환글 작성하기</h2>

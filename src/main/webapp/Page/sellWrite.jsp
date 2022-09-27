@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="./HeaderFooter/Header.jsp"%>
+<%@ page import = "utils.JSFunction" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,6 +26,15 @@
 
 <body>
 
+ <%
+ String user_id = (String) session.getAttribute("UserId");
+String nickname = (String) session.getAttribute("Nickname");
+
+if (user_id == null) {
+   out.println("<script>alert('로그인 후 사용주세요.'); location.href='tradeListPage.do';</script>");
+   return;
+}
+%>
 
 	<section class="sale">
 		<h2>판매글 작성하기</h2>
@@ -235,7 +245,7 @@
 
 		</form>
 	</section>
-
+    
 	<%@ include file="./HeaderFooter/Footer.jsp"%>
 
 </body>

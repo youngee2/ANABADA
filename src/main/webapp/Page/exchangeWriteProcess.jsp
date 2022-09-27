@@ -12,6 +12,14 @@
 <%
 request.setCharacterEncoding("UTF-8");
 
+String user_id = (String) session.getAttribute("UserId");
+String nickname = (String) session.getAttribute("Nickname");
+int idx = (int) session.getAttribute("Idx");
+
+if (user_id == null) {
+  out.println("<script>alert('로그인 후 사용주세요.'); location.href='exchangeListPage.do';</script>");
+  return;
+}
 //이미지 파일 저장
 ServletContext context = request.getServletContext();
 String saveFolder ="./Page/img/excWriteImg";
@@ -63,6 +71,9 @@ dto.setExc_condition(condition_num);
 dto.setExc_wish(wish);
 dto.setExc_diff(diff_num);
 dto.setUser_picture("./img/excWriteImg/"+new_img);
+dto.setIdx(idx);
+dto.setNickname(nickname);
+
 
 
 ExchangeBoardDAO dao = new ExchangeBoardDAO();

@@ -10,6 +10,14 @@
 <%
 request.setCharacterEncoding("UTF-8");
 
+String user_id = (String) session.getAttribute("UserId");
+String nickname = (String) session.getAttribute("Nickname");
+
+if (user_id == null) {
+out.println("<script>alert('로그인 후 사용주세요.'); location.href='tradeListPage.do';</script>");
+   return;
+}
+
 //이미지 파일 저장
 ServletContext context = request.getServletContext();
 String saveFolder ="./Page/img/sellWriteImg";
@@ -72,5 +80,5 @@ response.sendRedirect("../Page/tradeListPage.do");
 }else {
 }
 
-
 %>
+    

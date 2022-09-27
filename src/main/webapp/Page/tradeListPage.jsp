@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="./LoginSession/Header.jsp"%>
+<%@ include file="./HeaderFooter/Header.jsp"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -233,8 +234,10 @@
 		<!-- 하단 -->
 		<hr>
 		<ul>
+					
 			<li><a href="../Page/sellWrite.jsp" title="글쓰기" class="button btnFade btnOrange"
-				style="font-size: 12pt;">글쓰기</a></li>
+				style="font-size: 12pt;" id="write">글쓰기</a></li>
+					
 			<li>
 				<div style="text-align: center; font-size: 15pt;">${map.pagingImg }</div>
 			</li>

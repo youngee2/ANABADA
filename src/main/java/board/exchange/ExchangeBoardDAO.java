@@ -108,22 +108,23 @@ public class ExchangeBoardDAO extends DBConnPool{
 			return dto;
 		}
 		
-		//게시글 DB에 저장하기 (idx,nickname 수정요망-로그인한 회원 받아와야함)
+		//게시글 DB에 저장하기 
 		public int insertWrite(ExchangeBoardDTO dto) {
 			int result = 0;
 			try {
 				String query = "insert into exchangeTB ("
 						+"idx, exc_num, exc_title, exc_contents, exc_condition, exc_diff, exc_wish, user_picture, board_num, nickname)"
-						+" values (0, seq_board.NEXTVAL, ?,?,?,?,?,?,1,'홍길동')";
+						+" values (?, seq_board.NEXTVAL, ?,?,?,?,?,?,1,?)";
 
 				psmt = con.prepareStatement(query);
-				psmt.setString(1, dto.getExc_title());
-				psmt.setString(2, dto.getExc_contents());
-				psmt.setInt(3, dto.getExc_condition());
-				psmt.setInt(4, dto.getExc_diff());
-				psmt.setString(5, dto.getExc_wish());
-				psmt.setString(6, dto.getUser_picture());
-				
+				psmt.setInt(1, dto.getIdx());
+				psmt.setString(2, dto.getExc_title());
+				psmt.setString(3, dto.getExc_contents());
+				psmt.setInt(4, dto.getExc_condition());
+				psmt.setInt(5, dto.getExc_diff());
+				psmt.setString(6, dto.getExc_wish());
+				psmt.setString(7, dto.getUser_picture());
+				psmt.setString(8, dto.getNickname());
 				
 				result = psmt.executeUpdate();
 			}catch(Exception e) {
