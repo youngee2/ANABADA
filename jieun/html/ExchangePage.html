@@ -125,7 +125,7 @@
                 <input type="text" placeholder="댓글을 입력해주세요." class="comment-text">
                 <button class="comment-btn" type="submit">등록</button>
             </div>
-            <ul>
+            <ul class="comment-list">
                 <li>
                     <div class="dropup">
                         <div>
@@ -152,8 +152,60 @@
                         </div>
                     </div>
                 </li>
-
-            </ul>
+                <li >
+                    <div class="dropup">
+                        <div>
+                            <ul style="float: left;">
+                                <li class="comment-li">작성자</li>
+                                <li class="comment-li">댓글내용</li>
+                                <li class="comment-li edit">작성일</li>
+                                <li class="comment-li edit"><button class="button btnNormal">수정</button></li>
+                                <li class="comment-li edit"><button class="button btnNormal">삭제</button></li>
+                            </ul>
+                            <ul style="float: right;">
+                                <li>
+                                    <button class="comment-li-more" type="button" data-toggle="dropdown"
+                                        id="dropdownBtn">
+                                        <img src="./img/more.svg">
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="ChatPage.html" target="_blank"
+                                        onClick="window.open(this.href, '', 'width=550, height=750');">1:1 채팅하기</a>
+                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#moaModal1" >신고하기</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li >
+                    <div class="dropup">
+                        <div>
+                            <ul style="float: left;">
+                                <li class="comment-li">작성자</li>
+                                <li class="comment-li">댓글내용</li>
+                                <li class="comment-li edit">작성일</li>
+                                <li class="comment-li edit"><button class="button btnNormal">수정</button></li>
+                                <li class="comment-li edit"><button class="button btnNormal">삭제</button></li>
+                            </ul>
+                            <ul style="float: right;">
+                                <li>
+                                    <button class="comment-li-more" type="button" data-toggle="dropdown"
+                                        id="dropdownBtn">
+                                        <img src="./img/more.svg">
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="ChatPage.html" target="_blank"
+                                        onClick="window.open(this.href, '', 'width=550, height=750');">1:1 채팅하기</a>
+                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#moaModal1" >신고하기</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            
+            </ul>      
         </div>
 
     </div>

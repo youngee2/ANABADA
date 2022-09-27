@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 @WebServlet("/Page/exchangePage.do")
 public class ExchangeViewController extends HttpServlet{
 	/**
@@ -27,6 +28,7 @@ public class ExchangeViewController extends HttpServlet{
 		
 		dao.close();
 		
+	
 		
 		//상품상태
 		String condition = null;

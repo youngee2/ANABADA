@@ -1,5 +1,6 @@
 package board.trade;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -134,5 +135,37 @@ public class SellBoardDAO extends DBConnPool{
 		}
 		
 		
+	//카테고리별 게시물 반환
+		public  List<SellBoardDTO> categoryList(Map<String, Object> map){
+			List<SellBoardDTO> board = new Vector<SellBoardDTO>();
+			String query = "select * from sellTB where sell_category = ?";
+			try {
+				psmt = con.prepareStatement(query);
+				psmt.setString(1, map.get("start").toString());
+				psmt.setString(2, map.get("end").toString());
+				rs = psmt.executeQuery();
+
+				while(rs.next()) {
+					SellBoardDTO dto = new SellBoardDTO();
+
+					dto.setIdx(rs.getInt(1));
+					dto.setSell_num(rs.getInt(2));
+					dto.setSell_title(rs.getString(3));
+					dto.setSell_contents(rs.getString(4));
+					dto.setSell_category(rs.getInt(5));
+					dto.setSell_price(rs.getInt(6));
+					dto.setUser_picture(rs.getString(7));
+					dto.setBoard_num(rs.getInt(8));
+					dto.setSell_condition(rs.getInt(9));
+					dto.setNickname(rs.getString(10));
+					
+					
+					board.add(dto);
+				}
+			} catch(Exception e) {
+				System.out.println("게시물 카테고리 조회 중 예외 발생");
+				e.printStackTrace();
+			} return board;
+		}
 		
 }

@@ -54,7 +54,6 @@
 </script>
 
 
-
 <link rel="stylesheet" href="./css/style-jieun.css">
 </head>
 
@@ -146,43 +145,43 @@
 	<!--카테고리-->
 	<div style="margin-top: 5%;">
 		<ul class="category">
-			<li class="li-tradePage category-li"><a href="" class="a link">
+			<li class="li-tradePage category-li"><a href="/webproject/Page/tradeListPage.do" class="a link">
 					<span> <img src="./img/sprout-tree-svgrepo-com.svg"
 						class="icon"> <br>전체
 				</span>
 			</a></li>
 
-			<li class="li-tradePage category-li"><a href="" class="a link">
+			<li class="li-tradePage category-li"><a href="" class="a link" value = "sell_category0">
 					<span> <img src="./img/fassion.png" class="icon"> <br>패션/잡화/뷰티
 				</span>
 			</a></li>
 
-			<li class="li-tradePage category-li"><a href="" class="a link">
+			<li class="li-tradePage category-li"><a href="" class="a link" value = "sell_category1" >
 					<span> <img src="./img/tech.png" class="icon"> <br>테크/가전
 				</span>
 			</a></li>
 
-			<li class="li-tradePage category-li"><a href="" class="a link">
+			<li class="li-tradePage category-li"><a href="" class="a link" value = "sell_category2" >
 					<span> <img src="./img/home.png" class="icon"> <br>홈/리빙
 				</span>
 			</a></li>
 
-			<li class="li-tradePage category-li"><a href="" class="a link">
+			<li class="li-tradePage category-li"><a href="" class="a link" value = "sell_category3" >
 					<span> <img src="./img/baby.png" class="icon"> <br>베이비/키즈
 				</span>
 			</a></li>
 
-			<li class="li-tradePage category-li"><a href="" class="a link">
+			<li class="li-tradePage category-li"><a href="" class="a link" value = "sell_category4" >
 					<span> <img src="./img/pet.png" class="icon"> <br>반려동물
 				</span>
 			</a></li>
 
-			<li class="li-tradePage category-li"><a href="" class="a link">
+			<li class="li-tradePage category-li"><a href="/webproject/Page/tradeListPage.do?sell_category=5" class="a link" value = "sell_category5" >
 					<span> <img src="./img/game.png" class="icon"> <br>게임/취미
 				</span>
 			</a></li>
 
-			<li class="li-tradePage category-li"><a href="" class="a link">
+			<li class="li-tradePage category-li"><a href="/webproject/Page/tradeListPage.do?sell_category=6" class="a link" value = "sell_category6" >
 					<span> <img src="./img/etc.png" class="icon"> <br>기타
 				</span>
 			</a></li>

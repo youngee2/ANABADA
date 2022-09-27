@@ -98,7 +98,7 @@
                         style="color: #bebebe;">
                         <img src="./img/siren.png" style="width: 20px;">
                         &nbsp; 신고하기</a>
-                    <a title="댓글달기" class="button btnFade btnOrange" href="ChatPage.html" target="_blank"
+                    <a title="채팅하기" class="button btnFade btnOrange" href="./Chat.jsp" target="_blank"
                         onClick="window.open(this.href, '', 'width=550, height=750'); return false;">1:1 채팅하기</a>
                 </li>
             </ul>

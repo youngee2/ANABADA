@@ -1,9 +1,18 @@
 <%@page import="board.exchange.ExchangeBoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="./HeaderFooter/Header.jsp"%>
+<%@ page import="java.util.*"%>
+<%@ page import="board.comment.CommentDTO"%>
+<%@ page import="board.comment.CommentDAO"%>
+<%
+CommentDAO dao = new CommentDAO(application);
+int title_num = Integer.parseInt(request.getParameter("exc_num"));
+List<CommentDTO> commentList = dao.selectList(title_num);
+dao.close();
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,21 +87,15 @@
 					<table style="width: 100%; font-size: 13pt;">
 						<tr>
 							<td class="detail-table">· 상품 상태</td>
-							<td>
-							${condition }
-							</td>
+							<td>${condition }</td>
 						</tr>
 						<tr>
 							<td class="detail-table">· 차액 흥정 여부</td>
-							<td>
-							${diff }
-							</td>
+							<td>${diff }</td>
 						</tr>
 						<tr>
 							<td class="detail-table">· 작성자</td>
-							<td>
-							 ${dto.nickname }
-							</td>
+							<td>${dto.nickname }</td>
 						</tr>
 					</table>
 				</li>
@@ -141,14 +144,15 @@
 				<input type="text" placeholder="댓글을 입력해주세요." class="comment-text">
 				<button class="comment-btn" type="submit">등록</button>
 			</div>
-			<ul>
+			<ul style="margin: 15px; display: flex; flex-direction: column;">
+				<% for(int i=0; i<commentList.size(); i++) {%>
 				<li>
 					<div class="dropup">
 						<div>
 							<ul style="float: left;">
-								<li class="comment-li">작성자</li>
-								<li class="comment-li">댓글내용</li>
-								<li class="comment-li edit">작성일</li>
+								<li class="comment-li"><%= commentList.get(i).getNickname() %></li>
+								<li class="comment-li"><%= commentList.get(i).getComm() %></li>
+								<li class="comment-li edit"><%= commentList.get(i).getComm_date() %></li>
 								<li class="comment-li edit"><button
 										class="button btnNormal">수정</button></li>
 								<li class="comment-li edit"><button
@@ -168,6 +172,7 @@
 									</div>
 								</li>
 							</ul>
+							<% } %>
 						</div>
 					</div>
 				</li>

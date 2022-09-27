@@ -29,10 +29,7 @@
         })
     </script>
 
-<script>
-        //모달창
 
-    </script>
 
 <script>
         //TOP스크롤

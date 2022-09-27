@@ -62,21 +62,21 @@ public class SellListController extends HttpServlet {
 	
 		//게시물 목록 받기
 		List<SellBoardDTO> boardList = dao.selectListPage(map);
-		dao.close();
-		
-		
-		String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "/webproject/Page/tradeListPage.do");
+		String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum,"/webproject/Page/tradeListPage.do");
 		
 		map.put("pagingImg", pagingImg);
 		map.put("totalCount", totalCount);
 		map.put("pageSize", pageSize);
 		map.put("pageNum", pageNum);
 		
+		
+		
 		//전달할 데이터를 req영역에 저장 후 포워드
 		req.setAttribute("boardList", boardList);
 		req.setAttribute("map", map);
 		req.getRequestDispatcher("/Page/tradeListPage.jsp").forward(req, resp);
 		
+		dao.close();
 	
 	}
 
