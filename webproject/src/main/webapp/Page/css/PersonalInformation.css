@@ -103,3 +103,9 @@ font-size: smaller;
     padding: 0.5rem;
     display: inline-block;
 }
+
+.confirmSignOutA a{
+	list-style: none;
+    color: #fff;
+    text-decoration:none;
+} 

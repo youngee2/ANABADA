@@ -61,6 +61,8 @@ if (!loginId.equals("")) {
 									</div>
 									<div class="form-group">
 										<input type="password" name="user_passwd" required /><label>Password</label>
+										<span style="color: red; font-size: 1.2em;"> <%=request.getAttribute("ErrMsg") == null ? "" : request.getAttribute("ErrMsg")%>
+										</span>
 									</div>
 									<div class="GoSignUp">
 										<input type="submit" value="Login" class="submit"
@@ -85,8 +87,6 @@ if (!loginId.equals("")) {
 										}
 									}
 								</script>
-
-
 							</div>
 						</div>
 					</div>
@@ -96,8 +96,8 @@ if (!loginId.equals("")) {
 				%>
 				<li><a href="../Page/LoginSession/Logout.jsp">LOGOUT</a></li>
 				<li><a href="../Page/PersonalInformation.do">MY PAGE</a> <%
- 				}
- 				%>
+ }
+ %>
 			</ul>
 		</div>
 		<script>

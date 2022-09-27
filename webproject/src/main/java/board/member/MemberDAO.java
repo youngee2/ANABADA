@@ -148,12 +148,13 @@ public class MemberDAO extends DBConnPool {
 	}
 
 	// 탈퇴하기
-	public int SignOut(int idx) {
-		String query = "DELETE FROM MEMBERTB WHERE idx=?";
+	public int SignOut(int idx, String user_passwd) {
+		String query = "DELETE FROM MEMBERTB WHERE idx=? and user_passwd=?";
 
 		try {
 			psmt = con.prepareStatement(query);
 			psmt.setInt(1, idx);
+			psmt.setString(2, user_passwd);
 			rs = psmt.executeQuery();
 			System.out.println(query);
 

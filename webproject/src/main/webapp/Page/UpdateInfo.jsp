@@ -21,8 +21,14 @@
 		<hr class="personal-lineA">
 		<h3 class="personalB-subtitle">회원 정보 변경</h3>
 
+
 		<%
+		request.setCharacterEncoding("UTF-8");
 		String user_id = (String) session.getAttribute("UserId");
+
+		if (user_id == null) {
+			out.println("<script>alert('로그인 후 사용주세요.'); location.href='tradeListPage.do';</script>");
+		}
 		%>
 
 		<table class="PersonalC-table">

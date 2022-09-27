@@ -28,7 +28,8 @@ if (memberDTO.getUser_id() != null) {
 
 } else {
 	// 로그인 실패
-	//request.setAttribute("LoginErrMsg", "아이디/비밀번호를 확인 후 다시 로그인 해주세요.");
+	request.setAttribute("ErrMsg", "아이디/비밀번호가 틀렸습니다.");
 	request.getRequestDispatcher("../tradeListPage.jsp").forward(request, response);
+
 }
 %>

@@ -36,7 +36,7 @@
 				같이 환경을 보호해봐요!
 
 				<button type="button" class="next_btn_finish" style="width: 100%"
-					onclick="location.href='SignUp3.jsp"'">홈으로 돌아가기</button>
+				><a href="tradeListPage.jsp">홈으로 돌아가기</a></button>
 
 			</p>
 		</div>
