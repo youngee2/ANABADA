@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="./HeaderFooter/Header.jsp"%>
+<%@ include file="./LoginSession/Header.jsp"%>
+<%@page import="board.member.*"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -19,24 +20,25 @@
 	crossorigin="anonymous">
 </head>
 <body>
-<section style="margin:0 15% 15% 15%">
-	<div class="signup_title">회원가입</div>
-	<div class="step_title">
-		<p>1 약관동의</p>
-		<p>2 정보입력</p>
-		<p class="step_point_2">3 가입 완료</p>
-	</div>
-	<hr style="margin-top: 0px">
-	<div class="signup_finish_ment">     
-		<img src="./img/LogoPolarBear.png" alt="아나바다_마크" height="60px">
-		<p>
-			축하합니다! 회원가입이 완료되었습니다. <br> <span style="color: #337A98">아나바다</span>에서
-			같이 환경을 보호해봐요!
+	<section style="margin: 0 15% 15% 15%">
+		<div class="signup_title">회원가입</div>
+		<div class="step_title">
+			<p>1 약관동의</p>
+			<p>2 정보입력</p>
+			<p class="step_point_2">3 가입 완료</p>
+		</div>
+		<hr style="margin-top: 0px">
+		<div class="signup_finish_ment">
+			<img src="./img/LogoPolarBear.png" alt="아나바다_마크" height="60px">
 
-			<button type="button" class="next_btn_finish" style="width: 100%"
-				onclick="location.href='SignUp3.jsp"'">홈으로 돌아가기</button>
+			<p>
+				축하합니다! 회원가입이 완료되었습니다. <br> <span style="color: #337A98">아나바다</span>에서
+				같이 환경을 보호해봐요!
 
-		</p>
-	</div>
-</section>
+				<button type="button" class="next_btn_finish" style="width: 100%"
+					onclick="location.href='SignUp3.jsp"'">홈으로 돌아가기</button>
+
+			</p>
+		</div>
+	</section>
 	<%@ include file="./HeaderFooter/Footer.jsp"%>

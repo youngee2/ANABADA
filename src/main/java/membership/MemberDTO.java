@@ -1,4 +1,4 @@
-package Member;
+package membership;
 
 public class MemberDTO {
 	private int idx;
@@ -11,22 +11,9 @@ public class MemberDTO {
 	private int report;
 	private String user_picture;
 
+	
 	public MemberDTO() {
 
-	}
-
-	public MemberDTO(int idx, String name, String nickname, String user_id, String user_passwd, String email,
-			String phone_num, int report, String user_picture) {
-		super();
-		this.idx = idx;
-		this.name = name;
-		this.nickname = nickname;
-		this.user_id = user_id;
-		this.user_passwd = user_passwd;
-		this.email = email;
-		this.phone_num = phone_num;
-		this.report = report;
-		this.user_picture = user_picture;
 	}
 
 	public int getIdx() {

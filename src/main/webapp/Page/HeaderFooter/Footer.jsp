@@ -43,7 +43,7 @@
             <div>
                 <h3>CONTENTS</h3>
                 <ul>
-                    <li><a href="#">공지사항</a></li>
+                    <li><a href="../Page/list.do">공지사항</a></li>
                     <li><a href="#">비즈니스</a></li>
                     <li><a href="#">프로필</a></li>
                     <li><a href="#">블로그</a></li>

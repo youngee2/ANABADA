@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="./HeaderFooter/Header.jsp"%>
+<%@ include file="./LoginSession/Header.jsp"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -10,53 +10,9 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>signup_2</title>
+<title>PersonalInfomation</title>
 <link rel="stylesheet" href="./css/PersonalInformation.css">
 
-
-
-<script>
-	// Modal을 가져옵니다.
-	var modals = document.getElementsByClassName("modal");
-	// Modal을 띄우는 클래스 이름을 가져옵니다.
-	var btns = document.getElementsByClassName("btn");
-	// Modal을 닫는 close 클래스를 가져옵니다.
-	var spanes = document.getElementsByClassName("close");
-	var funcs = [];
-
-	// Modal을 띄우고 닫는 클릭 이벤트를 정의한 함수
-	function Modal(num) {
-		return function() {
-			// 해당 클래스의 내용을 클릭하면 Modal을 띄웁니다.
-			btns[num].onclick = function() {
-				modals[num].style.display = "block";
-				console.log(num);
-			};
-
-			// <span> 태그(X 버튼)를 클릭하면 Modal이 닫습니다.
-			spanes[num].onclick = function() {
-				modals[num].style.display = "none";
-			};
-		};
-	}
-
-	// 원하는 Modal 수만큼 Modal 함수를 호출해서 funcs 함수에 정의합니다.
-	for (var i = 0; i < btns.length; i++) {
-		funcs[i] = Modal(i);
-	}
-
-	// 원하는 Modal 수만큼 funcs 함수를 호출합니다.
-	for (var j = 0; j < btns.length; j++) {
-		funcs[j]();
-	}
-
-	// Modal 영역 밖을 클릭하면 Modal을 닫습니다.
-	window.onclick = function(event) {
-		if (event.target.className == "modal") {
-			event.target.style.display = "none";
-		}
-	};
-</script>
 </head>
 
 <body>
@@ -64,6 +20,13 @@
 		<h1 class="personalA-title">회원정보</h1>
 		<hr class="personal-lineA">
 		<h3 class="personalB-subtitle">회원 정보 변경</h3>
+
+		<%
+		String user_id = (String) session.getAttribute("UserId");
+		String nickname = (String) session.getAttribute("Nickname");
+		int idx = (int) session.getAttribute("Idx");
+		%>
+
 		<table class="PersonalC-table">
 			<tr>
 				<th>이름</th>
@@ -71,7 +34,7 @@
 			</tr>
 			<tr>
 				<th>닉네임</th>
-				<td>${ dto.nickname }</td>
+				<td>${ dto.nickname}</td>
 			</tr>
 			<tr>
 				<th>아이디</th>
@@ -92,29 +55,90 @@
 			<tr>
 				<th>프로필 사진</th>
 				<td></td>
-			</tr>
 		</table>
+
+
+		<div class="updateInfo">
+			<a href="../Page/UpdateInfo.do">정보 수정</a>
+		</div>
 
 		<h3 class="personalB-subtitle">회원 탈퇴</h3>
 		<hr class="personal-lineB">
 		<div class="PersonalE-SignOut">
-			<h3 class="btn SignOutBtn">탈퇴하기</h3>
+			<h3 class="btn SignOutBtn"><a href="./SignOut.jsp" >탈퇴하기</a></h3>
 
-			<div class="modal">
-				<form name="SignOut" action="" method="get">
-					<div class="SignOutModal">
-						<span class="close">&times;</span>
-						<p class="confirmSignOutA">정말 탈퇴하시겠습니까?</p>
-						<p class="confirmSignOutB">비밀번호를 입력해주세요.</p>
-						<input type="password" required />
-						<button onclick="javascript:SignOutbtn()" class="SignoutBtn">
-							탈퇴하기</button>
-					</div>
-				</form>
-			</div>
+			<script>
+				
+			</script>
+		</div>
 		</div>
 		<hr class="personal-lineB">
 	</section>
 
+	<script>
+		var modals = document.getElementsByClassName("modal");
+		var btns = document.getElementsByClassName("btn");
+		var spanes = document.getElementsByClassName("close");
+		var funcs = [];
 
+		function Modal(num) {
+			return function() {
+				btns[num].onclick = function() {
+					modals[num].style.display = "block";
+					console.log(num);
+				};
+
+				spanes[num].onclick = function() {
+					modals[num].style.display = "none";
+				};
+			};
+		}
+
+		for (var i = 0; i < btns.length; i++) {
+			funcs[i] = Modal(i);
+		}
+
+		for (var j = 0; j < btns.length; j++) {
+			funcs[j]();
+		}
+
+		window.onclick = function(event) {
+			if (event.target.className == "modal") {
+				event.target.style.display = "none";
+			}
+		};
+	</script>
+	<script>
+		var modals = document.getElementsByClassName("modal");
+		var btns = document.getElementsByClassName("btn");
+		var spanes = document.getElementsByClassName("close");
+		var funcs = [];
+
+		function Modal(num) {
+			return function() {
+				btns[num].onclick = function() {
+					modals[num].style.display = "block";
+					console.log(num);
+				};
+
+				spanes[num].onclick = function() {
+					modals[num].style.display = "none";
+				};
+			};
+		}
+
+		for (var i = 0; i < btns.length; i++) {
+			funcs[i] = Modal(i);
+		}
+
+		for (var j = 0; j < btns.length; j++) {
+			funcs[j]();
+		}
+
+		window.onclick = function(event) {
+			if (event.target.className == "modal") {
+				event.target.style.display = "none";
+			}
+		};
+	</script>
 	<%@ include file="./HeaderFooter/Footer.jsp"%>

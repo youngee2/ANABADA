@@ -27,7 +27,8 @@ img,
 form,
 figcaption,
 figure,
-i{
+i,
+p {
     margin: 0;
     padding: 0;
     border: 0;
@@ -74,15 +75,11 @@ a {
 }
 
 .HeaderA a {
-    font-size: 0.8rem;
+    font-size: 1rem;
     padding: 10px;
     display: flex;
 }
 
-.HeaderA a:hover {
-    background-color: rgba(0, 0, 0, 0.3);
-    color:#000000;
-}
 
 
 /* 로그인 버튼 누르면 모달창 뜨기*/
@@ -97,7 +94,7 @@ a {
 
 .LoginBtn {
     background-color: var(--main-color);
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     padding: 10px;
 }
 
@@ -105,36 +102,36 @@ a {
     background-color: rgba(0, 0, 0, 0.3);
 }
 
-.modal-head {
+.modal_ {
     display: none;
-    /* Hidden by default */
     position: fixed;
-    /* Stay in place */
     z-index: 1;
-    /* Sit on top */
     left: 0;
     top: 0;
     width: 100%;
-    /* Full width */
     height: 100%;
-    /* Full height */
     background-color: rgb(0, 0, 0);
-    /* Fallback color */
     background-color: rgba(0, 0, 0, 0.4);
-    /* Black w/ opacity */
+
 }
 
 /* Modal Content/Box */
 .login-modal {
     background-color: #fefefe;
     margin: 5% auto;
-    /* 15% from the top and centered */
-    padding: 20px;
+    padding: 2vw;
     border: 1px solid #888;
-    width: 40%;
-    height: 35vw;
+    width: 30%;
+    height: 32vw;
 }
 
+.modal-margin{
+    padding: 2vw 3vw 4vw 3vw;
+}
+
+.Login_form h3{
+letter-spacing: 35px;
+}
 /* The Close Button */
 .close {
     color: #aaa;
@@ -156,11 +153,12 @@ a {
     padding-bottom: 13px;
     text-align: center;
     letter-spacing: 2px;
+    font-size: 2.5vw;
 
 }
 
 .Login_form {
-    padding: 5vw;
+    padding: 2vw;
 }
 
 .form-group input {
@@ -178,7 +176,7 @@ a {
     background-color: transparent;
     border: none;
     border-bottom: 1.4px solid #d8d7d7;
-    font-size: 18px;
+    font-size: 3vw;
     padding: 10px 0;
     display: block;
     width: 100%;
@@ -186,7 +184,7 @@ a {
 
 .form-group label {
     color: #000000;
-    font-size: 16px;
+    font-size: 1.5vw;
     font-weight: 100;
     position: absolute;
     pointer-events: none;
@@ -196,22 +194,18 @@ a {
     left: 0px;
 }
 
-/* .form-group input:valid,
-.form-group input:focus {
-    border-bottom-color: #dddddd;
-    outline: none;
-} */
+
 
 .form-group input:valid+label,
 .form-group input:focus+label {
     color: rgb(24, 1, 1);
-    font-size: 14px;
+    font-size: 0.8vw;
     transform: translateY(0);
 }
 
 .submit {
     background: var(--dark-main-color);
-    padding: 0.8vw;
+    padding: 0.5vw;
     outline: none;
     font-size: 1.5vw;
     width: 100%;
@@ -230,24 +224,36 @@ a {
 
 
 .GoSignUp p {
-    padding-top: 2vw;
+    padding-top: 1vw;
     text-align: center;
+    font-size: 1.5vw;
 }
 
 .GoSignUp a {
     display: block;
     text-align: center;
-
     color: rgb(218 51 3);
+    font-size: 1vw;
 
 }
 
 .GoSignUp a:hover {
-    color: rgb(9, 1, 1);
+    color: rgb(253, 0, 0);
     border-radius: 25px;
 
 }
 
+/*비밀번호 까먹음*/
+.forgot a{
+    display: block;
+    text-align: end;
+    color: rgb(218 51 3);
+
+}
+
+.forgot a:hover{
+    color: rgb(253, 0, 0);
+}
 
 /* PC (해상도 1024px)*/
 @media all and (min-width:1024px) {}
@@ -304,10 +310,6 @@ a {
 
 }
 
-.HeaderB a:hover{
-	color:var(--dark-main-color);
-}
-
 
 /*HeaderC 게시판 메뉴*/
 
@@ -321,10 +323,6 @@ a {
     display: flex;
     justify-content: center;
 
-}
-
-.HeaderC a:hover{
-	color:var(--dark-main-color);
 }
 
 .HeaderC ul {
@@ -341,7 +339,7 @@ a {
     text-decoration: none;
     transition: 0.2s linear;
     border-bottom: 1.5px solid rgb(68, 129, 208);
-    color: #2B5566;
+    color: var(--dark-main-color)
 }
 
 /*subA 호버하면 소개메뉴나오게*/

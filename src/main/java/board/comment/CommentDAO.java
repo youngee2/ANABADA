@@ -40,4 +40,27 @@ public class CommentDAO extends JDBConnect{
 		}
 		return list;
 	}
+
+
+	//교환 게시판 댓글 작성하기 (idx,닉네임 수정해야함)
+	public int commentWrite(CommentDTO dto) {
+		int result = 0;
+			try {
+				String sql = "insert into commentTB("
+						+ "idx, board_num, title_num, comm, nickname) "
+						+ "values ("
+						+ "0, 0, ?, ?, '테스트')";
+				
+				psmt = con.prepareStatement(sql);
+				psmt.setInt(1, dto.getTitle_num());
+				psmt.setString(2, dto.getComm());
+				
+				result = psmt.executeUpdate();
+			}catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("교환 게시판 댓글 작성 중 오류");
+			}
+		return result;
+	}
+	
 }

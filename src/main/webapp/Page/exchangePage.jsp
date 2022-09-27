@@ -141,8 +141,11 @@ dao.close();
 			</h3>
 			<br>
 			<div class="comment-box">
-				<input type="text" placeholder="댓글을 입력해주세요." class="comment-text">
+			<form name="commentFrm" method="post" action="writeCommentProcess.jsp">
+				<input type="hidden" name="titleNum" value="${dto.exc_num}">
+				<input type="text" placeholder="댓글을 입력해주세요." class="comment-text" name="content">
 				<button class="comment-btn" type="submit">등록</button>
+				</form>
 			</div>
 			<ul style="margin: 15px; display: flex; flex-direction: column;">
 				<% for(int i=0; i<commentList.size(); i++) {%>

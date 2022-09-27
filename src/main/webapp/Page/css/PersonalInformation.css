@@ -70,10 +70,11 @@ height: 20vw;
 width: 20vw;
 line-height: 250%;
 display: block;
+font-size: 1.5vw;
 }
 
 .SignOutBtn{
-    font-size: 1vw;
+    font-size: 1.5vw;
 }
 
 .SignOutModal .confirmSignOutA{
@@ -91,4 +92,14 @@ color: #fff;
 
 .confirmSignOutB{
 font-size: smaller;
+}
+
+.updateInfo{
+  margin-top: 2rem;
+   background-color:var(--header-color);
+    color: #fff;
+    width: 8vw;
+    font-size: 1vw;
+    padding: 0.5rem;
+    display: inline-block;
 }
