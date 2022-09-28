@@ -18,6 +18,10 @@ int delresult = dao.delete_exc_Comment(dto);
 
 if(delresult == 1){
 	response.sendRedirect("../exchangePage.do?exc_num="+titleNum);
+} else{
+	out.print(comment);
+	out.print(nickname);
+	
 }
 dao.close();
 %>

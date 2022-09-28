@@ -3,14 +3,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="./HeaderFooter/Header.jsp"%>
 <%@ page import="java.util.*"%>
 <%@ page import="board.comment.CommentDTO"%>
 <%@ page import="board.comment.CommentDAO"%>
 <%
 CommentDAO dao = new CommentDAO(application);
 int title_num = Integer.parseInt(request.getParameter("exc_num"));
-List<CommentDTO> commentList = dao.selectList(title_num);
+List<CommentDTO> commentList = dao.select_exc_comm_List(title_num);
 dao.close();
 %>
 <!DOCTYPE html>
@@ -141,14 +140,14 @@ dao.close();
 			</h3>
 			<br>
 			<div class="comment-box">
-			<form name="commentFrm" method="post" action="writeCommentProcess.jsp">
+			<form name="commentFrm" method="post" action="./CommentProcess/writeCommentProcess.jsp">
 				<input type="hidden" name="titleNum" value="${dto.exc_num}">
 				<input type="text" placeholder="댓글을 입력해주세요." class="comment-text" name="content">
 				<button class="comment-btn" type="submit">등록</button>
 				</form>
 			</div>
 			<ul style="margin: 15px; display: flex; flex-direction: column;">
-				<% for(int i=0; i<commentList.size(); i++) {%>
+		 		<% for(int i=0; i<commentList.size(); i++) {%>
 				<li>
 					<div class="dropup">
 						<div>
@@ -156,10 +155,18 @@ dao.close();
 								<li class="comment-li"><%= commentList.get(i).getNickname() %></li>
 								<li class="comment-li"><%= commentList.get(i).getComm() %></li>
 								<li class="comment-li edit"><%= commentList.get(i).getComm_date() %></li>
-								<li class="comment-li edit"><button
-										class="button btnNormal">수정</button></li>
-								<li class="comment-li edit"><button
-										class="button btnNormal">삭제</button></li>
+								<li class="comment-li edit">
+								<% if(commentList.get(i).getNickname().equals(session.getAttribute("Nickname").toString())){
+									%>
+								<form name="commentFrm" method="post" action="./CommentProcess/deleteCommentProcess.jsp">
+								<input type="hidden" name="titleNum" value="${dto.exc_num }">
+								<input type="hidden" name="comment" value=<%= commentList.get(i).getComm() %>>
+								<button class="button btnNormal">삭제</button>
+								</form>
+								<%
+								}
+								%>
+								</li>
 							</ul>
 							<ul style="float: right;">
 								<li>
@@ -225,7 +232,6 @@ dao.close();
 		</span>
 		</a>
 	</div>
-	<%@ include file="./HeaderFooter/Footer.jsp"%>
 </body>
 
 </html>

@@ -54,10 +54,10 @@ public class ExchangeListController extends HttpServlet {
 		
 		int start = (pageNum -1) * pageSize +1;
 		int end = pageNum * pageSize;
+		
 		map.put("start", start);
 		map.put("end", end);
 		
-	
 		//게시물 목록 받기
 		List<ExchangeBoardDTO> boardLists = dao.selectListPage(map);
 		dao.close();

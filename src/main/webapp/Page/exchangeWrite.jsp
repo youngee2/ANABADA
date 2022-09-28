@@ -208,7 +208,7 @@ if (user_id == null) {
 
 		<label for="sell_price">교환 희망 물품</label><br>
 			<input type="text" name="exc_wish"
-				 style="width:80%;">
+				 style="width:80%;" value="　"> 
 			<hr>
 			
 
