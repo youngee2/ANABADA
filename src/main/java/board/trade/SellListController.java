@@ -2,7 +2,6 @@ package board.trade;
 
 
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,10 +34,11 @@ public class SellListController extends HttpServlet {
 		
 		String searchField = req.getParameter("searchField");
 		String searchWord = req.getParameter("searchWord");
+		String category = req.getParameter("category");
+		
 		if(searchWord != null) {
 			map.put("searchField", searchField);
 			map.put("searchWord", searchWord);
-			
 		}
 		
 		int totalCount = dao.selectCount(map);
@@ -51,13 +51,22 @@ public class SellListController extends HttpServlet {
 		
 		int pageNum = 1;
 		String pageTemp = req.getParameter("pageNum");
+	
+		
+	
 		if(pageTemp != null && !pageTemp.equals(""))
 			pageNum = Integer.parseInt(pageTemp);
 		
+
+		
+		
 		int start = (pageNum -1) * pageSize +1;
 		int end = pageNum * pageSize;
+		
+		map.put("category", category);
 		map.put("start", start);
 		map.put("end", end);
+		
 		
 	
 		//게시물 목록 받기
@@ -69,15 +78,31 @@ public class SellListController extends HttpServlet {
 		map.put("pageSize", pageSize);
 		map.put("pageNum", pageNum);
 		
-		
-		
+		String category_word = "";
+		if(category.toString().equals("0")) {
+			category_word="패션/잡화/뷰티";
+		}else if(category.toString().equals("1")){
+			category_word="테크/가전";
+		}else if(category.toString().equals("2")){
+			category_word="홈/리빙";
+		}else if(category.toString().equals("3")){
+			category_word="베이비/키즈";
+		}else if(category.toString().equals("4")){
+			category_word="반려동물";
+		}else if(category.toString().equals("5")){
+			category_word="게임/취미";
+		}else if(category.toString().equals("6")){
+			category_word="기타";
+		}else {
+			category_word="전체";
+		}
 		//전달할 데이터를 req영역에 저장 후 포워드
 		req.setAttribute("boardList", boardList);
 		req.setAttribute("map", map);
+		req.setAttribute("category_word", category_word);
 		req.getRequestDispatcher("/Page/tradeListPage.jsp").forward(req, resp);
 		
 		dao.close();
 	
 	}
-
 }

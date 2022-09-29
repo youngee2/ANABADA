@@ -44,11 +44,13 @@ public class ListController extends HttpServlet {
 		String pageTemp = req.getParameter("pageNum");
 		if (pageTemp != null && !pageTemp.equals(""))
 			pageNum = Integer.parseInt(pageTemp);
-
+		
+//		int category=Integer.parseInt(req.getParameter("category"));
 		int start = (pageNum - 1) * pageSize + 1;
 		int end = pageNum * pageSize;
 		map.put("start", start);
 		map.put("end", end);
+
 
 		List<NoticeBoardDTO> boardLists = dao.selectListPage(map);
 		dao.close();

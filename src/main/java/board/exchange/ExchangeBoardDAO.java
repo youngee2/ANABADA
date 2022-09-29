@@ -70,7 +70,6 @@ public class ExchangeBoardDAO extends DBConnPool{
 					board.add(dto);
 				}
 				System.out.println(map.get("searchWord"));
-			System.out.println(query);
 			} catch(Exception e) {
 				System.out.println("게시물 조회 중 예외 발생");
 				e.printStackTrace();
@@ -114,7 +113,7 @@ public class ExchangeBoardDAO extends DBConnPool{
 			try {
 				String query = "insert into exchangeTB ("
 						+"idx, exc_num, exc_title, exc_contents, exc_condition, exc_diff, exc_wish, user_picture, board_num, nickname)"
-						+" values (?, seq_board.NEXTVAL, ?,?,?,?,?,?,1,?)";
+						+" values (?, seq_board.NEXTVAL, ?,?,?,?,?,?,0,?)";
 
 				psmt = con.prepareStatement(query);
 				psmt.setInt(1, dto.getIdx());
@@ -135,5 +134,51 @@ public class ExchangeBoardDAO extends DBConnPool{
 		
 		
 		
+		//글 수정하기
+		public int updateEdit(ExchangeBoardDTO dto) {
+			int result = 0;
+			try {
+				String sql = "update exchangeTB set "
+						+" exc_title=?, exc_contents=?, exc_condition=?, exc_diff=?, exc_wish=?, user_picture=? "
+						+" where exc_num=?";
+				psmt = con.prepareStatement(sql);
+				psmt.setString(1, dto.getExc_title());
+				psmt.setString(2, dto.getExc_contents());
+				psmt.setInt(3, dto.getExc_condition());
+				psmt.setInt(4, dto.getExc_diff());
+				psmt.setString(5, dto.getExc_wish());
+				psmt.setString(6, dto.getUser_picture());
+				psmt.setInt(7, dto.getExc_num());
+				
+				result = psmt.executeUpdate();
+			}catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("게시물 수정 중 예외 발생");
+			}
+			
+			return result;
+		}
 		
+		
+		//글 삭제하기
+		public int deletePost(ExchangeBoardDTO dto) {
+			int result = 0;
+			
+			try {
+				String sql = "delete from sellTB where sell_num=?";
+				
+				psmt = con.prepareStatement(sql);
+				psmt.setInt(1, dto.getExc_num());
+				
+				result = psmt.executeUpdate();
+				
+			}catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("게시물 삭제 중 예외 발생");
+			}
+			return result;
+		}
+		
+	
+
 }

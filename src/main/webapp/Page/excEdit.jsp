@@ -2,7 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="../Page/Header.jsp"%>
+<%@ page import="board.exchange.ExchangeBoardDAO"%>
+<%@ page import="board.exchange.ExchangeBoardDTO"%>
+<%@ include file="./Header.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,20 +30,30 @@
  String user_id = (String) session.getAttribute("UserId");
 String nickname = (String) session.getAttribute("Nickname");
 
-if (user_id == null) {
-   out.println("<script>alert('로그인 후 사용주세요.'); location.href='exchangeListPage.do';</script>");
+String num = request.getParameter("excNum");
+ExchangeBoardDAO dao= new ExchangeBoardDAO();
+ExchangeBoardDTO dto = dao.selectView(num);
+
+dao.close();
+
+if (!nickname.equals(dto.getNickname())) {
+out.println("<script>alert('본인만 수정가능합니다.'); location.href='./exchangeListPage.do';</script>");
    return;
 }
+
 %>
 
 	<section class="sale">
-		<h2>교환글 작성하기</h2>
+		<h2>교환글 수정하기</h2>
 		<p class="RequiredInput">* 필수항목</p>
 		<hr>
 
-		<form name="ExchangeBoard" method="post" enctype="multipart/form-data" action="../Page/exchangeWriteProcess.jsp">
+		<form name="ExchangeBoard" method="post" enctype="multipart/form-data" action="../Page/SellEditDelete/excEditProcess.jsp">
+			<input type="hidden" name="WriteNickname" value="<%= dto.getNickname() %>">
+		<input type="hidden" name="exc_num" value="<%= dto.getExc_num() %>">
+		
 			<span class="RequiredInput">* </span>제목 <br> <input type="text"
-				name="exc_title" maxlength=50 size="30vw" placeholder="제목을 입력해주세요."
+				name="exc_title" maxlength=50 size="30vw" value="<%= dto.getExc_title() %>"
 				required>
 				<br>
 
@@ -208,7 +220,7 @@ if (user_id == null) {
 
 		<label for="sell_price">교환 희망 물품</label><br>
 			<input type="text" name="exc_wish"
-				 style="width:80%;" value="　"> 
+				 style="width:80%;" value="<%= dto.getExc_wish() %>"> 
 			<hr>
 			
 
@@ -220,8 +232,7 @@ if (user_id == null) {
 				<span class="RequiredInput">* </span><label for="sell_description">상품설명</label><br>
 				<textarea class="sell_description" 
 					name="exc_contents" maxlength=1000
-					placeholder="상품에 대한 내용을 자세하게 설명해주세요.&#13;&#10;(가품 및 판매 금지 물품은 게시가 제한 될 수 있어요.)"
-					required></textarea>
+					required><%= dto.getExc_contents() %></textarea>
 			</p>
 			<hr>
 

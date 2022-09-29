@@ -1,6 +1,6 @@
-package faq;
+package board.faq;
 
-public class faq_DTO {
+public class FaqDTO {
 	private int q_num;
 	private int q_category;
 	private String q_title;

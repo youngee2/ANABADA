@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="./LoginSession/Header.jsp"%>
+<%@ include file="../Page/Header.jsp"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -22,10 +22,18 @@
 		<h3 class="personalB-subtitle">회원 정보 변경</h3>
 
 		<%
+		request.setCharacterEncoding("UTF-8");
 		String user_id = (String) session.getAttribute("UserId");
-		String nickname = (String) session.getAttribute("Nickname");
-		int idx = (int) session.getAttribute("Idx");
+
+		if (user_id == null) {
+			out.println("<script>alert('로그인 후 사용해주세요.'); location.href='Login.do';</script>");
+		}
 		%>
+		<script type="text/javascript">
+		</script>
+		
+		
+		
 
 		<table class="PersonalC-table">
 			<tr>
@@ -52,9 +60,7 @@
 				<th>연락처</th>
 				<td>${ dto.phone_num }</td>
 			</tr>
-			<tr>
-				<th>프로필 사진</th>
-				<td></td>
+			
 		</table>
 
 
@@ -65,7 +71,9 @@
 		<h3 class="personalB-subtitle">회원 탈퇴</h3>
 		<hr class="personal-lineB">
 		<div class="PersonalE-SignOut">
-			<h3 class="btn SignOutBtn"><a href="./SignOut.jsp" >탈퇴하기</a></h3>
+			<h3 class="btn SignOutBtn">
+				<a href="./SignOut.jsp">탈퇴하기</a>
+			</h3>
 
 			<script>
 				

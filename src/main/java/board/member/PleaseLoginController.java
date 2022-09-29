@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/Page/Header.do")
-public class LoginController extends HttpServlet {
+@WebServlet("/Page/Login.do")
+public class PleaseLoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -42,6 +42,7 @@ public class LoginController extends HttpServlet {
 			resp.sendRedirect("tradeListPage.jsp");
 		} else {
 			// 로그인 실패
+		
 			req.setAttribute("ErrMsg", "아이디/비밀번호를 확인해주세요.");
 			req.getRequestDispatcher("Login.jsp").forward(req, resp);
 

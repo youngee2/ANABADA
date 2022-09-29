@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="./LoginSession/Header.jsp"%>
+<%@ include file="../Page/Header.jsp"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -21,8 +21,14 @@
 		<hr class="personal-lineA">
 		<h3 class="personalB-subtitle">회원 정보 변경</h3>
 
-		<%
+
+			<%
+		request.setCharacterEncoding("UTF-8");
 		String user_id = (String) session.getAttribute("UserId");
+
+		if (user_id == null) {
+			out.println("<script>alert('로그인 후 사용해주세요.'); location.href='Login.do';</script>");
+		}
 		%>
 
 		<table class="PersonalC-table">
@@ -34,32 +40,24 @@
 				</tr>
 				<tr>
 					<th>닉네임</th>
-					<td><input type="text" name="nickname"
-						value="${ dto.nickname}"></td>
+					<td><input type="text" name="nickname" value="${dto.nickname}"></td>
 				</tr>
 				<tr>
 					<th>아이디</th>
-					<td><input type="text" name="user_id" value="${ dto.user_id}"
-						readonly="readonly"></td>
+					<td><input type="text" name="user_id" value="${dto.user_id}" readonly="readonly"></td>
 				</tr>
 				<tr>
 					<th>비밀번호</th>
-					<td><input type="text" name="user_passwd"
-						value="${ dto.user_passwd}"></td>
+					<td><input type="text" name="user_passwd" value="${dto.user_passwd}"></td>
 				</tr>
 				<tr>
 					<th>이메일 주소</th>
-					<td><input type="text" name="email" value="${ dto.email}"></td>
+					<td><input type="text" name="email" value="${dto.email}"></td>
 				</tr>
 				<tr>
 					<th>연락처</th>
-					<td><input type="text" name="phone_num"
-						value="${ dto.phone_num}"></td>
+					<td><input type="text" name="phone_num" value="${dto.phone_num}"></td>
 				</tr>
-				<tr>
-					<th>프로필 사진</th>
-					<td><input type="text" name="user_picture"
-						value="${ dto.user_picture}"></td>
 		</table>
 
 		<button type="submit">수정하기</button>

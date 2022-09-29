@@ -65,7 +65,9 @@ dao.close();
 </head>
 
 <body>
-
+<%
+out.print((String)session.getAttribute("Nickname"));
+%>
 
 	<div style="margin: 2% 10%;">
 		<a href="" class="a link">HOME</a> > <a
@@ -127,12 +129,16 @@ dao.close();
 				<li class="li-tradePage content li">${dto.exc_contents }</li>
 			</ul>
 		</div>
+		
+	
+
 
 	</div>
-
+	<!-- 글 수정/삭제 -->
 
 	<!--하단(댓글)-->
 	<div style="margin: 12%;">
+	
 		<hr>
 		<div class="comment" id="comment">
 			<h3>
@@ -156,17 +162,15 @@ dao.close();
 								<li class="comment-li"><%= commentList.get(i).getComm() %></li>
 								<li class="comment-li edit"><%= commentList.get(i).getComm_date() %></li>
 								<li class="comment-li edit">
-								<% if(commentList.get(i).getNickname().equals(session.getAttribute("Nickname").toString())){
-									%>
+								<% if( session.getAttribute("Nickname").toString().equals(commentList.get(i).getNickname())){%>
+						
 								<form name="commentFrm" method="post" action="./CommentProcess/deleteCommentProcess.jsp">
 								<input type="hidden" name="titleNum" value="${dto.exc_num }">
 								<input type="hidden" name="comment" value=<%= commentList.get(i).getComm() %>>
-								<button class="button btnNormal">삭제</button>
+								<button class="button btnNormal" type="submit">삭제</button>
 								</form>
-								<%
-								}
-								%>
 								</li>
+							<%} %>
 							</ul>
 							<ul style="float: right;">
 								<li>
@@ -189,9 +193,20 @@ dao.close();
 
 			</ul>
 		</div>
-
 	</div>
 
+
+		<div style="margin:12%">
+		<form method="post" name="deleteFrm" action="./SellEditDelete/excDeleteProcess.jsp">
+		<input type="hidden" value="" name="excNum">
+		<button class="chat-btn btnFade btnRed" type="submit">글 삭제</button>
+		</form>
+		<form method="post" name="editFrm" action="./excEdit.jsp">
+		<input type="hidden" value="${dto.exc_num }" name="excNum">
+		<button class="chat-btn btnFade btnOrange" type="submit">글 수정</button>
+		</form>
+		</div>
+		
 	<!--신고버튼(모달)-->
 	<div class="modal fade" id="moaModal1" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">

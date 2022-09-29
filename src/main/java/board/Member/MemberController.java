@@ -12,14 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import board.trade.SellBoardDAO;
 
-
 @WebServlet("/Page/SignUp2.do")
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-		
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 		RequestDispatcher rd = req.getRequestDispatcher("/Page/signUp2.jsp");
 		rd.forward(req, resp);
 
@@ -29,7 +28,7 @@ public class MemberController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		req.setCharacterEncoding("utf-8");
-		 
+
 		// 폼값을 DTO에 저장
 		MemberDTO dto = new MemberDTO();
 

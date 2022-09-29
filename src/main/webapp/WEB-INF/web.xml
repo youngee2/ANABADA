@@ -12,9 +12,18 @@
 		<welcome-file>default.jsp</welcome-file>
 		<welcome-file>default.htm</welcome-file>
 	</welcome-file-list>
-	
-	
-	
+
+
+	<context-param>
+		<param-name>OracleDriver</param-name>
+		<param-value>oracle.jdbc.OracleDriver</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>OracleURL</param-name>
+		<param-value>jdbc:oracle:thin:@localhost:1521:xe</param-value>
+	</context-param>
+
 	<context-param>
 		<param-name>OracleId</param-name>
 		<param-value>c##green</param-value>
@@ -24,16 +33,6 @@
 		<param-name>OraclePwd</param-name>
 		<param-value>green1234</param-value>
 	</context-param>
-	
-	   <context-param>
-      <param-name>OracleDriver</param-name>
-      <param-value>oracle.jdbc.OracleDriver</param-value>
-   </context-param>
-   <context-param>
-      <param-name>OracleURL</param-name>
-      <param-value>jdbc:oracle:thin:@localhost:1521:xe</param-value>
-   </context-param>
-	
 
 	<filter>
 		<filter-name>SetCharEncoding</filter-name>
@@ -58,7 +57,64 @@
 		<param-value>5</param-value>
 	</context-param>
 
+
+
 	<servlet>
+		<servlet-name>BoardList</servlet-name>
+		<servlet-class>board.notice.ListController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BoardList</servlet-name>
+		<url-pattern>/Page/list.do</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>FreeBoardList</servlet-name>
+		<servlet-class>board.free.FreeBoardListController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FreeBoardList</servlet-name>
+		<url-pattern>/Page/freeListPage.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>FaqList</servlet-name>
+		<servlet-class>board.faq.FaqListController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FaqList</servlet-name>
+		<url-pattern>/Page/faqListPage.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>NoticeView</servlet-name>
+		<servlet-class>board.notice.NoticeBoardViewController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NoticeView</servlet-name>
+		<url-pattern>/Page/NoticeView.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>FreeBoardView</servlet-name>
+		<servlet-class>board.free.FreeBoardViewController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FreeBoardView</servlet-name>
+		<url-pattern>/Page/FreeBoardView.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>FreeBoardWrite</servlet-name>
+		<servlet-class>board.free.FreeBoardWriteController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FreeBoardWrite</servlet-name>
+		<url-pattern>/Page/FreeBoardWrite.do</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
 		<servlet-name>ExchangeListController</servlet-name>
 		<servlet-class>board.exchange.ExchangeListController</servlet-class>
 	</servlet>
@@ -68,6 +124,9 @@
 	<url-pattern>/Page/exchangeListPage.do</url-pattern>
 	</servlet-mapping>
 	
-		
+
 </web-app>
+	
+	
+	
 	

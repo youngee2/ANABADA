@@ -35,7 +35,7 @@
             <div>
                 <h3>SUPPORT</h3>
                 <ul>
-                    <li><a href="#">자주묻는 질문</a></li>
+                    <li><a href="../Page/faqListPage.do">자주묻는 질문</a></li>
                     <li><a href="#">문의</a></li>
                 </ul>
             </div>

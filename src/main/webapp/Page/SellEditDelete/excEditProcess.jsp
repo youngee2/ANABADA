@@ -1,34 +1,24 @@
-<%@page import="board.exchange.ExchangeBoardDAO"%>
-<%@page import="board.exchange.ExchangeBoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page import = "java.util.Date" %>
-<%@ page import = "java.text.SimpleDateFormat" %>
-<%@ page import = "java.io.File" %>
-<%@ page import = "com.oreilly.servlet.MultipartRequest" %>
-<%@ page import ="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
+    pageEncoding="UTF-8"%>
+<%@ page import="java.util.Date"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="java.io.File"%>
+<%@ page import="com.oreilly.servlet.MultipartRequest"%>
+<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@ page import="board.exchange.ExchangeBoardDAO"%>
+<%@ page import="board.exchange.ExchangeBoardDTO"%>
 <%
-request.setCharacterEncoding("UTF-8");
 
-String user_id = (String) session.getAttribute("UserId");
-String nickname = (String) session.getAttribute("Nickname");
-int idx = (int) session.getAttribute("Idx");
-
-if (user_id == null) {
-  out.println("<script>alert('로그인 후 사용주세요.'); location.href='exchangeListPage.do';</script>");
-  return;
-}
-//이미지 파일 저장
 ServletContext context = request.getServletContext();
 String saveFolder ="./Page/img/excWriteImg";
 String realFolder = "";
 int maxImgSize = 10*1024*1024;
 String encoding = "UTF-8";
 realFolder = context.getRealPath(saveFolder);
-
 MultipartRequest mr = new MultipartRequest(request, realFolder, maxImgSize, encoding, new DefaultFileRenamePolicy());
 
-
+String nickname = (String) session.getAttribute("Nickname");
+int exc_num = Integer.parseInt(mr.getParameter("exc_num"));
 
 String org_img = mr.getFilesystemName("img-upload-input");
 String title = mr.getParameter("exc_title");
@@ -66,22 +56,19 @@ ExchangeBoardDTO dto = new ExchangeBoardDTO();
 dto.setExc_title(title);
 dto.setExc_contents(contents.replace("\r\n", "<br/>"));
 dto.setExc_condition(condition_num);
-dto.setExc_wish(wish);
 dto.setExc_diff(diff_num);
+dto.setExc_wish(wish);
 dto.setUser_picture("./img/excWriteImg/"+new_img);
-dto.setIdx(idx);
-dto.setNickname(nickname);
-
-
+dto.setExc_num(exc_num);
 
 ExchangeBoardDAO dao = new ExchangeBoardDAO();
-int result = dao.insertWrite(dto);
+int result = dao.updateEdit(dto);
 dao.close();
 
-if(result == 1 ){
-response.sendRedirect("../Page/exchangeListPage.do");
-}else {
+if(result == 1){
+	out.println("<script>alert('수정되었습니다.'); location.href='../exchangeListPage.do';</script>");
+	return;
+}else{
+	
 }
-
-
 %>
