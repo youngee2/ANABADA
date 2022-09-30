@@ -20,7 +20,7 @@
 
 
 
-<body>
+<body style="margin:0;">
 	<section style="margin: 0% 15% 15% 15%">
 		<div>
 			<p class="free_title_mini">자유게시판</p>

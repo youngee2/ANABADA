@@ -3,6 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../Page/Header.jsp"%>
+
+<%
+String session_nick = (String) session.getAttribute("Nickname");
+if (session_nick == null) {
+	session_nick = "null";
+}
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,6 +67,7 @@
 </head>
 
 <body>
+
 
 
 	<div style="margin: 2% 10%;">
@@ -121,6 +130,9 @@
 
 		<!-- 글 수정/삭제 -->
 		<div>
+		<c:set var="session_nick" value="<%=session_nick%>" />
+						<c:choose>
+							<c:when test="${session_nick eq writenickname }">
 		<form method="post" name="deleteFrm" action="./SellEditDelete/sellDeleteProcess.jsp">
 		<input type="hidden" value="${dto.sell_num }" name="sellNum">
 		<button class="chat-btn btnFade btnRed" type="submit">글 삭제</button>
@@ -129,6 +141,9 @@
 		<input type="hidden" value="${dto.sell_num }" name="sellNum">
 		<button class="chat-btn btnFade btnOrange" type="submit">글 수정</button>
 		</form>
+		</c:when>
+		</c:choose>
+		
 		</div>
 	</div>
 

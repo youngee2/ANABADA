@@ -42,7 +42,8 @@ if (user_id == null) {
 		<hr>
 
 		<form name="SellBoard" method="post" enctype="multipart/form-data" action="../Page/sellWriteProcess.jsp">
-			<span class="RequiredInput">* </span>제목 <br> <input type="text"
+			<span class="RequiredInput">* </span>제목 <br> 
+			<input type="text"
 				name="title" maxlength=50 size="30vw" placeholder="제목을 입력해주세요."
 				required>
 				<br>

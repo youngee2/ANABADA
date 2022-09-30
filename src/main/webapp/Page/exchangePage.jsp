@@ -119,7 +119,30 @@ if (session_nick == null) {
 				</a> <a href="#comment" title="댓글달기" class="button btnFade btnOrange">댓글달기</a>
 				</li>
 
-				<li></li>
+				<li>
+					<!-- 글 수정/삭제 (본인일 때만 버튼 활성화) -->
+					<div style="bottom: 0;">
+						<c:set var="session_nick" value="<%=session_nick%>" />
+						<c:choose>
+							<c:when test="${session_nick eq writenickname }">
+								<form method="post" name="deleteFrm"
+									action="./SellEditDelete/excDeleteProcess.jsp">
+									<input type="hidden" value="${dto.exc_num }" name="excNum">
+									<button class="chat-btn btnFade btnRed" type="submit">글
+										삭제</button>
+								</form>
+								<form method="post" name="editFrm" action="./excEdit.jsp">
+									<input type="hidden" value="${dto.exc_num }" name="excNum">
+									<button class="chat-btn btnFade btnOrange" type="submit">글
+										수정</button>
+								</form>
+							</c:when>
+							<c:otherwise>
+							</c:otherwise>
+						</c:choose>
+					</div>
+
+				</li>
 			</ul>
 
 		</div>
@@ -152,6 +175,8 @@ if (session_nick == null) {
 
 
 	</div>
+
+
 
 	<!--하단(댓글)-->
 	<div style="margin: 12%;">
@@ -194,8 +219,8 @@ if (session_nick == null) {
 											value=<%=commentList.get(i).getComm()%>>
 										<button class="button btnNormal" type="submit">삭제</button>
 									</form> <%
-								}
-								%>
+ }
+ %>
 								</li>
 							</ul>
 							<ul style="float: right;">
@@ -215,27 +240,14 @@ if (session_nick == null) {
 							</ul>
 						</div>
 					</div> <%
-					}
-					%>
+ }
+ %>
 				</li>
 			</ul>
 		</div>
-		<!-- 글 수정/삭제 -->
-		<div style="bottom: 0;">
-			<form method="post" name="deleteFrm"
-				action="./SellEditDelete/excDeleteProcess.jsp">
-				<input type="hidden" value="${dto.exc_num }" name="excNum">
-				<button class="chat-btn btnFade btnRed" type="submit">글 삭제</button>
-			</form>
-			<form method="post" name="editFrm" action="./excEdit.jsp">
-				<input type="hidden" value="${dto.exc_num }" name="excNum">
-				<button class="chat-btn btnFade btnOrange" type="submit">글
-					수정</button>
-			</form>
-		</div>
-
-
 	</div>
+
+
 
 
 

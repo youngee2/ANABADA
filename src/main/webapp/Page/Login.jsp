@@ -17,7 +17,7 @@
 
 </head>
 
-<body>
+<body style="margin:0">
 
 	<section style="margin: 5% 35% 5% 35%">
 

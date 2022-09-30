@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
@@ -34,22 +35,23 @@
 <title>free_board_write</title>
 
 <script type="text/javascript">
-function validateForm(form){
-	if(form.title.value==""){
-		alert("제목을 입력하세요.");x
-		form.title.focus();
-		return false;
+	function validateForm(form) {
+		if (form.title.value == "") {
+			alert("제목을 입력하세요.");
+			x
+			form.title.focus();
+			return false;
+		}
+		if (form.contents.value == "") {
+			alert("내용을 입력하세요.");
+			form.content.focus();
+			return false;
+		}
 	}
-	if(form.contents.value==""){
-		alert("내용을 입력하세요.");
-		form.content.focus();
-		return false;
-	}
-}
 </script>
 
 </head>
-<body style="margin:0;">
+<body style="margin: 0;">
 	<section style="margin: 0% 15% 15% 15%">
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarsExampleDefault"
@@ -62,6 +64,8 @@ function validateForm(form){
 			<ul class="navbar-nav mr-auto">
 
 			</ul>
+
+
 			<form class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="text" placeholder="Search"
 					aria-label="Search">
@@ -72,32 +76,66 @@ function validateForm(form){
 		<h2 class="free_title">자유게시판</h2>
 		<hr>
 		<main role="main" class="container1">
-			<form name="writeFrm" method="post" action="../Page/FreeBoardWrite.do">
 
+
+
+			<form name="writeFrm" method="post"
+				action="../Page/FreeBoardWrite.do" onsubmit="return write()">
 				<div class="pt-1"></div>
 				</div>
-
 				<input type="text" name="title" placeholder="제목을 입력하세요"
-					class="freeboard_write_title">
+					class="freeboard_write_title" id="title" required/>
+				<div id="titleError" " class="error"></div>
+
 				<div class="pt-1">
 					<textarea id="summernote" name="contents"></textarea>
-					
 				</div>
+				<div id="textError" class="error"></div>
+
 				<script>
-                    $('#summernote').summernote({
-                      placeholder: '내용을 입력해주세요',
-                      tabsize: 2,
-                      height: 500
-                    });
-                  </script>
+					$('#summernote').summernote({
+						placeholder : '내용을 입력해주세요',
+						tabsize : 2,
+						height : 500
+
+					});
+				</script>
 				<div class="pt-1 text-right">
-					<button class="write_btn" type="submit">등록</button>
-	
+					<button class="write_btn" type="submit"  onclick= "write()">등록</button>
+
 				</div>
 			</form>
-		
+
 		</main>
+	<button type="button" onclick= aa()>ㅇㅇㅇㅇ</button>
 	</section>
+	
 	<%@ include file="./HeaderFooter/Footer.jsp"%>
+	
+	<script>
+		function write() {
+			let title = document.getElementById("title").value;
+			let summernote = document.getElementById("summernote").value;
+
+			// 이름확인
+
+			if (title === "") {
+				document.getElementById("titleError").innerHTML = "제목은 필수 정보입니다."
+				return false;
+			} else {
+				document.getElementById("titleError").innerHTML = ""
+			}
+
+			if (summernote === "") {
+				document.getElementById("textError").innerHTML = "내용."
+				return false;
+			} else {
+				document.getElementById("textError").innerHTML = ""
+			}
+
+		}
+	</script>
+
 </body>
 </html>
+

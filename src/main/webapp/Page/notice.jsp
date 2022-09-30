@@ -16,7 +16,7 @@
 <meta charset="UTF-8">
 <title>공지사항</title>
 </head>
-<body>
+<body style="margin:0;">
 	<section style="margin: 0% 15% 15% 15%">
 		<div>
 			<p class="free_title">공지사항</p>

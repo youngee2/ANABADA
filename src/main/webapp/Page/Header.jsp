@@ -150,6 +150,7 @@ if (!loginId.equals("")) {
             <li><a href="../Page/faqListPage.do">고객센터</a>
                <ol class="subDetailF">
                   <li><a href="../Page/faqListPage.do">F&Q</a></li>
+                  <li><a href="../Page/list.do">공지사항</a></li>
                </ol></li>
          </ul>
       </div>
