@@ -31,7 +31,7 @@
 String nickname = (String) session.getAttribute("Nickname");
 
 if (user_id == null) {
-   out.println("<script>alert('로그인 후 사용주세요.'); location.href='tradeListPage.do';</script>");
+   out.println("<script>alert('로그인 후 사용주세요.'); location.href='tradeListPage.do?category=7';</script>");
    return;
 }
 %>

@@ -113,7 +113,7 @@ public class ExchangeBoardDAO extends DBConnPool{
 			try {
 				String query = "insert into exchangeTB ("
 						+"idx, exc_num, exc_title, exc_contents, exc_condition, exc_diff, exc_wish, user_picture, board_num, nickname)"
-						+" values (?, seq_board.NEXTVAL, ?,?,?,?,?,?,0,?)";
+						+" values (?, seq_board_num.NEXTVAL, ?,?,?,?,?,?,0,?)";
 
 				psmt = con.prepareStatement(query);
 				psmt.setInt(1, dto.getIdx());

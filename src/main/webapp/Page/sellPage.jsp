@@ -62,7 +62,7 @@
 
 
 	<div style="margin: 2% 10%;">
-		<a href="" class="a link">HOME</a> > <a href="./tradeListPage.do"
+		<a href="" class="a link">HOME</a> > <a href="./tradeListPage.do?category=7"
 			class="a link">거래</a> > 물품 상세보기
 	</div>
 

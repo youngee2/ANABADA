@@ -117,7 +117,7 @@ public class SellBoardDAO extends DBConnPool{
 		try {
 			String query = "insert into sellTB ("
 					+"idx, sell_num, sell_title, sell_contents, sell_category, sell_price, user_picture, board_num, sell_condition, nickname)"
-					+" values (?, seq_board.NEXTVAL, ?,?,?,?,?,2,?,?)";
+					+" values (?, seq_board_num.NEXTVAL, ?,?,?,?,?,1,?,?)";
 
 			psmt = con.prepareStatement(query);
 			psmt.setInt(1, dto.getIdx());

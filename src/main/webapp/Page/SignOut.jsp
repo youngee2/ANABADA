@@ -10,8 +10,6 @@
 <body>
 
 
-	<c:choose>
-		<c:when test="${idx != 0}">
 
 			<form name="SignOut" action="../Page/SignOut.do" method="post">
 				<div class="SignOutModal">
@@ -24,9 +22,7 @@
 					</span>
 					<button type="submit" onclick="SignOutbtn()" class="SignoutBtn">탈퇴하기</button>
 			</form>
-		</c:when>
 		
-	  <c:otherwise>
 			<%
 			request.setCharacterEncoding("UTF-8");
 			String user_id = (String) session.getAttribute("UserId");
@@ -36,8 +32,6 @@
 			}
 			%>
 
-		</c:otherwise>
-	</c:choose>
 </body>
 
 

@@ -8,6 +8,8 @@ public class FreeBoardDTO {
 	private String free_title;
 	private String free_contents;
 	private int free_count;
+	private String nickname;
+	
 	public int getIdx() {
 		return idx;
 	}
@@ -43,6 +45,12 @@ public class FreeBoardDTO {
 	}
 	public void setFree_count(int free_count) {
 		this.free_count = free_count;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 

@@ -13,17 +13,11 @@
 		<welcome-file>default.htm</welcome-file>
 	</welcome-file-list>
 
+	<session-config>
+		<session-timeout>100</session-timeout>
+	</session-config>
 
-	<context-param>
-		<param-name>OracleDriver</param-name>
-		<param-value>oracle.jdbc.OracleDriver</param-value>
-	</context-param>
-
-	<context-param>
-		<param-name>OracleURL</param-name>
-		<param-value>jdbc:oracle:thin:@localhost:1521:xe</param-value>
-	</context-param>
-
+	
 	<context-param>
 		<param-name>OracleId</param-name>
 		<param-value>c##green</param-value>
@@ -57,9 +51,7 @@
 		<param-value>5</param-value>
 	</context-param>
 
-
-
-	<servlet>
+<servlet>
 		<servlet-name>BoardList</servlet-name>
 		<servlet-class>board.notice.ListController</servlet-class>
 	</servlet>
@@ -125,8 +117,7 @@
 	</servlet-mapping>
 	
 
+
 </web-app>
-	
-	
 	
 	

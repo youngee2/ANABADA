@@ -22,6 +22,7 @@ if (!loginId.equals("")) {
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./css/HeaderFooter.css">
 <script src="https://kit.fontawesome.com/e4982ae3c4.js"
    crossorigin="anonymous"></script>
 <link
@@ -29,6 +30,8 @@ if (!loginId.equals("")) {
    rel="stylesheet">
 
 </head>
+<!DOCTYPE html>
+<html lang="ko">
 
 <head>
 <body>
@@ -40,8 +43,7 @@ if (!loginId.equals("")) {
             <%
             if (session.getAttribute("UserId") == null) {
             %>
-            <li class="btn1 LoginBtn"><a href="#">Login</a></li>
-            <li>
+            <li class="btn LoginBtn"><a href="#">Login</a></li>
             <div class="modal">
                <div class="login-modal">
 
@@ -86,13 +88,11 @@ if (!loginId.equals("")) {
                   </div>
                </div>
             </div>
-            </li>
             <%
             } else {
             %>
             <li><a href="../Page/LoginSession/Logout.jsp">LOGOUT</a></li>
-            <li><a href="../Page/PersonalInformation.do">MY PAGE</a></li>
-            <%
+            <li><a href="../Page/PersonalInformation.do">MY PAGE</a> <%
  }
  %>
          </ul>
@@ -115,9 +115,9 @@ if (!loginId.equals("")) {
       <div class="HeaderC">
 
          <ul class="subA">
-            <li><a href="#">아나바다란?</a>
+            <li><a href="./whoWeArePage.jsp">아나바다란?</a>
                <ol class="subDetailA">
-                  <li><a href="#">회사소개</a></li>
+                  <li><a href="./whoWeArePage.jsp">회사소개</a></li>
                   <li><a href="#">개발자</a></li>
                </ol></li>
          </ul>
@@ -125,14 +125,14 @@ if (!loginId.equals("")) {
          <ul class="subB">
             <li><a href="./tradeListPage.do?category=7">거래하기</a>
                <ol class="subDetailB">
-                  <li><a href="#">전체</a></li>
-                  <li><a href="#">테크/가전</a></li>
-                  <li><a href="#">패션/잡화/뷰티</a></li>
-                  <li><a href="#">홈/리빙</a></li>
-                  <li><a href="#">베이비/키즈</a></li>
-                  <li><a href="#">반려동물</a></li>
-                  <li><a href="#">게임/취미/문화</a></li>
-                  <li><a href="#">기타</a></li>
+                  <li><a href="./tradeListPage.do?category=7">전체</a></li>
+                  <li><a href="./tradeListPage.do?category=1">테크/가전</a></li>
+                  <li><a href="./tradeListPage.do?category=0">패션/잡화/뷰티</a></li>
+                  <li><a href="./tradeListPage.do?category=2">홈/리빙</a></li>
+                  <li><a href="./tradeListPage.do?category=3">베이비/키즈</a></li>
+                  <li><a href="./tradeListPage.do?category=4">반려동물</a></li>
+                  <li><a href="./tradeListPage.do?category=5">게임/취미/문화</a></li>
+                  <li><a href="./tradeListPage.do?category=6">기타</a></li>
                </ol></li>
          </ul>
 
@@ -147,17 +147,15 @@ if (!loginId.equals("")) {
          </ul>
 
          <ul class="subF">
-            <li><a href="./faqListPage.do">고객센터</a>
+            <li><a href="../Page/faqListPage.do">고객센터</a>
                <ol class="subDetailF">
-                  <li><a href="#">F&Q</a></li>
-                  <li><a href="#">1대1 문의</a></li>
-                  <li><a href="#">개인정보처리방침</a></li>
+                  <li><a href="../Page/faqListPage.do">F&Q</a></li>
                </ol></li>
          </ul>
       </div>
       <script>
          var modals = document.getElementsByClassName("modal");
-         var btns = document.getElementsByClassName("btn1");
+         var btns = document.getElementsByClassName("btn");
          var spanes = document.getElementsByClassName("close");
          var funcs = [];
 
@@ -188,7 +186,3 @@ if (!loginId.equals("")) {
             }
          };
       </script>
-      </header>
-      </body>
-      </html>
-     

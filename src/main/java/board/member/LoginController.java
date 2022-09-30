@@ -39,7 +39,7 @@ public class LoginController extends HttpServlet {
 			session.setAttribute("UserId", memberDTO.getUser_id());
 			session.setAttribute("Idx", memberDTO.getIdx());
 			session.setAttribute("Nickname", memberDTO.getNickname());
-			resp.sendRedirect("tradeListPage.jsp");
+			resp.sendRedirect("./tradeListPage.do?category=7");
 		} else {
 			// 로그인 실패
 			req.setAttribute("ErrMsg", "아이디/비밀번호를 확인해주세요.");

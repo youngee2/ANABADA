@@ -24,9 +24,10 @@
 		<%
 		request.setCharacterEncoding("UTF-8");
 		String user_id = (String) session.getAttribute("UserId");
+		System.out.print(user_id+"확인");
 
 		if (user_id == null) {
-			out.println("<script>alert('로그인 후 사용해주세요.'); location.href='Login.do';</script>");
+			out.println("<script>alert('로그인 후 사용해주세요.'); location.href='Login.jsp';</script>");
 		}
 		%>
 		<script type="text/javascript">

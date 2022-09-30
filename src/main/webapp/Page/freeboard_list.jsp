@@ -19,6 +19,15 @@
 <body>
 	<section style="margin: 0% 15% 15% 15%">
 		<div>
+			<%
+      request.setCharacterEncoding("UTF-8");
+      String user_id = (String) session.getAttribute("UserId");
+
+      if (user_id == null) {
+         out.println("<script>alert('로그인 후 사용해주세요.'); location.href='Login.jsp';</script>");
+      }
+      %>
+
 			<p class="free_title">자유게시판</p>
 		</div>
 		<div class="container2">
@@ -28,7 +37,7 @@
 						<tr>
 							<td><select class="form-control" name="searchField">
 									<option value="free_title">제목</option>
-									<option value="free_idx">작성자</option>
+									<option value="idx">작성자</option>
 									<option value="free_contents">내용</option>
 							</select></td>
 							<td><input type="text" class="form-control"
@@ -62,7 +71,7 @@
 							<td align="center"><a
 								href="../Page/FreeBoardView.do?free_num=${ row.free_num }">${ row.free_title }</a></td>
 
-							<td>${ row.idx }</td>
+							<td>${ row.nickname }</td>
 							<td>${ row.free_date }</td>
 							<td>${ row.free_count }</td>
 						</tr>
@@ -83,7 +92,7 @@
 		</div>
 		<div class="paging">${map.pagingImg }</div>
 
-	
+
 	</section>
 	<%@ include file="./HeaderFooter/Footer.jsp"%>
 

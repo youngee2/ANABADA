@@ -28,12 +28,6 @@
 //	int iResult = dao.insertWrite(dto);
 	dao.close();
 
-	// 성공 or 실패? 
-//	if (iResult == 1) {
-	//	response.sendRedirect("../Page/freeListPage.do");
-//	} else {
-	
-//	}
 	%>
 
 </body>

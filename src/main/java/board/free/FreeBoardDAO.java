@@ -60,6 +60,7 @@ public class FreeBoardDAO extends DBConnPool {
 				dto.setFree_title(rs.getString(4));
 				dto.setFree_contents(rs.getString(5));
 				dto.setFree_count(rs.getInt(6));
+				dto.setNickname(rs.getString(7));
 
 				board.add(dto);
 			}
@@ -86,6 +87,8 @@ public class FreeBoardDAO extends DBConnPool {
 				dto.setFree_title(rs.getString(4));
 				dto.setFree_contents(rs.getString(5));
 				dto.setFree_count(rs.getInt(6));
+				dto.setNickname(rs.getString(7));
+				System.out.println(query);
 			}
 		} catch (Exception e) {
 			System.out.println("게시물 상세보기 중 예외 발생");
@@ -93,6 +96,35 @@ public class FreeBoardDAO extends DBConnPool {
 		}
 		return dto;
 	}
+	
+//	public FreeBoardDTO selectViewEdit(String free_num) {
+//		FreeBoardDTO dto = new FreeBoardDTO();
+//		
+//		String query = "SELECT F.*, M.idx "
+//				+" FROM memberTB M INNER JOIN FREETB F "
+//				+" ON M.idx=F.idx "
+//				+" WHERE free_num=?";
+//		try {
+//			psmt = con.prepareStatement(query);
+//			psmt.setString(1, free_num);
+//			rs = psmt.executeQuery(); // 쿼리문 실행
+//
+//			if (rs.next()) {
+//				dto.setIdx(rs.getInt(1));
+//				dto.setFree_num(rs.getInt(2));
+//				dto.setFree_date(rs.getDate(3));
+//				dto.setFree_title(rs.getString(4));
+//				dto.setFree_contents(rs.getString(5));
+//				dto.setFree_count(rs.getInt(6));
+//				System.out.println(query);
+//			}
+//		} catch (Exception e) {
+//			System.out.println("게시물 상세보기 중 예외 발생");
+//			e.printStackTrace();
+//		}
+//		return dto;
+//	}
+
 
 	// 주어진 일련번호에 해당하는 게시물의 조회수를 1 증가시킴.
 
@@ -113,15 +145,32 @@ public class FreeBoardDAO extends DBConnPool {
 		int result = 0;
 
 		try {
-			String query = "INSERT INTO freeTB( " + " idx, free_num, free_date, free_title, free_contents, free_count) "
-					+ " VALUES (" + "1, seq_board_num.nextval,sysdate,?,?,0)";
+			String query = "INSERT INTO freeTB( " + " idx, free_num, free_date, free_title, free_contents, free_count, nickname) "
+					+ " VALUES (" + "?, seq_board_num.nextval,sysdate,?,?,0,?)";
 			psmt = con.prepareStatement(query);
-		
-			psmt.setString(1, dto.getFree_title());
-			psmt.setString(2, dto.getFree_contents());
+			psmt.setInt(1, dto.getIdx());
+			psmt.setString(2, dto.getFree_title());
+			psmt.setString(3, dto.getFree_contents());
+			psmt.setString(4, dto.getNickname());
 			result = psmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("게시물 입력 중 예외 발생");
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public int deletePost(String free_num) {
+		int result=0;
+		
+		try {
+			String query="DELETE FROM freeTB where free_num=?";
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, free_num);
+			result=psmt.executeUpdate();
+		}
+		catch(Exception e) {
+			System.out.println("게시물 삭제 중 예외 발생");
 			e.printStackTrace();
 		}
 		return result;
