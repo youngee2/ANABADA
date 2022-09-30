@@ -290,6 +290,7 @@ img {
     width: auto;
     word-break: break-all;
     clear: left;
+
 }
 
 .comment {
@@ -352,9 +353,15 @@ img {
 .dropup {
     margin: 3% 0%;
 }
-
+.comment-list{
+   margin: 15px;
+    display: flex;
+    flex-direction: column;
+	
+}
 .comment-li {
     margin: 3px;
+
 }
 
 .comment-li.edit {

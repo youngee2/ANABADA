@@ -165,7 +165,7 @@ public class ExchangeBoardDAO extends DBConnPool{
 			int result = 0;
 			
 			try {
-				String sql = "delete from sellTB where sell_num=?";
+				String sql = "delete from exchangeTB where exc_num=?";
 				
 				psmt = con.prepareStatement(sql);
 				psmt.setInt(1, dto.getExc_num());

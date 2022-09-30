@@ -6,11 +6,17 @@
 <%@ page import="java.util.*"%>
 <%@ page import="board.comment.CommentDTO"%>
 <%@ page import="board.comment.CommentDAO"%>
+<%@ include file="../Page/Header.jsp"%>
 <%
 CommentDAO dao = new CommentDAO(application);
 int title_num = Integer.parseInt(request.getParameter("exc_num"));
 List<CommentDTO> commentList = dao.select_exc_comm_List(title_num);
 dao.close();
+
+String session_nick = (String) session.getAttribute("Nickname");
+if (session_nick == null) {
+	session_nick = "null";
+}
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,37 +43,42 @@ dao.close();
 	crossorigin="anonymous"></script>
 
 <script>
-        //댓글달기 버튼 클릭시 스크롤 이동
-        button.addEventListener('click', function () {
-        const scrollPosition = document.querySelector(this.dataset.target).offsetTop;
+	//댓글달기 버튼 클릭시 스크롤 이동
+	button.addEventListener('click',
+			function() {
+				const scrollPosition = document
+						.querySelector(this.dataset.target).offsetTop;
 
-        window.scrollTo({ top: scrollPosition, behavior: 'smooth' })});
-    </script>
+				window.scrollTo({
+					top : scrollPosition,
+					behavior : 'smooth'
+				})
+			});
+</script>
 
 
 <script>
-    //TOP 스크롤
-    $(window).scroll(function () {
-      if ($(this).scrollTop() > 300) {
-        $('.btn_gotop').show();
-      } else {
-        $('.btn_gotop').hide();
-      }
-    });
-    $('.btn_gotop').click(function () {
-      $('html, body').animate({ scrollTop: 0 }, 400);
-      
-      return false;
-    });
-  </script>
+	//TOP 스크롤
+	$(window).scroll(function() {
+		if ($(this).scrollTop() > 300) {
+			$('.btn_gotop').show();
+		} else {
+			$('.btn_gotop').hide();
+		}
+	});
+	$('.btn_gotop').click(function() {
+		$('html, body').animate({
+			scrollTop : 0
+		}, 400);
+
+		return false;
+	});
+</script>
 
 <title>교환 물품 상세보기</title>
 </head>
 
 <body>
-<%
-out.print((String)session.getAttribute("Nickname"));
-%>
 
 	<div style="margin: 2% 10%;">
 		<a href="" class="a link">HOME</a> > <a
@@ -78,6 +89,7 @@ out.print((String)session.getAttribute("Nickname"));
 
 	<!--상단-->
 	<div class="detail top">
+
 		<div class="img details"
 			style="text-align: center; background-image: url('${dto.user_picture}');"></div>
 
@@ -106,8 +118,14 @@ out.print((String)session.getAttribute("Nickname"));
 						src="./img/siren.png" style="width: 20px;"> &nbsp; 신고하기
 				</a> <a href="#comment" title="댓글달기" class="button btnFade btnOrange">댓글달기</a>
 				</li>
+
+				<li></li>
 			</ul>
+
 		</div>
+
+
+
 	</div>
 
 	<!--내용-->
@@ -129,16 +147,15 @@ out.print((String)session.getAttribute("Nickname"));
 				<li class="li-tradePage content li">${dto.exc_contents }</li>
 			</ul>
 		</div>
-		
-	
+
+
 
 
 	</div>
-	<!-- 글 수정/삭제 -->
 
 	<!--하단(댓글)-->
 	<div style="margin: 12%;">
-	
+
 		<hr>
 		<div class="comment" id="comment">
 			<h3>
@@ -146,31 +163,40 @@ out.print((String)session.getAttribute("Nickname"));
 			</h3>
 			<br>
 			<div class="comment-box">
-			<form name="commentFrm" method="post" action="./CommentProcess/writeCommentProcess.jsp">
-				<input type="hidden" name="titleNum" value="${dto.exc_num}">
-				<input type="text" placeholder="댓글을 입력해주세요." class="comment-text" name="content">
-				<button class="comment-btn" type="submit">등록</button>
+				<form name="commentFrm" method="post"
+					action="./CommentProcess/writeCommentProcess.jsp">
+					<input type="hidden" name="titleNum" value="${dto.exc_num}">
+					<input type="text" placeholder="댓글을 입력해주세요." class="comment-text"
+						name="content">
+					<button class="comment-btn" type="submit">등록</button>
 				</form>
 			</div>
 			<ul style="margin: 15px; display: flex; flex-direction: column;">
-		 		<% for(int i=0; i<commentList.size(); i++) {%>
+				<%
+				for (int i = 0; i < commentList.size(); i++) {
+				%>
 				<li>
 					<div class="dropup">
 						<div>
-							<ul style="float: left;">
-								<li class="comment-li"><%= commentList.get(i).getNickname() %></li>
-								<li class="comment-li"><%= commentList.get(i).getComm() %></li>
-								<li class="comment-li edit"><%= commentList.get(i).getComm_date() %></li>
+							<ul style="float: left; width: 90%;">
+								<li class="comment-li"><%=commentList.get(i).getNickname()%></li>
+								<li class="comment-li"><%=commentList.get(i).getComm()%></li>
+								<li class="comment-li edit"><%=commentList.get(i).getComm_date()%></li>
 								<li class="comment-li edit">
-								<% if( session.getAttribute("Nickname").toString().equals(commentList.get(i).getNickname())){%>
-						
-								<form name="commentFrm" method="post" action="./CommentProcess/deleteCommentProcess.jsp">
-								<input type="hidden" name="titleNum" value="${dto.exc_num }">
-								<input type="hidden" name="comment" value=<%= commentList.get(i).getComm() %>>
-								<button class="button btnNormal" type="submit">삭제</button>
-								</form>
+									<%
+									if (session_nick.equals(commentList.get(i).getNickname())) {
+									%>
+
+									<form name="commentFrm" method="post"
+										action="./CommentProcess/deleteCommentProcess.jsp">
+										<input type="hidden" name="titleNum" value="${dto.exc_num }">
+										<input type="hidden" name="comment"
+											value=<%=commentList.get(i).getComm()%>>
+										<button class="button btnNormal" type="submit">삭제</button>
+									</form> <%
+								}
+								%>
 								</li>
-							<%} %>
 							</ul>
 							<ul style="float: right;">
 								<li>
@@ -185,28 +211,36 @@ out.print((String)session.getAttribute("Nickname"));
 											data-target="#moaModal1">신고하기</a>
 									</div>
 								</li>
-							</ul>
-							<% } %>
-						</div>
-					</div>
-				</li>
 
+							</ul>
+						</div>
+					</div> <%
+					}
+					%>
+				</li>
 			</ul>
 		</div>
+		<!-- 글 수정/삭제 -->
+		<div style="bottom: 0;">
+			<form method="post" name="deleteFrm"
+				action="./SellEditDelete/excDeleteProcess.jsp">
+				<input type="hidden" value="${dto.exc_num }" name="excNum">
+				<button class="chat-btn btnFade btnRed" type="submit">글 삭제</button>
+			</form>
+			<form method="post" name="editFrm" action="./excEdit.jsp">
+				<input type="hidden" value="${dto.exc_num }" name="excNum">
+				<button class="chat-btn btnFade btnOrange" type="submit">글
+					수정</button>
+			</form>
+		</div>
+
+
 	</div>
 
 
-		<div style="margin:12%">
-		<form method="post" name="deleteFrm" action="./SellEditDelete/excDeleteProcess.jsp">
-		<input type="hidden" value="" name="excNum">
-		<button class="chat-btn btnFade btnRed" type="submit">글 삭제</button>
-		</form>
-		<form method="post" name="editFrm" action="./excEdit.jsp">
-		<input type="hidden" value="${dto.exc_num }" name="excNum">
-		<button class="chat-btn btnFade btnOrange" type="submit">글 수정</button>
-		</form>
-		</div>
-		
+
+
+
 	<!--신고버튼(모달)-->
 	<div class="modal fade" id="moaModal1" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -247,6 +281,7 @@ out.print((String)session.getAttribute("Nickname"));
 		</span>
 		</a>
 	</div>
+	<%@ include file="./HeaderFooter/Footer.jsp"%>
 </body>
 
 </html>

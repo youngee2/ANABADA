@@ -35,6 +35,7 @@ String nickname = (String) session.getAttribute("Nickname");
 String num = request.getParameter("sellNum");
 SellBoardDAO dao= new SellBoardDAO();
 SellBoardDTO dto = dao.selectView(num);
+dto.setSell_contents(dto.getSell_contents().replaceAll("<br/>", "\r\n"));
 
 dao.close();
 

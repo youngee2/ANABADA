@@ -15,6 +15,8 @@ a {
     color: inherit
 }
 
+	
+
 
 :root {
     --main-color: #c3d8dc;
@@ -59,7 +61,7 @@ a {
 
 /* 로그인 버튼 누르면 모달창 뜨기*/
 
-.btn {
+.btn1 {
     border: 0;
     outline: 0;
 
@@ -75,9 +77,10 @@ a {
 
 .LoginBtn:hover {
     background-color: rgba(0, 0, 0, 0.3);
+    
 }
 
-.modal_ {
+.modal {
     display: none;
     position: fixed;
     z-index: 1;
@@ -97,7 +100,6 @@ a {
     padding: 2vw;
     border: 1px solid #888;
     width: 30%;
-    height: 32vw;
 }
 
 .modal-margin{
@@ -284,6 +286,8 @@ letter-spacing: 35px;
 
 
 }
+
+
 
 
 /*HeaderC 게시판 메뉴*/

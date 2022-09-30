@@ -22,7 +22,6 @@ if (!loginId.equals("")) {
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="../css/HeaderFooter.css">
 <script src="https://kit.fontawesome.com/e4982ae3c4.js"
    crossorigin="anonymous"></script>
 <link
@@ -30,8 +29,6 @@ if (!loginId.equals("")) {
    rel="stylesheet">
 
 </head>
-<!DOCTYPE html>
-<html lang="ko">
 
 <head>
 <body>
@@ -43,7 +40,8 @@ if (!loginId.equals("")) {
             <%
             if (session.getAttribute("UserId") == null) {
             %>
-            <li class="btn LoginBtn"><a href="#">Login</a></li>
+            <li class="btn1 LoginBtn"><a href="#">Login</a></li>
+            <li>
             <div class="modal">
                <div class="login-modal">
 
@@ -88,11 +86,13 @@ if (!loginId.equals("")) {
                   </div>
                </div>
             </div>
+            </li>
             <%
             } else {
             %>
             <li><a href="../Page/LoginSession/Logout.jsp">LOGOUT</a></li>
-            <li><a href="../Page/PersonalInformation.do">MY PAGE</a> <%
+            <li><a href="../Page/PersonalInformation.do">MY PAGE</a></li>
+            <%
  }
  %>
          </ul>
@@ -157,7 +157,7 @@ if (!loginId.equals("")) {
       </div>
       <script>
          var modals = document.getElementsByClassName("modal");
-         var btns = document.getElementsByClassName("btn");
+         var btns = document.getElementsByClassName("btn1");
          var spanes = document.getElementsByClassName("close");
          var funcs = [];
 
@@ -188,3 +188,7 @@ if (!loginId.equals("")) {
             }
          };
       </script>
+      </header>
+      </body>
+      </html>
+     

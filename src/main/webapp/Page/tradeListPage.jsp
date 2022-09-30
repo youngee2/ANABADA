@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="../Page/Header.jsp"%>
+<%@ include file="./Header.jsp"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -56,6 +56,7 @@
 
 
 <link rel="stylesheet" href="./css/style-jieun.css">
+
 </head>
 
 <body>
@@ -270,7 +271,7 @@
 	</div>
 
 
-	<%@ include file="./HeaderFooter/Footer.jsp"%>
+	<%@ include file="./HeaderFooter/Footer.jsp"%>  
 </body>
 
 </html>

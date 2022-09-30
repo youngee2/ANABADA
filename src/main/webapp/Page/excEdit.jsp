@@ -33,7 +33,7 @@ String nickname = (String) session.getAttribute("Nickname");
 String num = request.getParameter("excNum");
 ExchangeBoardDAO dao= new ExchangeBoardDAO();
 ExchangeBoardDTO dto = dao.selectView(num);
-
+dto.setExc_contents(dto.getExc_contents().replaceAll("<br/>", "\r\n"));
 dao.close();
 
 if (!nickname.equals(dto.getNickname())) {

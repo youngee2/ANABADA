@@ -20,7 +20,7 @@
 <link
 	href="https://hangeul.pstatic.net/hangeul_static/css/nanum-barun-gothic.css"
 	rel="stylesheet">
-<title>SellBoard</title>
+<title>교환 글쓰기</title>
 </head>
 
 <body>
