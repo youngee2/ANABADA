@@ -13,7 +13,7 @@ public class CommentDAO extends JDBConnect{
 	}
 
 
-	//교환 게시판 댓글 가져오기
+	//교환 게시판 댓글 목록 가져오기
 	public List<CommentDTO> select_exc_comm_List(int titlenum){
 		List<CommentDTO> list = new Vector<CommentDTO>();
 		String sql = "select * from CommentTB where board_num=0 and title_num ="+titlenum;
@@ -40,6 +40,7 @@ public class CommentDAO extends JDBConnect{
 		}
 		return list;
 	}
+	
 
 
 	//게시판 댓글 작성하기 

@@ -12,6 +12,7 @@ request.setCharacterEncoding("UTF-8");
 
 String user_id = (String) session.getAttribute("UserId");
 String nickname = (String) session.getAttribute("Nickname");
+int idx = (int) session.getAttribute("Idx");
 
 if (user_id == null) {
 out.println("<script>alert('로그인 후 사용주세요.'); location.href='tradeListPage.do';</script>");
@@ -70,14 +71,17 @@ dto.setSell_category(category_num);
 dto.setSell_price(price);
 dto.setSell_condition(condition_num);
 dto.setUser_picture("./img/sellWriteImg/"+new_img);
+dto.setNickname(nickname);
+dto.setIdx(idx);
 
 SellBoardDAO dao = new SellBoardDAO();
 int result = dao.insertWrite(dto);
 dao.close();
 
 if(result == 1 ){
-response.sendRedirect("../Page/tradeListPage.do");
+response.sendRedirect("../Page/tradeListPage.do?category=7");
 }else {
+	response.sendRedirect("../Page/tradeListPage.do?category=7");
 }
 
 %>

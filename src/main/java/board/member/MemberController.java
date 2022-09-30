@@ -12,14 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import board.trade.SellBoardDAO;
 
-
 @WebServlet("/Page/SignUp2.do")
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-		
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 		RequestDispatcher rd = req.getRequestDispatcher("/Page/signUp2.jsp");
 		rd.forward(req, resp);
 
@@ -29,7 +28,7 @@ public class MemberController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		req.setCharacterEncoding("utf-8");
-		 
+
 		// 폼값을 DTO에 저장
 		MemberDTO dto = new MemberDTO();
 
@@ -39,7 +38,13 @@ public class MemberController extends HttpServlet {
 		dto.setUser_passwd(req.getParameter("user_passwd"));
 		dto.setEmail(req.getParameter("email"));
 		dto.setPhone_num(req.getParameter("phone_num"));
-		dto.setUser_picture(req.getParameter("user_picture"));
+
+		System.out.println(req.getParameter("name"));
+		System.out.println(req.getParameter("nickname"));
+		System.out.println(req.getParameter("user_id"));
+		System.out.println(req.getParameter("user_passwd"));
+		System.out.println(req.getParameter("email"));
+		System.out.println(req.getParameter("phone_num"));
 
 		// DAO를 통해 DB에 게시 내용 저장
 		MemberDAO dao = new MemberDAO();

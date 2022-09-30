@@ -25,6 +25,11 @@ p {
 
 }
 
+html{
+	margin:0;
+	padding:0;
+}
+
 
 .faq_title {
     display: flex;

@@ -2,13 +2,11 @@
 <%@page import="board.exchange.ExchangeBoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="board.trade.SellBoardDAO"%>
-<%@ page import="board.trade.SellBoardDTO"%>
 <%@ page import = "java.util.Date" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
 <%@ page import = "java.io.File" %>
 <%@ page import = "com.oreilly.servlet.MultipartRequest" %>
-<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
+<%@ page import ="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
 <%
 request.setCharacterEncoding("UTF-8");
 

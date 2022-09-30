@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
+import board.notice.NoticeBoardDTO;
 import common.DBConnPool;
 
 public class FreeBoardDAO extends DBConnPool {
@@ -59,7 +60,7 @@ public class FreeBoardDAO extends DBConnPool {
 				dto.setFree_title(rs.getString(4));
 				dto.setFree_contents(rs.getString(5));
 				dto.setFree_count(rs.getInt(6));
-				
+				dto.setNickname(rs.getString(7));
 
 				board.add(dto);
 			}
@@ -69,33 +70,109 @@ public class FreeBoardDAO extends DBConnPool {
 		}
 		return board; // 목록 반환
 	}
+
+	// 주어진 일련번호에 해당하는 게시물을 DTO에 담아 반환
+	public FreeBoardDTO selectView(String free_num) {
+		FreeBoardDTO dto = new FreeBoardDTO();
+		String query = "SELECT * FROM FreeTB where Free_Num=?";
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, free_num);
+			rs = psmt.executeQuery(); // 쿼리문 실행
+
+			if (rs.next()) {
+				dto.setIdx(rs.getInt(1));
+				dto.setFree_num(rs.getInt(2));
+				dto.setFree_date(rs.getDate(3));
+				dto.setFree_title(rs.getString(4));
+				dto.setFree_contents(rs.getString(5));
+				dto.setFree_count(rs.getInt(6));
+				dto.setNickname(rs.getString(7));
+				System.out.println(query);
+			}
+		} catch (Exception e) {
+			System.out.println("게시물 상세보기 중 예외 발생");
+			e.printStackTrace();
+		}
+		return dto;
+	}
 	
-//	게시글 데이터를 받아 DB에 추가.
+//	public FreeBoardDTO selectViewEdit(String free_num) {
+//		FreeBoardDTO dto = new FreeBoardDTO();
+//		
+//		String query = "SELECT F.*, M.idx "
+//				+" FROM memberTB M INNER JOIN FREETB F "
+//				+" ON M.idx=F.idx "
+//				+" WHERE free_num=?";
+//		try {
+//			psmt = con.prepareStatement(query);
+//			psmt.setString(1, free_num);
+//			rs = psmt.executeQuery(); // 쿼리문 실행
+//
+//			if (rs.next()) {
+//				dto.setIdx(rs.getInt(1));
+//				dto.setFree_num(rs.getInt(2));
+//				dto.setFree_date(rs.getDate(3));
+//				dto.setFree_title(rs.getString(4));
+//				dto.setFree_contents(rs.getString(5));
+//				dto.setFree_count(rs.getInt(6));
+//				System.out.println(query);
+//			}
+//		} catch (Exception e) {
+//			System.out.println("게시물 상세보기 중 예외 발생");
+//			e.printStackTrace();
+//		}
+//		return dto;
+//	}
+
+
+	// 주어진 일련번호에 해당하는 게시물의 조회수를 1 증가시킴.
+
+	public void updateVisitCount(String free_num) {
+		String query = "UPDATE FreeTB SET " + " free_count= free_count+1 " + " where free_num=?";
+
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, free_num);
+			psmt.executeQuery();
+		} catch (Exception e) {
+			System.out.println("게시물 조회수 증가 중 예외 발생");
+			e.printStackTrace();
+		}
+	}
+
 	public int insertWrite(FreeBoardDTO dto) {
+		int result = 0;
+
+		try {
+			String query = "INSERT INTO freeTB( " + " idx, free_num, free_date, free_title, free_contents, free_count, nickname) "
+					+ " VALUES (" + "?, seq_board_num.nextval,sysdate,?,?,0,?)";
+			psmt = con.prepareStatement(query);
+			psmt.setInt(1, dto.getIdx());
+			psmt.setString(2, dto.getFree_title());
+			psmt.setString(3, dto.getFree_contents());
+			psmt.setString(4, dto.getNickname());
+			result = psmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("게시물 입력 중 예외 발생");
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public int deletePost(String free_num) {
 		int result=0;
 		
 		try {
-			String query="INSERT INTO freeTB("+"idx, Free_num, Free_date, Free_title, Free_contents, Free_Count)"
-		+"Values("
-		+"1,seq_board_num.nextval,sysdate,?,?,0)";
-		psmt = con.prepareStatement(query);
-		psmt.setInt(1, dto.getIdx());
-		psmt.setInt(2,  dto.getFree_num());
-		psmt.setDate(3, dto.getFree_date());
-		psmt.setString(4, dto.getFree_title());
-		psmt.setString(5, dto.getFree_contents());
-		psmt.setInt(6, dto.getFree_count());
-		
-		result = psmt.executeUpdate();
+			String query="DELETE FROM freeTB where free_num=?";
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, free_num);
+			result=psmt.executeUpdate();
 		}
 		catch(Exception e) {
-			System.out.println("게시물 중 예외 발생");
+			System.out.println("게시물 삭제 중 예외 발생");
 			e.printStackTrace();
 		}
 		return result;
 	}
 }
-
-
-
-	

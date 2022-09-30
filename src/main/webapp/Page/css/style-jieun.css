@@ -33,10 +33,7 @@ input:focus {
 
 .a.link {
     color: #818181;
-    
 }
-
-
 
 .slide-img {
     margin-top: 3%;
@@ -69,10 +66,6 @@ ul {
     list-style-type: none;
 }
 
-.categoryBtn{
-	border:none;
-	background-color:rgba(0, 0, 0, 1);
-}
 .li-tradePage {
     float: left;
     margin-left: 10px;
@@ -297,8 +290,8 @@ img {
     width: auto;
     word-break: break-all;
     clear: left;
-}
 
+}
 
 .comment {
     margin: 0 5% 5% 5%;
@@ -360,9 +353,15 @@ img {
 .dropup {
     margin: 3% 0%;
 }
-
+.comment-list{
+   margin: 15px;
+    display: flex;
+    flex-direction: column;
+	
+}
 .comment-li {
     margin: 3px;
+
 }
 
 .comment-li.edit {
