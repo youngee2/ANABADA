@@ -39,56 +39,49 @@ public class MemberDAO extends DBConnPool {
 
 		return dto; // DTO 객체 반환
 	}
-//	public int Login(String user_id, String user_passwd) {
-//		String query = "SELECT * FROM MEMBERTB WHERE user_id =? AND user_passwd=?";
-//
-//		try {
-//			// 쿼리 실행
-//			psmt = con.prepareStatement(query);
-//			psmt.setString(1, user_id);
-//			psmt.setString(2, user_passwd);
-//			rs = stmt.executeQuery(query);
-//			System.out.println(query);
-//			// 결과 처리
-//			if (rs.next()) {
-//				if (rs.getString(1).contentEquals(user_passwd)) {
-//					System.out.println("로그인성공");
-//					return 1; // 로그인 성공
-//
-//				} else {
-//					System.out.println("비밀번호 불일치");
-//					return 0; // 비밀번호 불일치
-//				}
-//			}
-//			System.out.println("아이디가 없음");
-//			return -1; // 아이디가 없음
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		System.out.println(" DB 오류");
-//		return -2; // DB 오류
-//	}
 
 	// 아이디 중복확인
-	public boolean IDCheck(String id) { // 회원정보 id를 받기
+	public boolean IDCheck(String user_id) {
+		boolean check = false;
 		try {
 			String query = "SELECT * FROM MEMBERTB WHERE user_id=?";
-			System.out.println("SQL : " + query);
-			rs = stmt.executeQuery(query);
-			rs.last();
-			System.out.println("rs.getRow() : " + rs.getRow()); // getRow 열과번호. a가 몇번재? 4번으로 출력
-			// 검색안되면 0이된다. 번호가 1부터 시작 ....
-			if (rs.getRow() == 0) {
-				System.out.println("0 row selected..."); // 0이면 없는걸로 취급돼서
-			} else {
-				return true;
-			}
+
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, user_id);
+			rs = psmt.executeQuery();
+
+			check = rs.next();
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+			System.out.println("아이디 중복확인 오류");
 
-		return false;
+		} finally {
+			close();
+		}
+		return check;
+	}
+
+	// 닉네임 중복확인
+	public boolean NickNameCheck(String nickname) {
+		boolean check = false;
+		try {
+			String query = "SELECT * FROM MEMBERTB WHERE nickname=?";
+
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, nickname);
+			rs = psmt.executeQuery();
+
+			check = rs.next();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("닉네임 중복확인 오류");
+
+		} finally {
+			close();
+		}
+		return check;
 	}
 
 	// 회원가입
@@ -96,9 +89,8 @@ public class MemberDAO extends DBConnPool {
 	public int signUp(MemberDTO dto) {
 		int result = 0;
 
-		String query = "INSERT INTO memberTB ( "
-				+ " idx, name, nickname, user_id, user_passwd, email, phone_num, user_picture) " + " VALUES ( "
-				+ " seq_board_num.NEXTVAL,?,?,?,?,?,?,?)";
+		String query = "INSERT INTO memberTB ( " + " idx, name, nickname, user_id, user_passwd, email, phone_num) "
+				+ " VALUES ( " + " seq_board_num.NEXTVAL,?,?,?,?,?,?)";
 
 		try {
 
@@ -109,7 +101,6 @@ public class MemberDAO extends DBConnPool {
 			psmt.setString(4, dto.getUser_passwd());
 			psmt.setString(5, dto.getEmail());
 			psmt.setString(6, dto.getPhone_num());
-			psmt.setString(7, dto.getUser_picture());
 			result = psmt.executeUpdate();
 
 			System.out.println(query);
@@ -152,38 +143,39 @@ public class MemberDAO extends DBConnPool {
 	}
 
 	// 회원 정보 수정하기
-	   public MemberDTO getMemberDTO(String name, String nickname, String user_passwd, String email, String phone_num,
-	         String user_id) {
+	public MemberDTO getMemberDTO(String name, String nickname, String user_passwd, String email, String phone_num,
+			String user_id) {
 
-	      MemberDTO dto = new MemberDTO();
-	      try {
-	         String query = "UPDATE MEMBERTB SET name =?, NICKNAME =?, USER_PASSWD =?, EMAIL =?, PHONE_NUM =? WHERE user_id =?";
-	         psmt = con.prepareStatement(query);
-	         
-	         psmt.setString(1, name);
-	         psmt.setString(2, nickname);
-	         psmt.setString(3, user_passwd);
-	         psmt.setString(4, email);
-	         psmt.setString(5, phone_num);
-	         psmt.setString(6, user_id);
-	         rs = psmt.executeQuery();
-	         System.out.println(query);
-	         // 결과 처리
-	         if (rs.next()) {
-	            dto.setName(rs.getString("name"));
-	            dto.setNickname(rs.getString("nickname"));
-	            dto.setUser_passwd(rs.getString("user_passwd"));
-	            dto.setEmail(rs.getString("email"));
-	            dto.setPhone_num(rs.getString("phone_num"));
-	            dto.setUser_id(rs.getString("user_id"));
-	         }
-	      } catch (Exception e) {
-	         e.printStackTrace();
-	         System.out.println("회원 정보수정 중 오류 발생");
-	      }
+		MemberDTO dto = new MemberDTO();
+		try {
+			String query = "UPDATE MEMBERTB SET name=?, NICKNAME=?, USER_PASSWD=?, EMAIL=?, PHONE_NUM=? WHERE user_id=?";
+			psmt = con.prepareStatement(query);
 
-	      return dto; // DTO 객체 반환
-	   }
+			psmt.setString(1, name);
+			psmt.setString(2, nickname);
+			psmt.setString(3, user_passwd);
+			psmt.setString(4, email);
+			psmt.setString(5, phone_num);
+			psmt.setString(6, user_id);
+			rs = psmt.executeQuery();
+			System.out.println(query);
+			System.out.println("[" + rs.getString("name") + "]");
+			// 결과 처리
+			if (rs.next()) {
+				dto.setName(rs.getString("name"));
+				dto.setNickname(rs.getString("nickname"));
+				dto.setUser_passwd(rs.getString("user_passwd"));
+				dto.setEmail(rs.getString("email"));
+				dto.setPhone_num(rs.getString("phone_num"));
+				dto.setUser_id(rs.getString("user_id"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("회원 정보수정 중 오류 발생");
+		}
+
+		return dto; // DTO 객체 반환
+	}
 //			psmt = con.prepareStatement(query);
 //			psmt.setString(1, dto.getName());
 //			psmt.setString(2, dto.getNickname());
@@ -203,6 +195,7 @@ public class MemberDAO extends DBConnPool {
 
 	// 탈퇴하기
 	public int SignOut(int idx, String user_passwd) {
+		int result = 0;
 		String query = "DELETE FROM MEMBERTB WHERE idx=? and user_passwd=?";
 
 		try {
@@ -216,6 +209,7 @@ public class MemberDAO extends DBConnPool {
 			System.out.println("탈퇴 중 예외 발생");
 			e.printStackTrace();
 		}
-		return 0;
+		return result;
 	}
+
 }

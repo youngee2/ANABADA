@@ -14,12 +14,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Login</title>
 <link rel="stylesheet" type="text/css" href="../css/HeaderFooter.css">
-<link rel="stylesheet" href="./css/SignUp.css">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
 
 </head>
 
@@ -38,7 +32,8 @@
 				</div>
 				<div class="form-group">
 					<input style="font-size: 1vw"  type="password" name="user_passwd" required /><label>Password</label>
-					<span style="color: red; font-size: 1.2em;"> <%=request.getAttribute("ErrMsg") == null ? "" : request.getAttribute("ErrMsg")%>
+					<span style="color: red; font-size: 1.2em;"> 
+					<%=request.getAttribute("ErrMsg") == null ? "" : request.getAttribute("ErrMsg")%>
 					</span>
 				</div>
 				<div class="GoSignUp">

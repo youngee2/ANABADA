@@ -31,13 +31,13 @@ public class SignOutController extends HttpServlet {
 		MemberDAO dao = new MemberDAO(); // 다오 객체 생성
 		int result = dao.SignOut(idx, user_passwd);
 		dao.close();
-
+		System.out.println("컨트롤러" + idx + " : " + user_passwd);
 		// 성공 or 실패?
 		if (result == 1) {
 			resp.sendRedirect("tradeListPage.jsp");
 			System.out.println("탈퇴 성공");
+			
 		} else { // 로그인 실패
-
 			req.setAttribute("ErrMsg", "비밀번호가 다릅니다.");
 			req.getRequestDispatcher("SignOut.jsp").forward(req, resp);
 			System.out.println("탈퇴 실패");

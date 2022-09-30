@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../Page/Header.jsp"%>
 
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -15,38 +16,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>signup_2</title>
 <link rel="stylesheet" href="./css/SignUp.css">
+<link rel="stylesheet" type="text/css" href="../css/HeaderFooter.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 
-<script>
-funtion IdCheck(){
-	
-}
-</script>
 
-<script type="text/javascript">
-	// ID 중복 검사 함수.(DB 필요)
-	function checkid() {
-		var userid = document.getElementById("user_id").value;
-		if (userid) //userid로 받음
-		{
-			url = "check.jsp?user_id=" + userid;
-			window.open(url, "chkid", "width=400,height=200");
-		}
-	}
-</script>
 </head>
 
 <body>
-	<c:if test="${signUpResult == 0}">
-		<script>
-			alert("아이디가 중복됩니다.");
-		</script>
-	</c:if>
-
 
 	<section style="margin: 0 15% 15% 15%">
 		<div class="signup_title">회원가입</div>
@@ -67,73 +47,233 @@ funtion IdCheck(){
 		</div>
 
 		<form name="login" method="post" action="../Page/SignUp2.do"
-			class="form_style">
-			<table border="1" width="90%">
-				<tr>
-					<div class="input_style">
-						이름&nbsp;<span style="color: red">*</span> <input
-							class="input_body" size=50 maxlength="20" type="text" name="name"
-							placeholder="이름" id="namechk" required />
-					</div>
+			onsubmit="return signUpCheck()">
+			<div class="form_style">
+				<div class="input_style">
+					이름&nbsp;<span style="color: red">*</span> <input class="input_body"
+						size=50 maxlength="20" type="text" name="name" placeholder="이름"
+						id="namechk" />
+					<div id="nameError" class="error"></div>
+				</div>
 
-					<div class="input_style">
-						별명&nbsp;<span style="color: red">*</span> <input
-							class="input_body" size=50 maxlength="20" type="text"
-							name="nickname" placeholder="별명" required /> <input
-							type="button" id="check_button" value="별명 중복 검사">
-						</p>
-					</div>
 
-					<div class="input_style">
-						아이디&nbsp;<span style="color: red">*</span> <input
-							class="input_body" size=50 maxlength="20" type="id"
-							name="user_id" placeholder="아이디(중복체크 확인)" />
-						<!-- ---------------------------DB 관련된 ID 중복 체크 검사 ----------------------- -->
-						<input type="button" id="check_button" value="ID 중복 검사" onclick="IdCheck"/>
-						<input type="hidden" name="idDuplication" value="완료"/>
-						
-						</p>
-						<!-- ---------------------------DB 관련된 ID 중복 체크 검사 ----------------------- -->
-					</div>
+				<div class="input_style">
+					아이디&nbsp;<span style="color: red">*</span>
+					<div class="btn-input">
+						<input type="text" id="id" class="input_body" size=50
+							maxlength="20" name="user_id"
+							placeholder="'ID중복검사' 버튼을 눌러 아이디를 입력해주세요." disabled="disabled" />
 
-					<div class="input_style">
-						비밀번호&nbsp;<span style="color: red">*</span><input
-							class="input_body" size=50 maxlength="16" type="password"
-							name="user_passwd" placeholder="비밀번호(8~16자의 영문, 숫자, 특수기호)"
-							required />
+						<input type="button" name="dbCheckID" id="check_button"
+							value="ID 중복 검사" onclick="idCheck()" />
 					</div>
+					</p>
+					<div id="idError" class="error"></div>
+				</div>
 
-					<div class="input_style">
-						비밀번호 확인&nbsp;<span style="color: red">*</span> <input
-							class="input_body" size=50 maxlength="16" type="password"
-							name="password_check" placeholder="비밀번호 확인" required />
+
+				<div class="input_style">
+					별명&nbsp;<span style="color: red">*</span>
+
+					<div class="btn-input">
+						<input class="input_body" size=50 maxlength="20" type="text"
+							name="nickname" id="nickname"
+							placeholder="'별명 중복 검사' 버튼을 눌러 아이디를 입력해주세요." disabled="disabled" />
+
+						<input type="button" id="check_button" value="별명 중복 검사"
+							onclick="nicknameCheck()">
 					</div>
-					<div class="input_style">
-						이메일 <input class="input_body" size=50 maxlength="20" type="email"
-							name="e-mail" placeholder="이메일" />
-					</div>
-					<div class="input_style">
-						휴대전화&nbsp;<span style="color: red">*</span> <input
-							class="input_body" size=50 maxlength="13" type="text"
-							name="phone_num" placeholder="번호" required />
-					</div>
-				</tr>
+					</p>
+					<div id="nicknameError" class="error"></div>
+				</div>
+
+
+
+
+				<div class="input_style">
+					비밀번호&nbsp;<span style="color: red">*</span> <input
+						class="input_body" size=50 maxlength="16" type="password"
+						name="user_passwd" id="pwd"
+						placeholder="비밀번호(8~16자의 영문, 숫자, 특수기호)" />
+					<div id="pwdError" class="error"></div>
+				</div>
+
+				<div class="input_style">
+					비밀번호 확인&nbsp;<span style="color: red">*</span> <input
+						class="input_body" size=50 maxlength="16" type="password"
+						name="password_check" id="pwdChk" placeholder="비밀번호 확인" />
+					<div id="pwdChkError" class="error"></div>
+				</div>
+
+				<div class="input_style">
+					이메일 <input class="input_body" size=50 maxlength="25" type="email"
+						name="e-mail" id="email" placeholder="이메일" />
+					<div id="emailError" class="error"></div>
+				</div>
+
+				<div class="input_style">
+					휴대전화&nbsp;<span style="color: red">*</span> <input
+						class="input_body" size=50 maxlength="13" type="text"
+						name="phone_num" id="phone_num" placeholder="번호는 숫자만 입력해주세요." />
+					<div id="phoneNumError" class="error"></div>
+				</div>
+			</div>
+			</tr>
 			</table>
-			<button type="submit" class="next_btn" id="login" style="width: 100%">가입하기</button>
+			<button type="submit" class="next_btn" id="login" style="width: 100%"
+				onclick="signUpCheck()">가입하기</button>
 		</form>
+
 
 
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 			crossorigin="anonymous">
-			
-		</script>
+            </script>
 	</section>
-
-	<%@ include file="./HeaderFooter/Footer.jsp"%>
-
-
 </body>
-
+<%@ include file="./HeaderFooter/Footer.jsp"%>
 </html>
+
+  
+<script>
+// 가입부분 체크 
+var openWin;
+function idCheck() {
+	  window.open("IdCheckForm.jsp", "idwin", "width=450, height=350, resizable = no, scrollbars = no");
+	  window.name = "parentForm";
+}
+</script>
+
+<script>
+// 가입부분 체크 
+var openWin;
+function nicknameCheck() {
+	  window.open("NicknameCheckForm.jsp", "idwin", "width=450, height=350, resizable = no, scrollbars = no");
+	  window.name = "parentForm";
+}
+</script>
+
+<script>
+
+    // 가입부분 체크 
+    function signUpCheck() {
+        let namechk = document.getElementById("namechk").value;
+        let nickname = document.getElementById("nickname").value;
+        let id = document.getElementById("id").value;
+        let pwd = document.getElementById("pwd").value;
+        let pwdChk = document.getElementById("pwdChk").value;
+        let email = document.getElementById("email").value;
+        let check = true;
+        let idvalcheck = /^[a-z0-9]+$/
+        let pwdcheck = /^[a-zA-Z0-9]+$/
+
+        let num = /[0-9]/
+        let eng = /[a-z]/
+        let spe =/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/
+        let mailCheck = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+
+        // 이름확인
+      
+ 
+
+        if (namechk === "") {
+            document.getElementById("nameError").innerHTML = "이름은 필수 정보입니다."
+            return false;
+        }else if (spe.test(namechk) || namechk.length>10){ 
+            document.getElementById("nameError").innerHTML = "이름을 정확히 입력해주세요."
+            return false;
+        } else {
+            document.getElementById("nameError").innerHTML = ""
+        }
+
+        
+      //닉네임
+      if (nickname === "") {
+            document.getElementById("nicknameError").innerHTML = "별명은 필수 정보입니다."
+            return false;
+        } else if (spe.test(nickname)) {
+            document.getElementById("nicknameError").innerHTML = "특수기호와 공백은 사용불가합니다"
+            return false;
+        } else if (nickname.length > 6) {
+            document.getElementById("nicknameError").innerHTML = "별명은 6글자 이하입니다."
+            return false;
+        } else {
+            document.getElementById("nicknameError").innerHTML = "멋진 별명이네요!"
+        }
+    
+              //아이디
+              if (id === "") {
+            document.getElementById("idError").innerHTML = "아이디는 필수 정보입니다."
+            return false;
+        } else if (!idvalcheck.test(id) ) {
+            document.getElementById("idError").innerHTML = "5~15자의 영문 소문자, 숫자만 사용 가능합니다."
+            return false;
+        } else if ( id.length < 5 || id.length > 15 ) {
+            document.getElementById("idError").innerHTML = "5~15자의 영문 소문자, 숫자만 사용 가능합니다."
+            return false;
+        }else  if (id === "null") {
+            document.getElementById("idError").innerHTML = "버튼을 눌러 사용가능한 아이디를 선택해주세요."
+                return false;
+        } else {
+            document.getElementById("idError").innerHTML = "멋진 아이디네요!"
+        }
+     
+
+        // 비밀번호 확인
+        if (pwd !== pwdChk) {
+            document.getElementById("pwdError").innerHTML = ""
+            document.getElementById("pwdChkError").innerHTML = "비밀번호가 동일하지 않습니다."
+            return false;
+        } else {
+            document.getElementById("pwdError").innerHTML = ""
+            document.getElementById("pwdChkError").innerHTML = ""
+        }
+
+        if (pwd === "") {
+            document.getElementById("pwdError").innerHTML = "비밀번호를 입력해주세요."
+            return false;
+       
+        } else if (!idvalcheck.test(pwd) ) {
+            document.getElementById("pwdError").innerHTML = "5~15자의 영문 소문자, 숫자만 사용 가능합니다."
+            return false;
+        } else if ( pwd.length < 5 || pwd.length > 15 ) {
+            document.getElementById("pwdError").innerHTML = "5~15자의 영문 소문자, 숫자만 사용 가능합니다."
+            return false;
+
+
+        } else {
+            document.getElementById("passwordError").innerHTML=""
+        }
+
+        if (pwdChk === "") {
+            document.getElementById("pwdChkError").innerHTML = "비밀번호를 다시 입력해주세요."
+            return false;
+        } else {
+            document.getElementById("passwordCheckError").innerHTML=""
+        }
+
+        if (email === "") {
+            document.getElementById("emailError").innerHTML = ""
+        }else if ( (email.match(mailCheck) == null)){ 
+            document.getElementById("emailError").innerHTML = "이메일을 정확히 입력해주세요."
+            return false;
+        } else {
+            document.getElementById("emailError").innerHTML = ""
+        }
+
+        //전화번호
+              if (phone_num === "") {
+            document.getElementById("phoneNumError").innerHTML = "전화번호는 필수 정보입니다."
+            return false;
+        } else if (num.test(phone_num)|| id.length < 12) {
+            document.getElementById("phoneNumError").innerHTML = "전화번호는 숫자만 입력해주세요."
+            return false;
+        } else {
+            document.getElementById("phoneNumError").innerHTML = ""
+        }
+
+    }
+
+</script>
