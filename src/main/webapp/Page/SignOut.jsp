@@ -8,37 +8,31 @@
 <link rel="stylesheet" href="./css/PersonalInformation.css">
 </head>
 <body>
-	<%
-	int idx = (int) session.getAttribute("Idx");
-	%>
 
-	<form name="SignOut" action="../Page/SignOut.do" method="post">
-		<div class="SignOutModal">
 
-			<p class="confirmSignOutA">정말 탈퇴하시겠습니까?</p>
-			<p class="confirmSignOutB">비밀번호를 입력해주세요.</p>
 
-			<input type="password" name="user_passwd">
+			<form name="SignOut" action="../Page/SignOut.do" method="post">
+				<div class="SignOutModal">
 
-			<button type="submit" onclick="SignOutbtn()"
-				class="SignoutBtn">탈퇴하기</button>
-	</form>
+					<p class="confirmSignOutA">정말 탈퇴하시겠습니까?</p>
+					<p class="confirmSignOutB">비밀번호를 입력해주세요.</p>
+
+					<input type="password" name="user_passwd"> <span
+						style="color: red; font-size: 1.2em;"> <%=request.getAttribute("ErrMsg") == null ? "" : request.getAttribute("ErrMsg")%>
+					</span>
+					<button type="submit" onclick="SignOutbtn()" class="SignoutBtn">탈퇴하기</button>
+			</form>
+		
+			<%
+			request.setCharacterEncoding("UTF-8");
+			String user_id = (String) session.getAttribute("UserId");
+
+			if (user_id == null) {
+				out.println("<script>alert('로그인 후 사용해주세요.'); location.href='Login.do';</script>");
+			}
+			%>
+
 </body>
- <script type="text/javascript">
-    function SignOutbtn() {
-      var p1 = document.getElementById('').value;
-      var p2 = document.getElementById('password2').value;
-      if( p1 != p2 ) {
-        alert("비밀번호가 일치 하지 않습니다");
-        return false;
-      } else{
-        alert("비밀번호가 일치합니다");
-        return true;
-      }
-
-    }
-  </script>
-
 
 
 </html>

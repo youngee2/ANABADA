@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="./HeaderFooter/Header.jsp"%>
+<%@ include file="../Page/Header.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +20,7 @@
 <link
 	href="https://hangeul.pstatic.net/hangeul_static/css/nanum-barun-gothic.css"
 	rel="stylesheet">
-<title>SellBoard</title>
+<title>교환 글쓰기</title>
 </head>
 
 <body>

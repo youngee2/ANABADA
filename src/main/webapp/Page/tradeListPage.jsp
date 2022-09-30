@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="./HeaderFooter/Header.jsp"%>
+<%@ include file="./Header.jsp"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -56,6 +56,7 @@
 
 
 <link rel="stylesheet" href="./css/style-jieun.css">
+
 </head>
 
 <body>
@@ -145,57 +146,68 @@
 
 	<!--카테고리-->
 	<div style="margin-top: 5%;">
+	<form method="get" >
 		<ul class="category">
-			<li class="li-tradePage category-li"><a href="/webproject/Page/tradeListPage.do" class="a link">
+			<li class="li-tradePage category-li">
+				<button type="submit"  name="category" value="7" style="border:none; background-color:rgb(255,255,255,1);">
 					<span> <img src="./img/sprout-tree-svgrepo-com.svg"
 						class="icon"> <br>전체
 				</span>
-			</a></li>
+				</button>
+			</li>
 
-			<li class="li-tradePage category-li"><a href="" class="a link" value = "sell_category0">
+			<li class="li-tradePage category-li">
+				<button type="submit"  name="category" value="0" style="border:none; background-color:rgb(255,255,255,1);">
 					<span> <img src="./img/fassion.png" class="icon"> <br>패션/잡화/뷰티
 				</span>
-			</a></li>
+			</button></li>
 
-			<li class="li-tradePage category-li"><a href="" class="a link" value = "sell_category1" >
+			<li class="li-tradePage category-li">
+			<button type="submit"  name="category" value="1" style="border:none; background-color:rgb(255,255,255,1);">
 					<span> <img src="./img/tech.png" class="icon"> <br>테크/가전
 				</span>
-			</a></li>
+			</button></li>
 
-			<li class="li-tradePage category-li"><a href="" class="a link" value = "sell_category2" >
+			<li class="li-tradePage category-li">
+			<button type="submit"  name="category" value="2" style="border:none; background-color:rgb(255,255,255,1);">
 					<span> <img src="./img/home.png" class="icon"> <br>홈/리빙
 				</span>
-			</a></li>
+			</button></li>
 
-			<li class="li-tradePage category-li"><a href="" class="a link" value = "sell_category3" >
+			<li class="li-tradePage category-li">
+			<button type="submit"  name="category" value="3" style="border:none; background-color:rgb(255,255,255,1);">
 					<span> <img src="./img/baby.png" class="icon"> <br>베이비/키즈
 				</span>
-			</a></li>
+			</button></li>
 
-			<li class="li-tradePage category-li"><a href="" class="a link" value = "sell_category4" >
+			<li class="li-tradePage category-li">
+				<button type="submit"  name="category" value="4" style="border:none; background-color:rgb(255,255,255,1);">
 					<span> <img src="./img/pet.png" class="icon"> <br>반려동물
 				</span>
-			</a></li>
+			</button></li>
 
-			<li class="li-tradePage category-li"><a href="/webproject/Page/tradeListPage.do?sell_category=5" class="a link" value = "sell_category5" >
+			<li class="li-tradePage category-li">
+				<button type="submit"  name="category" value="5" style="border:none; background-color:rgb(255,255,255,1);">
 					<span> <img src="./img/game.png" class="icon"> <br>게임/취미
 				</span>
-			</a></li>
+			</button></li>
 
-			<li class="li-tradePage category-li"><a href="/webproject/Page/tradeListPage.do?sell_category=6" class="a link" value = "sell_category6" >
+			<li class="li-tradePage category-li">
+				<button type="submit"  name="category" value="6" style="border:none; background-color:rgb(255,255,255,1);">
 					<span> <img src="./img/etc.png" class="icon"> <br>기타
 				</span>
-			</a></li>
+			</button></li>
 
 		</ul>
-	</div>
+		</form>
 	</div>
 
 
 	<!--게시글 리스트(기능 넣으면 수정예정)-->
 
 	<div class="container-fluid">
-		<h4></h4>
+	
+		<h4>${category_word }</h4>
 		<hr>
 		<c:choose>
 			<c:when test="${empty boardList}">
@@ -216,12 +228,15 @@
 									<!-- 천 단위 표기(자바스크립트 사용) -->
 									<script>
 										var price = ${list_item.sell_price};
+										
+										if(price == 0 ){
+											document.write("무료나눔");
+										}else{
 										function priceToString(price) {
 										    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 										}
-										    document.write(priceToString(price));
+										    document.write(priceToString(price)+"&nbsp;원");}
 									</script>
-									&nbsp;원
 								</p>
 							</div>
 						</div>
@@ -256,7 +271,7 @@
 	</div>
 
 
-	<%@ include file="./HeaderFooter/Footer.jsp"%>
+	<%@ include file="./HeaderFooter/Footer.jsp"%>  
 </body>
 
 </html>

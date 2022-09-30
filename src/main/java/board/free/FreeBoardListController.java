@@ -49,7 +49,7 @@ public class FreeBoardListController extends HttpServlet {
 		List<FreeBoardDTO> FreeBoardLists = dao.selectListPage(map);
 		dao.close();
 
-		String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "Page/freeListPage.do");
+		String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "../Page/freeListPage.do");
 
 		map.put("pagingImg", pagingImg);
 		map.put("totalCount", totalCount);

@@ -24,7 +24,7 @@ int result = dao.commentWrite(dto);
 dao.close();
 
 if (nickname == null) {
-out.println("<script>alert('로그인 후 사용주세요.'); location.href='tradeListPage.do';</script>");
+out.println("<script>alert('로그인 후 사용주세요.'); location.href='exchangeListPage.do';</script>");
    return;
 }
 

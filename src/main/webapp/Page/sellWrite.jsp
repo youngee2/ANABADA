@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="./HeaderFooter/Header.jsp"%>
+<%@ include file="../Page/Header.jsp"%>
 <%@ page import = "utils.JSFunction" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +31,7 @@
 String nickname = (String) session.getAttribute("Nickname");
 
 if (user_id == null) {
-   out.println("<script>alert('로그인 후 사용주세요.'); location.href='tradeListPage.do';</script>");
+   out.println("<script>alert('로그인 후 사용주세요.'); location.href='tradeListPage.do?category=7';</script>");
    return;
 }
 %>
@@ -42,7 +42,8 @@ if (user_id == null) {
 		<hr>
 
 		<form name="SellBoard" method="post" enctype="multipart/form-data" action="../Page/sellWriteProcess.jsp">
-			<span class="RequiredInput">* </span>제목 <br> <input type="text"
+			<span class="RequiredInput">* </span>제목 <br> 
+			<input type="text"
 				name="title" maxlength=50 size="30vw" placeholder="제목을 입력해주세요."
 				required>
 				<br>

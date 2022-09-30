@@ -9,36 +9,13 @@
 /* body{ overflow: auto;
 } */
 
-body,
-div,
-span,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-a,
-header,
-section,
-footer,
-nav,
-img,
-form,
-figcaption,
-figure,
-i,
-p {
-    margin: 0;
-    padding: 0;
-    border: 0;
-
-}
 
 a {
     text-decoration: none;
     color: inherit
 }
+
+	
 
 
 :root {
@@ -84,7 +61,7 @@ a {
 
 /* 로그인 버튼 누르면 모달창 뜨기*/
 
-.btn {
+.btn1 {
     border: 0;
     outline: 0;
 
@@ -100,6 +77,7 @@ a {
 
 .LoginBtn:hover {
     background-color: rgba(0, 0, 0, 0.3);
+    
 }
 
 .modal {
@@ -122,7 +100,6 @@ a {
     padding: 2vw;
     border: 1px solid #888;
     width: 30%;
-    height: 32vw;
 }
 
 .modal-margin{
@@ -309,6 +286,8 @@ letter-spacing: 35px;
 
 
 }
+
+
 
 
 /*HeaderC 게시판 메뉴*/
