@@ -19,7 +19,17 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 </head>
+
 <body>
+	<%
+	request.setCharacterEncoding("UTF-8");
+	String user_id = (String) session.getAttribute("UserId");
+	System.out.print(user_id + "확인");
+
+	if (user_id != null) {
+		out.println("<script>alert('로그아웃 후 사용해주세요.'); location.href='Login.jsp';</script>");
+	}
+	%>
 	<section style="margin: 0 15% 15% 15%">
 		<div class="signup_title">회원가입</div>
 		<div class="step_title">

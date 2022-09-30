@@ -27,7 +27,16 @@
 </head>
 
 <body>
+	<%
+	request.setCharacterEncoding("UTF-8");
+	String user_id = (String) session.getAttribute("UserId");
+	System.out.print(user_id + "확인");
 
+	if (user_id != null) {
+		out.println("<script>alert('로그아웃 후 사용해주세요.'); location.href='Login.jsp';</script>");
+	}
+	%>
+	
 	<section style="margin: 0 15% 15% 15%">
 		<div class="signup_title">회원가입</div>
 		<div class="step_title">
@@ -107,7 +116,7 @@
 
 				<div class="input_style">
 					이메일 <input class="input_body" size=50 maxlength="25" type="email"
-						name="e-mail" id="email" placeholder="이메일" />
+						name="e-mail" id="email" placeholder="이메일은 선택사항입니다." />
 					<div id="emailError" class="error"></div>
 				</div>
 

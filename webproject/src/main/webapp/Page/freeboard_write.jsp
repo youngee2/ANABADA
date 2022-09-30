@@ -53,8 +53,8 @@ function validateForm(form){
     <h2 class="free_title">자유게시판</h2>
     <hr>
     <main role="main" class="container1">
+   
     <form name="writeFrm" method="get" enctype="multipart/form-data" action="../Page/FreeBoardWrite.do" onsubmit="return validateForm(this);">
-
         <div class="pt-1"></div>
       </div>
       <input type="text" name="title" placeholder="제목을 입력하세요" class="freeboard_write_title">
