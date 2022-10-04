@@ -24,19 +24,18 @@ public class SignOutController extends HttpServlet {
 
 		HttpSession session = req.getSession();
 		int idx = (int) session.getAttribute("Idx");
-
 		String user_passwd = req.getParameter("user_passwd");
-		
-		// 게시물 불러오기
-		MemberDAO dao = new MemberDAO(); // 다오 객체 생성
+
+		MemberDAO dao = new MemberDAO();
 		int result = dao.SignOut(idx, user_passwd);
 		dao.close();
-		System.out.println("컨트롤러" + idx + " : " + user_passwd);
-		// 성공 or 실패?
+
+		System.out.println(idx + " " + user_passwd);
+
 		if (result == 1) {
-			resp.sendRedirect("tradeListPage.jsp");
+			session.invalidate();
+			resp.sendRedirect("tradeListPage.do?category=7");
 			System.out.println("탈퇴 성공");
-			
 		} else { // 로그인 실패
 			req.setAttribute("ErrMsg", "비밀번호가 다릅니다.");
 			req.getRequestDispatcher("SignOut.jsp").forward(req, resp);

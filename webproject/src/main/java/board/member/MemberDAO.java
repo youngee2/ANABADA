@@ -142,66 +142,37 @@ public class MemberDAO extends DBConnPool {
 		return dto;
 	}
 
-	// 회원 정보 수정하기
-	public MemberDTO getMemberDTO(String name, String nickname, String user_passwd, String email, String phone_num,
-			String user_id) {
-
-		MemberDTO dto = new MemberDTO();
+	// 회원정보 수정
+	public int UpdatePersonalnfo(MemberDTO dto) {
+		int result = 0;
+		String query = "UPDATE MEMBERTB SET name=?, NICKNAME=?, USER_PASSWD=?, EMAIL=?, PHONE_NUM=? WHERE user_id=?";
 		try {
-			String query = "UPDATE MEMBERTB SET name=?, NICKNAME=?, USER_PASSWD=?, EMAIL=?, PHONE_NUM=? WHERE user_id=?";
+
 			psmt = con.prepareStatement(query);
-
-			psmt.setString(1, name);
-			psmt.setString(2, nickname);
-			psmt.setString(3, user_passwd);
-			psmt.setString(4, email);
-			psmt.setString(5, phone_num);
-			psmt.setString(6, user_id);
-			rs = psmt.executeQuery();
+			psmt.setString(1, dto.getName());
+			psmt.setString(2, dto.getNickname());
+			psmt.setString(3, dto.getUser_passwd());
+			psmt.setString(4, dto.getEmail());
+			psmt.setString(5, dto.getPhone_num());
+			psmt.setString(6, dto.getUser_id());
+			result = psmt.executeUpdate();
 			System.out.println(query);
-			System.out.println("[" + rs.getString("name") + "]");
-			// 결과 처리
-			if (rs.next()) {
-				dto.setName(rs.getString("name"));
-				dto.setNickname(rs.getString("nickname"));
-				dto.setUser_passwd(rs.getString("user_passwd"));
-				dto.setEmail(rs.getString("email"));
-				dto.setPhone_num(rs.getString("phone_num"));
-				dto.setUser_id(rs.getString("user_id"));
-			}
 		} catch (Exception e) {
+			System.out.println("개인정보 수정 중 예외 발생");
 			e.printStackTrace();
-			System.out.println("회원 정보수정 중 오류 발생");
 		}
-
-		return dto; // DTO 객체 반환
+		return result;
 	}
-//			psmt = con.prepareStatement(query);
-//			psmt.setString(1, dto.getName());
-//			psmt.setString(2, dto.getNickname());
-//			psmt.setString(3, dto.getUser_passwd());
-//			psmt.setString(4, dto.getEmail());
-//			psmt.setString(5, dto.getPhone_num());
-//			psmt.setString(6, dto.getUser_id());
-//
-//			System.out.println(query);
-//			result = psmt.executeUpdate();
-//		} catch (Exception e) {
-//			System.out.println("개인정보 수정 중 예외 발생");
-//			e.printStackTrace();
-//		}
-//		return result;
-//	}
 
 	// 탈퇴하기
 	public int SignOut(int idx, String user_passwd) {
 		int result = 0;
 		String query = "DELETE FROM MEMBERTB WHERE idx=? and user_passwd=?";
-
 		try {
 			psmt = con.prepareStatement(query);
 			psmt.setInt(1, idx);
 			psmt.setString(2, user_passwd);
+			result = psmt.executeUpdate();
 			rs = psmt.executeQuery();
 			System.out.println(query);
 
@@ -211,5 +182,4 @@ public class MemberDAO extends DBConnPool {
 		}
 		return result;
 	}
-
 }

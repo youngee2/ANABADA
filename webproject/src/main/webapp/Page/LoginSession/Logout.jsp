@@ -10,5 +10,5 @@ session.removeAttribute("Idx");
 session.invalidate();
 
 // 속성 삭제 후 페이지 이동 
-response.sendRedirect("../tradeListPage.jsp");
+response.sendRedirect("../tradeListPage.do?category=7");
 %>
