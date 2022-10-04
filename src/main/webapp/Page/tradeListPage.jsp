@@ -132,6 +132,7 @@
 					<option value="sell_contents">내용</option>
 				</select> <input class="search-text" type="text" name="searchWord"
 					placeholder="키워드를 검색하세요.">
+					<input type="hidden" name="category" value="${map.get("category") }">
 				<button class="search-btn" type="submit">
 					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
 						fill="#337a98" class="bi bi-search" viewBox="0 0 16 16">

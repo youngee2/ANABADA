@@ -44,7 +44,7 @@ if (!loginId.equals("")) {
             if (session.getAttribute("UserId") == null) {
             %>
             <li class="btn LoginBtn"><a href="#">Login</a></li>
-            <div class="modal">
+            <div class="modal1">
                <div class="login-modal">
 
                   <span class="close">&times;</span>
@@ -155,7 +155,7 @@ if (!loginId.equals("")) {
          </ul>
       </div>
       <script>
-         var modals = document.getElementsByClassName("modal");
+         var modals = document.getElementsByClassName("modal1");
          var btns = document.getElementsByClassName("btn");
          var spanes = document.getElementsByClassName("close");
          var funcs = [];
@@ -182,7 +182,7 @@ if (!loginId.equals("")) {
          }
 
          window.onclick = function(event) {
-            if (event.target.className == "modal") {
+            if (event.target.className == "modal1") {
                event.target.style.display = "none";
             }
          };

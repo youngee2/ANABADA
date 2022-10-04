@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import utils.BoardPage;
+import utils.SellBoardPage;
 
 @WebServlet("/Page/tradeListPage.do")
 public class SellListController extends HttpServlet {
@@ -39,10 +39,12 @@ public class SellListController extends HttpServlet {
 		if(searchWord != null) {
 			map.put("searchField", searchField);
 			map.put("searchWord", searchWord);
+		
 		}
 		
 		int totalCount = dao.selectCount(map);
 	
+		
 		
 		//페이지 처리
 		ServletContext application = getServletContext();
@@ -67,12 +69,13 @@ public class SellListController extends HttpServlet {
 		map.put("start", start);
 		map.put("end", end);
 		
-		
+		System.out.println(category+ ":카테고리- 컨트롤러");
 	
+		int categoryNum=Integer.parseInt(category);
 		//게시물 목록 받기
 		List<SellBoardDTO> boardList = dao.selectListPage(map);
-		String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum,"/webproject/Page/tradeListPage.do");
-		
+		String pagingImg = 
+				SellBoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum,"/webproject/Page/tradeListPage.do",categoryNum);
 		map.put("pagingImg", pagingImg);
 		map.put("totalCount", totalCount);
 		map.put("pageSize", pageSize);
@@ -96,6 +99,7 @@ public class SellListController extends HttpServlet {
 		}else {
 			category_word="전체";
 		}
+		
 		//전달할 데이터를 req영역에 저장 후 포워드
 		req.setAttribute("boardList", boardList);
 		req.setAttribute("map", map);
@@ -103,6 +107,8 @@ public class SellListController extends HttpServlet {
 		req.getRequestDispatcher("/Page/tradeListPage.jsp").forward(req, resp);
 		
 		dao.close();
+		
+		
 	
 	}
 }
