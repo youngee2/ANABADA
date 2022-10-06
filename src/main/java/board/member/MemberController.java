@@ -31,7 +31,7 @@ public class MemberController extends HttpServlet {
 
 		// 폼값을 DTO에 저장
 		MemberDTO dto = new MemberDTO();
-
+		
 		dto.setName(req.getParameter("name"));
 		dto.setNickname(req.getParameter("nickname"));
 		dto.setUser_id(req.getParameter("user_id"));

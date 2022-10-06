@@ -29,8 +29,6 @@ public class NicknameCheckController extends HttpServlet {
 
 		String nickname = req.getParameter("nickname");
 
-		System.out.println(nickname);
-
 		MemberDAO dao = new MemberDAO();
 		boolean result = dao.NickNameCheck(nickname);
 		dao.close();
@@ -55,16 +53,16 @@ public class NicknameCheckController extends HttpServlet {
 		} else {
 			// 성공 or 실패?
 			if (result == true) {
-				req.setAttribute("Msg", nickname + "은(는) 중복된 별명 입니다.");
+				req.setAttribute("Msg", nickname + "은(는) 중복된 닉네임 입니다.");
 				req.getRequestDispatcher("NicknameCheckForm.jsp").forward(req, resp);
-				System.out.println("중복된 별명 ");
+				System.out.println("중복된 닉네임 ");
 				nickname = "";
 			} else { // 로그인 실패
 				req.setAttribute("Msg", nickname + "는 사용가능합니다.");
 
 				req.setAttribute("UseMsg", nickname);
 				req.getRequestDispatcher("NicknameCheckForm.jsp").forward(req, resp);
-				System.out.println("사용 가능 아이디");
+				System.out.println("사용 가능 닉네임");
 			}
 		}
 	}

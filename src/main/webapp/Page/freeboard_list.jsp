@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../Page/Header.jsp"%>
+<%@ include file="Header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -69,8 +69,7 @@
 						<tr align="center">
 							<td>${ map.totalCount - (((map.pageNum-1) * map.pageSize) + loop.index)}</td>
 							<td align="center"><a
-								href="../Page/FreeBoardView.do?free_num=${ row.free_num }">${ row.free_title }</a></td>
-
+								href="freeboard_read.jsp?free_num=${ row.free_num }">${ row.free_title }</a></td>
 							<td>${ row.nickname }</td>
 							<td>${ row.free_date }</td>
 							<td>${ row.free_count }</td>

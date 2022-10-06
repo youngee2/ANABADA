@@ -1,7 +1,16 @@
+<%@ page import="board.free.FreeBoardDAO" %>
+<%@ page import="board.free.FreeBoardDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../Page/Header.jsp"%>
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+String free_num = request.getParameter("free_num");
+FreeBoardDAO dao = new FreeBoardDAO();
+FreeBoardDTO dto = dao.selectViewEdit(free_num);
+String sessionId = session.getAttribute("Nickname").toString();
+dao.close();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,13 +31,13 @@
 <script type="text/javascript">
 function validateForm(form){
 	if(form.title.value==""){
-		alert("제목을 입력하세요.");
+		alert("제목을 입력하세요.");x
 		form.title.focus();
 		return false;
 	}
 	if(form.contents.value==""){
 		alert("내용을 입력하세요.");
-		form.contents.focus();
+		form.content.focus();
 		return false;
 	}
 }
@@ -54,13 +63,13 @@ function validateForm(form){
     <h2 class="free_title">자유게시판</h2>
     <hr>
     <main role="main" class="container1">
-    <form name="writeFrm" method="post" action="../Page/FreeBoardWrite.do" onsubmit="return validateForm(this)"; >
-
+    <form name="writeFrm" method="post" action="../Page/SellEditDelete/FreeEditProcess.jsp" onsubmit="return validateForm(this);" >
+	<input type="hidden" name="free_num" value="<%=dto.getFree_num() %>" />
         <div class="pt-1"></div>
       </div>
-      <input type="text" name="title" placeholder="제목을 입력하세요" class="freeboard_write_title" >
+      <input type="text" name="title" placeholder="제목을 입력하세요" class="freeboard_write_title" value="<%= dto.getFree_title() %>"/>
                 <div class="pt-1">
-                    <textarea id="summernote" name="contents"></textarea>
+                    <textarea id="summernote" name="contents"><%= dto.getFree_contents() %></textarea>
                 </div>    
                 <script>
                     $('#summernote').summernote({
@@ -70,7 +79,8 @@ function validateForm(form){
                     });
                   </script>                     
                 <div class="pt-1 text-right">
-                    <button class="write_btn" type="submit">등록</button>
+                    <button class="write_btn" type="submit">작성 완료</button>
+                    <button class="write_btn" type="button" onclick="location.href='../Page/freeListPage.do' ">목록</button>
                 </div>    
             </form>
            

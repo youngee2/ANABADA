@@ -15,7 +15,7 @@
 
 </head>
 
-<body>
+<body style="margin:0;">
 	<section class="Personalinfo">
 		<h1 class="personalA-title">회원정보</h1>
 		<hr class="personal-lineA">
@@ -24,18 +24,15 @@
 		<%
 		request.setCharacterEncoding("UTF-8");
 		String user_id = (String) session.getAttribute("UserId");
-		System.out.print(user_id+"확인");
+		System.out.print(user_id + "확인");
 
 		if (user_id == null) {
 			out.println("<script>alert('로그인 후 사용해주세요.'); location.href='Login.jsp';</script>");
 		}
 		%>
 		<script type="text/javascript">
+			
 		</script>
-		
-		
-		
-
 		<table class="PersonalC-table">
 			<tr>
 				<th>이름</th>
@@ -51,7 +48,7 @@
 			</tr>
 			<tr>
 				<th>비밀번호</th>
-				<td>${ dto.user_passwd }</td>
+				<td>***********</td>
 			</tr>
 			<tr>
 				<th>이메일 주소</th>
@@ -61,7 +58,7 @@
 				<th>연락처</th>
 				<td>${ dto.phone_num }</td>
 			</tr>
-			
+
 		</table>
 
 

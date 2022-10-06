@@ -66,7 +66,7 @@ if (session_nick == null) {
 <title>거래 물품 상세보기</title>
 </head>
 
-<body>
+<body style="margin:0;">
 
 
 

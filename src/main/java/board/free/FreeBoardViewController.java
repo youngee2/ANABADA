@@ -20,7 +20,7 @@ public class FreeBoardViewController extends HttpServlet{
 	FreeBoardDAO dao = new FreeBoardDAO();
 	String free_num = req.getParameter("free_num");
 	dao.updateVisitCount(free_num);
-	FreeBoardDTO dto = dao.selectView(free_num);
+	FreeBoardDTO dto = dao.selectViewEdit(free_num);
 	dao.close();
 	
 	

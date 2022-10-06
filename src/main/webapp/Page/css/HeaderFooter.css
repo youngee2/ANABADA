@@ -9,13 +9,35 @@
 /* body{ overflow: auto;
 } */
 
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+header,
+section,
+footer,
+nav,
+img,
+form,
+figcaption,
+figure,
+i,
+p {
+    padding: 0;
+    border: 0;
+
+}
 
 a {
     text-decoration: none;
     color: inherit
 }
-
-	
 
 
 :root {
@@ -52,7 +74,7 @@ a {
 }
 
 .HeaderA a {
-    font-size: 1rem;
+    font-size: 0.8rem;
     padding: 10px;
     display: flex;
 }
@@ -61,7 +83,7 @@ a {
 
 /* 로그인 버튼 누르면 모달창 뜨기*/
 
-.btn1 {
+.btn {
     border: 0;
     outline: 0;
 
@@ -71,44 +93,44 @@ a {
 
 .LoginBtn {
     background-color: var(--main-color);
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     padding: 10px;
 }
 
 .LoginBtn:hover {
     background-color: rgba(0, 0, 0, 0.3);
-    
 }
 
 .modal1 {
     display: none;
+    /* Hidden by default */
     position: fixed;
+    /* Stay in place */
     z-index: 1;
+    /* Sit on top */
     left: 0;
     top: 0;
     width: 100%;
+    /* Full width */
     height: 100%;
+    /* Full height */
     background-color: rgb(0, 0, 0);
+    /* Fallback color */
     background-color: rgba(0, 0, 0, 0.4);
-
+    /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
 .login-modal {
     background-color: #fefefe;
     margin: 5% auto;
-    padding: 2vw;
+    /* 15% from the top and centered */
+    padding: 20px;
     border: 1px solid #888;
-    width: 30%;
+    width: 40%;
+    height: 35vw;
 }
 
-.modal-margin{
-    padding: 2vw 3vw 4vw 3vw;
-}
-
-.Login_form h3{
-letter-spacing: 35px;
-}
 /* The Close Button */
 .close {
     color: #aaa;
@@ -130,7 +152,6 @@ letter-spacing: 35px;
     padding-bottom: 13px;
     text-align: center;
     letter-spacing: 2px;
-    font-size: 2.5vw;
 
 }
 
@@ -153,7 +174,7 @@ letter-spacing: 35px;
     background-color: transparent;
     border: none;
     border-bottom: 1.4px solid #d8d7d7;
-    font-size: 3vw;
+    font-size: 18px;
     padding: 10px 0;
     display: block;
     width: 100%;
@@ -161,7 +182,7 @@ letter-spacing: 35px;
 
 .form-group label {
     color: #000000;
-    font-size: 1.5vw;
+    font-size: 16px;
     font-weight: 100;
     position: absolute;
     pointer-events: none;
@@ -176,7 +197,7 @@ letter-spacing: 35px;
 .form-group input:valid+label,
 .form-group input:focus+label {
     color: rgb(24, 1, 1);
-    font-size: 0.8vw;
+    font-size: 14px;
     transform: translateY(0);
 }
 
@@ -203,14 +224,12 @@ letter-spacing: 35px;
 .GoSignUp p {
     padding-top: 1vw;
     text-align: center;
-    font-size: 1.5vw;
 }
 
 .GoSignUp a {
     display: block;
     text-align: center;
     color: rgb(218 51 3);
-    font-size: 1vw;
 
 }
 
@@ -286,8 +305,6 @@ letter-spacing: 35px;
 
 
 }
-
-
 
 
 /*HeaderC 게시판 메뉴*/

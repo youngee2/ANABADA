@@ -23,7 +23,7 @@
 <title>교환 글쓰기</title>
 </head>
 
-<body>
+<body style="margin:0;">
  <%
  String user_id = (String) session.getAttribute("UserId");
 String nickname = (String) session.getAttribute("Nickname");

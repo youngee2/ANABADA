@@ -28,9 +28,9 @@ public class IdCheckController extends HttpServlet {
 		resp.setContentType("text/html; charset=UTF-8");
 
 		String user_id = req.getParameter("user_id");
-		
+
 		System.out.println(user_id);
-		
+
 		MemberDAO dao = new MemberDAO();
 		boolean result = dao.IDCheck(user_id);
 		dao.close();
@@ -39,26 +39,22 @@ public class IdCheckController extends HttpServlet {
 		boolean id_check = Pattern.matches(idvalcheck, user_id);
 
 		if (user_id == "") {
+
 			req.setAttribute("Msg", "아이디를 입력해주세요.");
 			req.getRequestDispatcher("IdCheckForm.jsp").forward(req, resp);
-			user_id = "";
 		} else if (user_id.length() < 5 || user_id.length() > 15) {
-			req.setAttribute("Msg", "5~15자의 영문 소문자, 숫자만 사용 가능합니다.");
+			req.setAttribute("Msg", "5~15자의 영문 소문자, 숫자만 입력해주세요.");
 			req.getRequestDispatcher("IdCheckForm.jsp").forward(req, resp);
-			user_id = "";
 		} else if (id_check == false) {
-
-			req.setAttribute("Msg", "5~15자의 영문 소문자, 숫자만 사용 가능합니다.");
+			req.setAttribute("Msg", "5~15자의 영문 소문자, 숫자만 입력해주세요.");
 			req.getRequestDispatcher("IdCheckForm.jsp").forward(req, resp);
-			user_id = "";
-			
+
 		} else {
 			// 성공 or 실패?
 			if (result == true) {
 				req.setAttribute("Msg", user_id + "는 중복된 아이디 입니다.");
 				req.getRequestDispatcher("IdCheckForm.jsp").forward(req, resp);
 				System.out.println("중복된 아이디 ");
-				user_id = "";
 			} else { // 로그인 실패
 				req.setAttribute("Msg", user_id + "는 사용가능합니다.");
 

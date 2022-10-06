@@ -71,10 +71,14 @@ public class FreeBoardDAO extends DBConnPool {
 		return board; // 목록 반환
 	}
 
-	// 주어진 일련번호에 해당하는 게시물을 DTO에 담아 반환
-	public FreeBoardDTO selectView(String free_num) {
+	
+	public FreeBoardDTO selectViewEdit(String free_num) {
 		FreeBoardDTO dto = new FreeBoardDTO();
-		String query = "SELECT * FROM FreeTB where Free_Num=?";
+		
+		String query = "SELECT F.*, M.idx "
+				+" FROM memberTB M INNER JOIN FREETB F "
+				+" ON M.idx=F.idx "
+				+" WHERE free_num=?";
 		try {
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, free_num);
@@ -88,7 +92,6 @@ public class FreeBoardDAO extends DBConnPool {
 				dto.setFree_contents(rs.getString(5));
 				dto.setFree_count(rs.getInt(6));
 				dto.setNickname(rs.getString(7));
-				System.out.println(query);
 			}
 		} catch (Exception e) {
 			System.out.println("게시물 상세보기 중 예외 발생");
@@ -96,34 +99,6 @@ public class FreeBoardDAO extends DBConnPool {
 		}
 		return dto;
 	}
-	
-//	public FreeBoardDTO selectViewEdit(String free_num) {
-//		FreeBoardDTO dto = new FreeBoardDTO();
-//		
-//		String query = "SELECT F.*, M.idx "
-//				+" FROM memberTB M INNER JOIN FREETB F "
-//				+" ON M.idx=F.idx "
-//				+" WHERE free_num=?";
-//		try {
-//			psmt = con.prepareStatement(query);
-//			psmt.setString(1, free_num);
-//			rs = psmt.executeQuery(); // 쿼리문 실행
-//
-//			if (rs.next()) {
-//				dto.setIdx(rs.getInt(1));
-//				dto.setFree_num(rs.getInt(2));
-//				dto.setFree_date(rs.getDate(3));
-//				dto.setFree_title(rs.getString(4));
-//				dto.setFree_contents(rs.getString(5));
-//				dto.setFree_count(rs.getInt(6));
-//				System.out.println(query);
-//			}
-//		} catch (Exception e) {
-//			System.out.println("게시물 상세보기 중 예외 발생");
-//			e.printStackTrace();
-//		}
-//		return dto;
-//	}
 
 
 	// 주어진 일련번호에 해당하는 게시물의 조회수를 1 증가시킴.
@@ -155,23 +130,44 @@ public class FreeBoardDAO extends DBConnPool {
 			result = psmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("게시물 입력 중 예외 발생");
-			e.printStackTrace();
 		}
 		return result;
 	}
 	
-	public int deletePost(String free_num) {
+	public int deletePost(FreeBoardDTO dto) {
 		int result=0;
 		
 		try {
 			String query="DELETE FROM freeTB where free_num=?";
+			
 			psmt = con.prepareStatement(query);
-			psmt.setString(1, free_num);
+			psmt.setInt(1, dto.getFree_num());
 			result=psmt.executeUpdate();
 		}
 		catch(Exception e) {
 			System.out.println("게시물 삭제 중 예외 발생");
 			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public int updateEdit(FreeBoardDTO dto) {
+		int result=0;
+		
+		try {
+			String query="UPDATE freeTB SET free_title=?, free_contents=? where free_num=?";
+			
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, dto.getFree_title());
+			psmt.setString(2, dto.getFree_contents());
+			psmt.setInt(3, dto.getFree_num());
+			result=psmt.executeUpdate();
+		}
+		catch(Exception e) {
+			System.out.println("게시물 수정 중 예외 발생");
+			System.out.println(dto.getFree_title());
+			System.out.println(dto.getFree_contents());
+			System.out.println(dto.getFree_num());
 		}
 		return result;
 	}

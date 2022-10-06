@@ -30,7 +30,6 @@ public class UpdateInfoController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 
-		// 폼값을 DTO에 저장
 		MemberDTO dto = new MemberDTO();
 		dto.setName(req.getParameter("name"));
 		dto.setNickname(req.getParameter("nickname"));
@@ -39,25 +38,12 @@ public class UpdateInfoController extends HttpServlet {
 		dto.setPhone_num(req.getParameter("phone_num"));
 		dto.setUser_id(req.getParameter("user_id"));
 
-		String name = req.getParameter("name");
-		String nickname = req.getParameter("nickname");
-		String user_passwd = req.getParameter("user_passwd");
-		String email = req.getParameter("email");
-		String phone_num = req.getParameter("phone_num");
-		String user_id = req.getParameter("user_id");
-		System.out.println(name + nickname + user_passwd + email + phone_num + user_id);
-
-		// DAO를 통해 DB에 게시 내용 저장
 		MemberDAO dao = new MemberDAO();
-		MemberDTO memberDTO = dao.getMemberDTO(name, nickname, user_passwd, email, phone_num, user_id);
-//		MemberDTO memberDTO = dao.getMemberDTO(req.getParameter("name"), req.getParameter("nickname"),
-//				req.getParameter("user_passwd"), req.getParameter("email"), req.getParameter("phone_num"),
-//				req.getParameter("user_id"));
+		int result = dao.UpdatePersonalnfo(dto);
 		dao.close();
 
-		// 성공 or 실패?
-		if (memberDTO.getUser_id() != null) {
-			resp.sendRedirect("PrsonalInfomation.jsp");
+		if (result == 1) {
+			resp.sendRedirect("PersonalInformation.do");
 			System.out.println("개인정보 수정 성공");
 		} else {
 			resp.sendRedirect("UpdateInfo.jsp");
