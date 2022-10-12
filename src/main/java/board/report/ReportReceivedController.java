@@ -29,9 +29,10 @@ public class ReportReceivedController extends HttpServlet {
 		HttpSession session = req.getSession();
 
 		int reporterIdx = (int) session.getAttribute("Idx");
-
+		
+		
 		ReportDTO reportdto = new ReportDTO();
-		// reportdto.setIdx(Integer.parseInt(req.getParameter("idx")));
+		 reportdto.setIdx(Integer.parseInt(req.getParameter("idx1")));
 		reportdto.setReporterIdx(reporterIdx);
 		reportdto.setReason(req.getParameter("reason"));
 

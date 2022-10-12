@@ -1,3 +1,5 @@
+<%@page import="board.report.ReportDTO"%>
+<%@page import="board.report.ReportDAO"%>
 <%@page import="board.exchange.ExchangeBoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -7,6 +9,7 @@
 <%@ page import="board.comment.CommentDTO"%>
 <%@ page import="board.comment.CommentDAO"%>
 <%@ include file="../Page/Header.jsp"%>
+
 <%
 CommentDAO dao = new CommentDAO(application);
 int title_num = Integer.parseInt(request.getParameter("exc_num"));
@@ -17,6 +20,7 @@ String session_nick = (String) session.getAttribute("Nickname");
 if (session_nick == null) {
 	session_nick = "null";
 }
+
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -112,11 +116,13 @@ if (session_nick == null) {
 						</tr>
 					</table>
 				</li>
-				<li class="li-tradePage detail high btn"><a href="#"
-					title="신고하기" class="button btnNormal" style="color: #bebebe;"
-					data-toggle="modal" data-target="#moaModal1"> <img
-						src="./img/siren.png" style="width: 20px;"> &nbsp; 신고하기
-				</a> <a href="#comment" title="댓글달기" class="button btnFade btnOrange">댓글달기</a>
+				<li class="li-tradePage detail high btn">
+				
+				<a href="#" data-toggle="modal" data-target="#moaModal1" title="신고하기"
+					class="button btnNormal" style="color: #bebebe;"> 
+					<img src="./img/siren.png" style="width: 20px;"> &nbsp; 신고하기
+				</a>  
+				<a href="#comment" title="댓글달기" class="button btnFade btnOrange">댓글달기</a>
 				</li>
 
 				<li>
@@ -136,6 +142,16 @@ if (session_nick == null) {
 									<button class="chat-btn btnFade btnOrange" type="submit">글
 										수정</button>
 								</form>
+							</c:when>
+							
+							<c:when test="${sessionScope.UserId eq 'admin' }">
+								<form method="post" name="deleteFrm"
+									action="./SellEditDelete/excDeleteProcess.jsp">
+									<input type="hidden" value="${dto.exc_num }" name="excNum">
+									<button class="chat-btn btnFade btnRed" type="submit">글
+										삭제</button>
+								</form>
+							
 							</c:when>
 							<c:otherwise>
 							</c:otherwise>
@@ -196,6 +212,7 @@ if (session_nick == null) {
 					<button class="comment-btn" type="submit">등록</button>
 				</form>
 			</div>
+			
 			<ul style="margin: 15px; display: flex; flex-direction: column;">
 				<%
 				for (int i = 0; i < commentList.size(); i++) {
@@ -208,6 +225,7 @@ if (session_nick == null) {
 								<li class="comment-li"><%=commentList.get(i).getComm()%></li>
 								<li class="comment-li edit"><%=commentList.get(i).getComm_date()%></li>
 								<li class="comment-li edit">
+								
 									<%
 									if (session_nick.equals(commentList.get(i).getNickname())) {
 									%>
@@ -217,6 +235,7 @@ if (session_nick == null) {
 										<input type="hidden" name="titleNum" value="${dto.exc_num }">
 										<input type="hidden" name="comment"
 											value=<%=commentList.get(i).getComm()%>>
+									<input type="hidden" name="comm_num" value="<%=commentList.get(i).getComm_num() %>">
 										<button class="button btnNormal" type="submit">삭제</button>
 									</form> <%
  }
@@ -233,7 +252,7 @@ if (session_nick == null) {
 										<a class="dropdown-item" href="ChatPage.html" target="_blank"
 											onClick="window.open(this.href, '', 'width=550, height=750'); return false;">1:1
 											채팅하기</a> <a class="dropdown-item" href="#" data-toggle="modal"
-											data-target="#moaModal1">신고하기</a>
+											data-target="#moaModal2">신고하기</a>
 									</div>
 								</li>
 
@@ -254,6 +273,14 @@ if (session_nick == null) {
 
 
 	<!--신고버튼(모달)-->
+			<form name="report" method="post" action="../Page/ReportReceived.do"
+			onsubmit="return reportCheck()">
+			
+				<%
+				for (int i = 0; i < commentList.size(); i++) {
+				%>
+			<input type="hidden" value="<%=commentList.get(i).getIdx() %>" name = "idx1">
+			<%} %>
 	<div class="modal fade" id="moaModal1" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -268,7 +295,7 @@ if (session_nick == null) {
 					<h4>🚨 신고하기</h4>
 					<div>
 						<textarea style="width: 100%; height: 100px; resize: none;"
-							placeholder="신고 사유를 작성해주세요."></textarea>
+							placeholder="신고 사유를 작성해주세요." name="reason"></textarea>
 						<hr>
 					</div>
 					<div style="color: #bebebe;">
@@ -282,6 +309,42 @@ if (session_nick == null) {
 			</div>
 		</div>
 	</div>
+	</form>
+	
+	
+	<!-- 댓글 신고버튼(모달)-->
+			<form name="report" method="post" action="../Page/ReportReceived.do"
+			onsubmit="return reportCheck()">
+			<input type="hidden" value="${exc_idx }" name = "idx1">
+	<div class="modal fade" id="moaModal2" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content" style="width: 550px; height: 400px;">
+				<div class="modal-header">
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">x</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<h4>🚨 신고하기</h4>
+					<div>
+						<textarea style="width: 100%; height: 100px; resize: none;"
+							placeholder="신고 사유를 작성해주세요." name="reason"></textarea>
+						<hr>
+					</div>
+					<div style="color: #bebebe;">
+						· 정상적인 게시물을 신고하는 경우 본인이 제재를 당할 수 있습니다. <br> · 신고하게 된 이유를 자세히
+						써주시면 운영자의 관련 결정에 도움이 됩니다.
+					</div>
+					<div>
+						<button type="submit" class="chat-btn btnFade btnRed">신고하기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</form>
 
 
 	<!--TOP 버튼-->

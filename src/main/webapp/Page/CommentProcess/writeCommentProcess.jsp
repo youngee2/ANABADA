@@ -13,7 +13,7 @@ int titleNum = Integer.parseInt(request.getParameter("titleNum"));
 int board_num = 0;
 
 CommentDTO dto = new CommentDTO();
-dto.setComm(content);
+dto.setComm(content.replace(" ","&nbsp;"));
 dto.setTitle_num(titleNum);
 dto.setNickname(nickname);
 dto.setIdx(idx);

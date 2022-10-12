@@ -4,24 +4,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+String send_nickname = request.getParameter("send_nickname");
+int sendidx = Integer.parseInt(request.getParameter("send_idx"));
 
-String user_id = (String) session.getAttribute("UserId");
-if (user_id == null) {
-	   out.println("<script>alert('로그인 후 사용주세요.'); window.close();</script>");
-	   return;
-	}
-
-String receive_nickname = request.getParameter("receive_nickname");
-int receiveidx = Integer.parseInt(request.getParameter("receive_idx"));
-int sendidx = (int)session.getAttribute("Idx");
+int receiveidx = (int)session.getAttribute("Idx");
 
 MessageDAO dao = new MessageDAO(application);
 List<MessageDTO> MessageList = dao.select_Message(sendidx, receiveidx);
-
 List<MessageDTO> sendList = dao.send_Message(sendidx, receiveidx);
 
 dao.close();
-
 
 %>
 
@@ -45,13 +37,13 @@ dao.close();
 	integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
 	crossorigin="anonymous"></script>
 
-<link rel="stylesheet" href="./css/style-jieun.css">
+<link rel="stylesheet" href="../css/style-jieun.css">
 
 <title>쪽지창</title>
 </head>
 
-<body style="background-image: url('./img/background.png');">
- <div class="chat who">  부적절한 대화는 제재 당할 수 있습니다.  </div>
+<body style="background-image: url('../img/background.png');">
+    <div class="chat who"> 부적절한 대화는 제재 당할 수 있습니다.   </div>
 	<!--채팅창-->
 	<div class="chat-display">
 		<!--자신의 채팅-->
@@ -59,14 +51,15 @@ dao.close();
 		<ul>
 			<%
 				for (int i = 0; i < MessageList.size(); i++) {
-					if(sendidx != MessageList.get(i).getSend_idx()){
+					if(receiveidx != MessageList.get(i).getReceive_idx()){
 				%>
-				<li class="Message you"><%= MessageList.get(i).getM_content() %></li>
-				<%}else{ %>
 			<li class="Message my" style="float:right;">
 			<%= MessageList.get(i).getM_content() %>
 			</li>
-			<%} %>
+			<%}
+				else{ %>
+				<li class="Message you"><%= MessageList.get(i).getM_content() %></li>
+				<%}%>
 			<%} %>
 		
 			
@@ -77,19 +70,18 @@ dao.close();
 	</div>
 
 
-	<!--채팅 입력-->
+<!--채팅 입력-->
 	<form name="messageFrm" method="post"
-		action="./MessageChatProcess/sendMessage.jsp">
+		action="./reMessage.jsp">
 		<div class="chat input">
-			<input type="text" class="input-chatbox" placeholder="최대 500자"
-				name="content"> <input type="hidden"
-				value="<%= receiveidx %>" name="receive_idx"> <input
-				type="hidden" value="<%= receive_nickname %>"
-				name="receive_nickname">
+			<input type="text" class="input-chatbox" placeholder="최대 500자" name="content">
+			<input type="hidden" value="<%= sendidx %>" name="receive_idx"> 
+			<input type="hidden" value="<%= send_nickname %>" name="receive_nickname">
 			<button type="submit" class="chat-btn btnFade btnOrange"
 				style="margin: 0;">보내기</button>
 		</div>
 	</form>
+
 
 
 </body>

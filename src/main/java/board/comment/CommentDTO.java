@@ -1,12 +1,15 @@
 package board.comment;
 
 public class CommentDTO {
+	private int comm_num;
 	private int idx;
 	private int board_num;
 	private int title_num;
 	private String comm;
 	private String nickname;
 	private java.sql.Date comm_date;
+	
+	
 	public int getIdx() {
 		return idx;
 	}
@@ -42,5 +45,11 @@ public class CommentDTO {
 	}
 	public void setComm_date(java.sql.Date comm_date) {
 		this.comm_date = comm_date;
+	}
+	public int getComm_num() {
+		return comm_num;
+	}
+	public void setComm_num(int comm_num) {
+		this.comm_num = comm_num;
 	}
 }

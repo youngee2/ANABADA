@@ -1,6 +1,5 @@
 package board.report;
 
-import board.member.MemberDTO;
 import common.DBConnPool;
 
 public class ReportDAO extends DBConnPool {

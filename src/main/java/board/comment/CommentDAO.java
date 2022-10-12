@@ -5,9 +5,9 @@ import java.util.Vector;
 
 import javax.servlet.ServletContext;
 
-import common.JDBConnect;
+import common.DBConnPool;
 
-public class CommentDAO extends JDBConnect{
+public class CommentDAO extends DBConnPool {
 	public CommentDAO(ServletContext application) {
 		super();
 	}
@@ -24,7 +24,7 @@ public class CommentDAO extends JDBConnect{
 
 			while(rs.next()) {
 				CommentDTO dto = new CommentDTO();
-
+				dto.setComm_num(rs.getInt("comm_num"));
 				dto.setIdx(rs.getInt("idx"));
 				dto.setBoard_num(rs.getInt("board_num"));
 				dto.setTitle_num(rs.getInt("title_num"));
@@ -48,9 +48,9 @@ public class CommentDAO extends JDBConnect{
 		int result = 0;
 		try {
 			String sql = "insert into commentTB("
-					+ "idx, board_num, title_num, comm, nickname) "
+					+ "comm_num, idx, board_num, title_num, comm, nickname) "
 					+ "values ("
-					+ "?, ?, ?, ?, ?)";
+					+ "seq_comm_num.NEXTVAL,?, ?, ?, ?, ?)";
 
 			psmt = con.prepareStatement(sql);
 			psmt.setInt(1, dto.getIdx());
@@ -72,11 +72,9 @@ public class CommentDAO extends JDBConnect{
 	public int delete_exc_Comment(CommentDTO dto) {
 		int result = 0;
 		try {
-			String sql = "delete from commentTB where comm=? and nickname=? and title_num=? ";
+			String sql = "delete from commentTB where comm_num=?";
 			psmt = con.prepareStatement(sql);
-			psmt.setString(1, dto.getComm());
-			psmt.setString(2, dto.getNickname());
-			psmt.setInt(3, dto.getTitle_num());
+			psmt.setInt(1,dto.getComm_num());
 			
 			result = psmt.executeUpdate();
 			System.out.println(result);
@@ -145,7 +143,7 @@ public class CommentDAO extends JDBConnect{
 		return result;
 	}
 
-	//교환 게시판 댓글 삭제하기
+	//자유 게시판 댓글 삭제하기
 	public int free_delete_Comment(CommentDTO dto) {
 		int result = 0;
 		try {

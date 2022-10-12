@@ -26,6 +26,7 @@ public class SellViewController extends HttpServlet{
 		String sell_num = request.getParameter("sell_num");
 		SellBoardDTO dto = dao.selectView(sell_num);
 		String writenickname= dto.getNickname();
+		int sell_idx = dto.getIdx();
 		
 		dao.close();
 		
@@ -56,6 +57,7 @@ public class SellViewController extends HttpServlet{
 		request.setAttribute("condition", condition);
 		request.setAttribute("price", price);
 		request.setAttribute("writenickname", writenickname);
+		request.setAttribute("sell_idx", sell_idx);
 		request.getRequestDispatcher("/Page/sellPage.jsp").forward(request, response);
 	}
 	

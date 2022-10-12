@@ -9,6 +9,8 @@ String session_nick = (String) session.getAttribute("Nickname");
 if (session_nick == null) {
 	session_nick = "null";
 }
+
+
 %>
 
 <!DOCTYPE html>
@@ -37,45 +39,56 @@ if (session_nick == null) {
 	crossorigin="anonymous"></script>
 
 <script>
-        //댓글달기 버튼 클릭시 스크롤 이동
-        button.addEventListener('click', function () {
-            const scrollPosition = document.querySelector(this.dataset.target).offsetTop;
+	//댓글달기 버튼 클릭시 스크롤 이동
+	button.addEventListener('click',
+			function() {
+				const scrollPosition = document
+						.querySelector(this.dataset.target).offsetTop;
 
-            window.scrollTo({ top: scrollPosition, behavior: 'smooth' })
-        });
-    </script>
+				window.scrollTo({
+					top : scrollPosition,
+					behavior : 'smooth'
+				})
+			});
+</script>
 
 
 <script>
-        //TOP 스크롤
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 300) {
-                $('.btn_gotop').show();
-            } else {
-                $('.btn_gotop').hide();
-            }
-        });
-        $('.btn_gotop').click(function () {
-            $('html, body').animate({ scrollTop: 0 }, 400);
-            return false;
-        });
-    </script>
+	//TOP 스크롤
+	$(window).scroll(function() {
+		if ($(this).scrollTop() > 300) {
+			$('.btn_gotop').show();
+		} else {
+			$('.btn_gotop').hide();
+		}
+	});
+	$('.btn_gotop').click(function() {
+		$('html, body').animate({
+			scrollTop : 0
+		}, 400);
+		return false;
+	});
+</script>
 
 
 
 <title>거래 물품 상세보기</title>
 </head>
 
-<body style="margin:0;">
+<body style="margin: 0;">
 
 
 
 	<div style="margin: 2% 10%;">
-		<a href="" class="a link">HOME</a> > <a href="./tradeListPage.do?category=7"
-			class="a link">거래</a> > 물품 상세보기
+		<a href="" class="a link">HOME</a> > <a
+			href="./tradeListPage.do?category=7" class="a link">거래</a> > 물품 상세보기
 	</div>
 
-
+	<a href="./MessageChatProcess/chatMessageList.jsp" onClick="window.open(this.href, '', 'width=820, height=350'); return false;"]>쪽지테스트용링크</a>
+	
+	
+	<c:set var="session_nick" value="<%=session_nick%>" />
+	
 	<!--상단-->
 	<div class="detail top">
 		<div class="img details"
@@ -104,14 +117,34 @@ if (session_nick == null) {
 						</tr>
 					</table>
 				</li>
-				<li class="li-tradePage detail high btn"><a href="#"
+				
+				<li class="li-tradePage detail high btn">
+				
+				<a href="#"
 					data-toggle="modal" data-target="#moaModal1" title="신고하기"
 					class="button btnNormal" style="color: #bebebe;"> <img
 						src="./img/siren.png" style="width: 20px;"> &nbsp; 신고하기
-				</a> <a title="채팅하기" class="button btnFade btnOrange" href="./Chat.jsp"
-					target="_blank"
-					onClick="window.open(this.href, '', 'width=550, height=750'); return false;">1:1
-						채팅하기</a></li>
+				</a> 
+				
+				<script>
+					function openWin() {
+						window.open('about:blank', 'popwin',
+								'width=550,height=750,resizable=no');
+						document.chatMessageFrm.submit();
+					}
+				</script>
+				<c:set var="session_nick" value="<%=session_nick%>" />
+			<c:choose>
+				<c:when test="${session_nick ne writenickname }">
+					<form action="./Chat.jsp?receive_idx=${dto.idx}" method="post" name="chatMessageFrm" target="popwin">
+						<input type="hidden" name="receive_nickname" value="${dto.nickname}">
+						<input type="hidden" name="receive_idx" value="${dto.idx}">
+						<button type="submit" class="chat-btn btnFade btnRed" onClick="openWin()">쪽지보내기</button>
+					</form>
+					</c:when>
+					</c:choose>
+				
+					</li>
 			</ul>
 		</div>
 	</div>
@@ -130,52 +163,68 @@ if (session_nick == null) {
 
 		<!-- 글 수정/삭제 -->
 		<div>
-		<c:set var="session_nick" value="<%=session_nick%>" />
-						<c:choose>
-							<c:when test="${session_nick eq writenickname }">
-		<form method="post" name="deleteFrm" action="./SellEditDelete/sellDeleteProcess.jsp">
-		<input type="hidden" value="${dto.sell_num }" name="sellNum">
-		<button class="chat-btn btnFade btnRed" type="submit">글 삭제</button>
-		</form>
-		<form method="post" name="editFrm" action="./sellEdit.jsp">
-		<input type="hidden" value="${dto.sell_num }" name="sellNum">
-		<button class="chat-btn btnFade btnOrange" type="submit">글 수정</button>
-		</form>
-		</c:when>
-		</c:choose>
-		
+			
+			<c:choose>
+				<c:when test="${session_nick eq writenickname }">
+					<form method="post" name="deleteFrm"
+						action="./SellEditDelete/sellDeleteProcess.jsp">
+						<input type="hidden" value="${dto.sell_num }" name="sellNum">
+						<button class="chat-btn btnFade btnRed" type="submit">글
+							삭제</button>
+					</form>
+					<form method="post" name="editFrm" action="./sellEdit.jsp">
+						<input type="hidden" value="${dto.sell_num }" name="sellNum">
+						<button class="chat-btn btnFade btnOrange" type="submit">글
+							수정</button>
+					</form>
+				</c:when>
+					<c:when test="${sessionScope.UserId eq 'admin' }">
+					<form method="post" name="deleteFrm"
+						action="./SellEditDelete/sellDeleteProcess.jsp">
+						<input type="hidden" value="${dto.sell_num }" name="sellNum">
+						<button class="chat-btn btnFade btnRed" type="submit">글
+							삭제</button>
+					</form>
+
+				</c:when>
+			</c:choose>
+
 		</div>
 	</div>
 
 	<!--신고버튼(모달)-->
-	<div class="modal fade" id="moaModal1" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content" style="width: 550px; height: 400px;">
-				<div class="modal-header">
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">x</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<h4>🚨 신고하기</h4>
-					<div>
-						<textarea style="width: 100%; height: 100px; resize: none;"
-							placeholder="신고 사유를 작성해주세요."></textarea>
-						<hr>
+	<form name="report" method="post" action="../Page/ReportReceived.do"
+		onsubmit="return reportCheck()">
+		<input type="hidden" value="${sell_idx }" name="idx1">
+		<div class="modal fade" id="moaModal1" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content" style="width: 550px; height: 400px;">
+					<div class="modal-header">
+						<button class="close" type="button" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">x</span>
+						</button>
 					</div>
-					<div style="color: #bebebe;">
-						· 정상적인 게시물을 신고하는 경우 본인이 제재를 당할 수 있습니다. <br> · 신고하게 된 이유를 자세히
-						써주시면 운영자의 관련 결정에 도움이 됩니다.
-					</div>
-					<div>
-						<button type="submit" class="chat-btn btnFade btnRed">신고하기</button>
+					<div class="modal-body">
+						<h4>🚨 신고하기</h4>
+						<div>
+							<textarea style="width: 100%; height: 100px; resize: none;"
+								placeholder="신고 사유를 작성해주세요." name="reason"></textarea>
+							<hr>
+						</div>
+						<div style="color: #bebebe;">
+							· 정상적인 게시물을 신고하는 경우 본인이 제재를 당할 수 있습니다. <br> · 신고하게 된 이유를 자세히
+							써주시면 운영자의 관련 결정에 도움이 됩니다.
+						</div>
+						<div>
+							<button type="submit" class="chat-btn btnFade btnRed">신고하기</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</form>
 
 	<!--TOP 버튼-->
 	<div class="floating">

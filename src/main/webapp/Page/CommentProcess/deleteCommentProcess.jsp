@@ -7,21 +7,15 @@
 CommentDAO dao = new CommentDAO(application);
 CommentDTO dto = new CommentDTO();
 int titleNum = Integer.parseInt(request.getParameter("titleNum"));
-String comment = request.getParameter("comment");
-String nickname = (String) session.getAttribute("Nickname");
+int comm_num = Integer.parseInt(request.getParameter("comm_num"));
 
-dto.setComm(comment);
-dto.setNickname(nickname);
-dto.setTitle_num(titleNum);
+dto.setComm_num(comm_num);
 
 int delresult = dao.delete_exc_Comment(dto);
 
 if(delresult == 1){
 	response.sendRedirect("../exchangePage.do?exc_num="+titleNum);
 } else{
-	out.print(comment);
-	out.print(nickname);
-	
 }
 dao.close();
 %>

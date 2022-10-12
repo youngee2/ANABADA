@@ -26,6 +26,7 @@ public class ExchangeViewController extends HttpServlet{
 		String exc_num = request.getParameter("exc_num");
 		ExchangeBoardDTO dto = dao.selectView(exc_num);
 		String writenickname= dto.getNickname();
+		int exc_idx = dto.getIdx();
 		
 		dao.close();
 		
@@ -51,6 +52,7 @@ public class ExchangeViewController extends HttpServlet{
 		request.setAttribute("condition", condition);
 		request.setAttribute("writenickname", writenickname);
 		request.setAttribute("diff", diff);
+		request.setAttribute("exc_idx", exc_idx);
 		request.getRequestDispatcher("/Page/exchangePage.jsp").forward(request, response);
 	}
 	

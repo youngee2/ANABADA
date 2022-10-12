@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,15 +57,8 @@
 </style>
 </head>
 <body>
-	<%
-	request.setCharacterEncoding("UTF-8");
-	String user_id = (String) session.getAttribute("UserId");
-	System.out.print(user_id + "확인");
 
-	if (user_id == null) {
-		out.println("<script>alert('로그인 후 사용해주세요.'); location.href='Login.jsp';</script>");
-	}
-	%>
+	
 	<div class="report">
 		<hr>
 		<i class="fa-solid fa-car-on"></i>

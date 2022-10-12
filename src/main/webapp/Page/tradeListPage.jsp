@@ -226,6 +226,7 @@
 								</a>
 								<p class="li-exchange-wish" style="text-align: center;">${list_item.sell_title }</p>
 								<p class="li-exchange-wish" style="text-align: center;">
+								
 									<!-- 천 단위 표기(자바스크립트 사용) -->
 									<script>
 										var price = ${list_item.sell_price};
