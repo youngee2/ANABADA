@@ -1,7 +1,21 @@
+<%@ page import="board.notice.NoticeBoardDAO" %>
+<%@ page import="board.notice.NoticeBoardDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../Page/Header.jsp"%>
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+String n_num = request.getParameter("n_num");
+NoticeBoardDAO dao = new NoticeBoardDAO();
+NoticeBoardDTO dto = dao.selectView(n_num);
+
+
+if (!session.getAttribute("UserId").equals("admin")) {
+   out.println("<script>alert('잘못된 접근입니다.'); location.href='tradeListPage.do?category=7';</script>");
+}
+dao.close();
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +31,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./css/Freeboard_style.css">
-        <title>free_board_write</title>  
+        <title>notice_board_edit</title>  
 
 <script type="text/javascript">
 function validateForm(form){
@@ -28,7 +42,7 @@ function validateForm(form){
 	}
 	if(form.contents.value==""){
 		alert("내용을 입력하세요.");
-		form.contents.focus();
+		form.content.focus();
 		return false;
 	}
 }
@@ -36,9 +50,7 @@ function validateForm(form){
 
 </head>
     <body style="margin:0;">
-    
     	<section style="margin: 0% 15% 15% 15%">
-
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -56,13 +68,13 @@ function validateForm(form){
     <h2 class="free_title">자유게시판</h2>
     <hr>
     <main role="main" class="container1">
-    <form name="writeFrm" method="post" action="../Page/FreeBoardWrite.do" onsubmit="return validateForm(this)"; >
-
+    <form name="writeFrm" method="post" action="../Page/SellEditDelete/NoticeEditProcess.jsp" onsubmit="return validateForm(this);" >
+	<input type="hidden" name="n_num" value="<%=dto.getN_num() %>" />
         <div class="pt-1"></div>
       </div>
-      <input type="text" name="title" placeholder="제목을 입력하세요" class="freeboard_write_title" maxlength="30" >
+      <input type="text" name="title" placeholder="제목을 입력하세요" class="freeboard_write_title" value="<%= dto.getN_title() %>"/>
                 <div class="pt-1">
-                    <textarea id="summernote" name="contents"></textarea>
+                    <textarea id="summernote" name="contents"><%= dto.getN_content() %></textarea>
                 </div>    
                 <script>
                     $('#summernote').summernote({
@@ -72,7 +84,8 @@ function validateForm(form){
                     });
                   </script>                     
                 <div class="pt-1 text-right">
-                    <button class="write_btn" type="submit">등록</button>
+                    <button class="write_btn" type="submit">작성 완료</button>
+                    <button class="write_btn" type="button" onclick="location.href='../Page/list.do' ">목록</button>
                 </div>    
             </form>
            

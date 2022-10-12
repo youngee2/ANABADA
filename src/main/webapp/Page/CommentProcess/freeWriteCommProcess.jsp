@@ -11,6 +11,7 @@ String nickname = (String) session.getAttribute("Nickname");
 int idx = (int)session.getAttribute("Idx");
 int titleNum = Integer.parseInt(request.getParameter("title_num"));
 
+
 int board_num = 1;
 CommentDTO dto = new CommentDTO();
 dto.setComm(content);

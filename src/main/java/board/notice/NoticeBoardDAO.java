@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
+import board.free.FreeBoardDTO;
 import common.DBConnPool;
 
 public class NoticeBoardDAO extends DBConnPool {
@@ -52,12 +53,12 @@ public class NoticeBoardDAO extends DBConnPool {
 			// 반환된 게시물 목록을 List 컬렉션에 추가
 			while (rs.next()) {
 				NoticeBoardDTO dto = new NoticeBoardDTO();
-
-				dto.setN_num(rs.getInt(1));
-				dto.setN_title(rs.getString(2));
-				dto.setN_date(rs.getDate(3));
-				dto.setN_count(rs.getInt(4));
-				dto.setN_content(rs.getString(5));
+				dto.setIdx(rs.getInt(1));
+				dto.setN_num(rs.getInt(2));
+				dto.setN_title(rs.getString(3));
+				dto.setN_date(rs.getDate(4));
+				dto.setN_count(rs.getInt(5));
+				dto.setN_content(rs.getString(6));
 
 				board.add(dto);
 			}
@@ -78,11 +79,12 @@ public class NoticeBoardDAO extends DBConnPool {
 			rs = psmt.executeQuery(); // 쿼리문 실행
 
 			if (rs.next()) {
-				dto.setN_num(rs.getInt(1));
-				dto.setN_title(rs.getString(2));
-				dto.setN_date(rs.getDate(3));
-				dto.setN_count(rs.getInt(4));
-				dto.setN_content(rs.getString(5));
+				dto.setIdx(rs.getInt(1));
+				dto.setN_num(rs.getInt(2));
+				dto.setN_title(rs.getString(3));
+				dto.setN_date(rs.getDate(4));
+				dto.setN_count(rs.getInt(5));
+				dto.setN_content(rs.getString(6));
 			}
 		} catch (Exception e) {
 			System.out.println("게시물 상세보기 중 예외 발생");
@@ -108,5 +110,65 @@ public class NoticeBoardDAO extends DBConnPool {
 			System.out.println("게시물 조회수 증가 중 예외 발생");
 			e.printStackTrace();
 		}
+	}
+	
+	
+	public int deletePost(NoticeBoardDTO dto) {
+		int result=0;
+		
+		try {
+			String query="DELETE FROM NoticeTB where n_num=?";
+			
+			psmt = con.prepareStatement(query);
+			psmt.setInt(1, dto.getN_num());
+			result=psmt.executeUpdate();
+		}
+		catch(Exception e) {
+			System.out.println("게시물 삭제 중 예외 발생");
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public int insertWrite(NoticeBoardDTO dto) {
+		int result=0;
+		try {
+			String query = "INSERT INTO NoticeTb ( "
+					+"idx, n_num, n_title, n_date, n_count, n_content) "
+					+"VALUES ( "
+					+"?, seq_board_num.NEXTVAL,?,sysdate,0,?)";
+			psmt=con.prepareStatement(query);
+			psmt.setInt(1, dto.getIdx());
+			psmt.setString(2, dto.getN_title());
+			psmt.setString(3, dto.getN_content());
+			result = psmt.executeUpdate();
+		}		
+		catch(Exception e) {
+			System.out.println("게시물 입력 중 예외 발생");
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public int updateEdit(NoticeBoardDTO dto) {
+		int result=0;
+		
+		try {
+			String query="UPDATE NoticeTB SET n_title=?, n_content=? where n_num=?";
+			
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, dto.getN_title());
+			psmt.setString(2, dto.getN_content());
+			psmt.setInt(3, dto.getN_num());
+			result=psmt.executeUpdate();
+		}
+		catch(Exception e) {
+			System.out.println("게시물 수정 중 예외 발생");
+			e.printStackTrace();
+			System.out.println(dto.getN_title());
+			System.out.println(dto.getN_content());
+			System.out.println(dto.getN_num());
+		}
+		return result;
 	}
 }

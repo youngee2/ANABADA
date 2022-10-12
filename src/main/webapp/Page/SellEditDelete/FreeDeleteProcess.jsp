@@ -10,11 +10,12 @@ FreeBoardDTO dto = new FreeBoardDTO();
 FreeBoardDAO dao = new FreeBoardDAO();
 dto = dao.selectViewEdit(free_num);
 
+
 String sessionId = session.getAttribute("Nickname").toString();
 
 int delResult=0;
 
-if(sessionId.equals(dto.getNickname())){
+if(sessionId.equals(dto.getNickname())||session.getAttribute("UserId").equals("admin")){
 	//dto.setFree_num(free_num);
 	delResult=dao.deletePost(dto);
 	dao.close();

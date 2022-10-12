@@ -41,65 +41,73 @@ if (!loginId.equals("")) {
 			<ul class="login">
 
 				<a href="../Page/LoadingMain.jsp"> <span
-					class="metaverse fa-solid fa-gamepad" title="metaverse">&#10140;click
-						</span></a>
+					class="metaverse fa-solid fa-gamepad" title="metaverse">
+						click </span></a>
 				</a>
 
-				<%
-				if (session.getAttribute("UserId") == null) {
-				%>
-				<li class="btn LoginBtn"><a href="#">Login</a></li>
-				<div class="modal1">
-					<div class="login-modal">
+				<c:choose>
+					<c:when test="${sessionScope.UserId eq null}">
 
-						<span class="close">&times;</span>
-						<div class="Login_form">
-							<h3>Login to ANABADA</h3>
+						<li class="btn LoginBtn"><a href="#">Login</a></li>
+						<div class="modal1">
+							<div class="login-modal">
 
-							<div class="modal-margin">
-								<form action="../Page/Header.do" method="post" name="loginFrm"
-									onsubmit="return validateForm(this);">
-									<div class="form-group">
-										<input type="text" name="user_id" required /><label>ID</label>
+								<span class="close">&times;</span>
+								<div class="Login_form">
+									<h3>Login to ANABADA</h3>
+
+									<div class="modal-margin">
+										<form action="../Page/Header.do" method="post" name="loginFrm"
+											onsubmit="return validateForm(this);">
+											<div class="form-group">
+												<input type="text" name="user_id" required /><label>ID</label>
+											</div>
+											<div class="form-group">
+												<input type="password" name="user_passwd" required /><label>Password</label>
+												<span style="color: red; font-size: 1.2em;"> <%=request.getAttribute("ErrMsg") == null ? "" : request.getAttribute("ErrMsg")%>
+												</span>
+											</div>
+											<div class="GoSignUp">
+												<input type="submit" value="Login" class="submit"
+													id="btnLogin" onclick="insertReplyFunc();">
+												<p>
+													Not Yet Registered? <a href="../Page/SignUp1.jsp">Sign
+														Up</a>
+												</p>
+											</div>
+										</form>
+
+
+										<script>
+											function validateForm(form) {
+												if (!form.user_id.value) {
+													alert("아이디를 입력하세요.");
+													return false;
+												}
+												if (form.user_pw.value == "") {
+													alert("패스워드를 입력하세요.");
+													return false;
+												}
+											}
+										</script>
 									</div>
-									<div class="form-group">
-										<input type="password" name="user_passwd" required /><label>Password</label>
-										<span style="color: red; font-size: 1.2em;"> <%=request.getAttribute("ErrMsg") == null ? "" : request.getAttribute("ErrMsg")%>
-										</span>
-									</div>
-									<div class="GoSignUp">
-										<input type="submit" value="Login" class="submit"
-											id="btnLogin" onclick="insertReplyFunc();">
-										<p>
-											Not Yet Registered? <a href="../Page/SignUp1.jsp">Sign Up</a>
-										</p>
-									</div>
-								</form>
-
-
-								<script>
-									function validateForm(form) {
-										if (!form.user_id.value) {
-											alert("아이디를 입력하세요.");
-											return false;
-										}
-										if (form.user_pw.value == "") {
-											alert("패스워드를 입력하세요.");
-											return false;
-										}
-									}
-								</script>
+								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-				<%
-				} else {
-				%>
-				<li><a href="../Page/LoginSession/Logout.jsp">LOGOUT</a></li>
-				<li><a href="../Page/PersonalInformation.do">MY PAGE</a> <%
- }
- %>
+					</c:when>
+					<c:when test="${sessionScope.UserId eq 'admin'}">
+						<li><a href="../Page/LoginSession/Logout.jsp">LOGOUT</a></li>
+						<li><a href="../Page/MemberManagement.do">회원관리</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a href="../Page/LoginSession/Logout.jsp">LOGOUT</a></li>
+						<li><a href="../Page/PersonalInformation.do">MY PAGE</a></li>
+						<!-- 쪽지함-->
+						<li><a href="./MessageChatProcess/chatMessageList.jsp" onClick="window.open(this.href, '', 'width=820, height=350'); return false;"><i
+								class="fa-solid fa-envelope-circle-check"></i></a></li>
+					
+					</c:otherwise>
+				</c:choose>
 			</ul>
 		</div>
 		<script>
@@ -111,8 +119,7 @@ if (!loginId.equals("")) {
 				}
 			}
 		</script>
-
-		 <div class="HeaderB">
+ <div class="HeaderB">
          <img class="LogoImg" src="./img/LogoPolarBear.png"> <span><a
             href="./tradeListPage.do?category=7"> 아나바다</a></span>
       </div>
@@ -127,7 +134,7 @@ if (!loginId.equals("")) {
                </ol></li>
          </ul>
 
-         <ul class="subB">
+		<ul class="subB">
             <li><a href="./tradeListPage.do?category=7">거래하기</a>
                <ol class="subDetailB">
                   <li><a href="./tradeListPage.do?category=7">전체</a></li>

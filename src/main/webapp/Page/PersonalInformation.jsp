@@ -15,7 +15,7 @@
 
 </head>
 
-<body style="margin:0;">
+<body>
 	<section class="Personalinfo">
 		<h1 class="personalA-title">회원정보</h1>
 		<hr class="personal-lineA">
@@ -36,15 +36,15 @@
 		<table class="PersonalC-table">
 			<tr>
 				<th>이름</th>
-				<td>${ dto.name }</td>
+				<td><c:out value="${ dto.name }" /></td>
 			</tr>
 			<tr>
 				<th>닉네임</th>
-				<td>${ dto.nickname}</td>
+				<td><c:out value="${ dto.nickname}" /></td>
 			</tr>
 			<tr>
 				<th>아이디</th>
-				<td>${ dto.user_id }</td>
+				<td><c:out value="${ dto.user_id }" /></td>
 			</tr>
 			<tr>
 				<th>비밀번호</th>
@@ -52,11 +52,11 @@
 			</tr>
 			<tr>
 				<th>이메일 주소</th>
-				<td>${ dto.email }</td>
+				<td><c:out value="${ dto.email }" /></td>
 			</tr>
 			<tr>
 				<th>연락처</th>
-				<td>${ dto.phone_num }</td>
+				<td><c:out value="${ dto.phone_num }" /></td>
 			</tr>
 
 		</table>

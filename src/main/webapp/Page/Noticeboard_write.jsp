@@ -17,8 +17,16 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./css/Freeboard_style.css">
-        <title>free_board_write</title>  
+        <title>notice_board_write</title>  
+   <%
+   request.setCharacterEncoding("UTF-8");
+   String user_id = (String) session.getAttribute("UserId");
+   System.out.print(user_id + " 확인");
 
+   if (!user_id.equals("admin")) {
+      out.println("<script>alert('잘못된 접근입니다.'); location.href='tradeListPage.do?category=7';</script>");
+   }
+   %>
 <script type="text/javascript">
 function validateForm(form){
 	if(form.title.value==""){
@@ -36,9 +44,7 @@ function validateForm(form){
 
 </head>
     <body style="margin:0;">
-    
     	<section style="margin: 0% 15% 15% 15%">
-
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -53,10 +59,10 @@ function validateForm(form){
         </form>
       </div>
     </nav>
-    <h2 class="free_title">자유게시판</h2>
+    <h2 class="free_title">공지사항</h2>
     <hr>
     <main role="main" class="container1">
-    <form name="writeFrm" method="post" action="../Page/FreeBoardWrite.do" onsubmit="return validateForm(this)"; >
+    <form name="writeFrm" method="post" action="../Page/NoticeBoardWrite.do" onsubmit="return validateForm(this)"; >
 
         <div class="pt-1"></div>
       </div>

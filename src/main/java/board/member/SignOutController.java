@@ -1,5 +1,4 @@
 package board.member;
-
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -30,13 +29,11 @@ public class SignOutController extends HttpServlet {
 		int result = dao.SignOut(idx, user_passwd);
 		dao.close();
 
-		System.out.println(idx + " " + user_passwd);
-
 		if (result == 1) {
 			session.invalidate();
 			resp.sendRedirect("tradeListPage.do?category=7");
 			System.out.println("탈퇴 성공");
-		} else { // 로그인 실패
+		} else { 
 			req.setAttribute("ErrMsg", "비밀번호가 다릅니다.");
 			req.getRequestDispatcher("SignOut.jsp").forward(req, resp);
 			System.out.println("탈퇴 실패");

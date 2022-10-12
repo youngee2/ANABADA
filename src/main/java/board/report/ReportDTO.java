@@ -2,9 +2,11 @@ package board.report;
 
 public class ReportDTO {
 	private int idx;
-	private int report;
-	private int reporterIdx;
+	private String reportedNickname;
+	private String reporterNickname;
 	private String reason;
+	private java.sql.Date reportDate;
+	private int reportCount;
 
 	public int getIdx() {
 		return idx;
@@ -14,20 +16,20 @@ public class ReportDTO {
 		this.idx = idx;
 	}
 
-	public int getReport() {
-		return report;
+	public String getReportedNickname() {
+		return reportedNickname;
 	}
 
-	public void setReport(int report) {
-		this.report = report;
+	public void setReportedNickname(String reportedNickname) {
+		this.reportedNickname = reportedNickname;
 	}
 
-	public int getReporterIdx() {
-		return reporterIdx;
+	public String getReporterNickname() {
+		return reporterNickname;
 	}
 
-	public void setReporterIdx(int reporterIdx) {
-		this.reporterIdx = reporterIdx;
+	public void setReporterNickname(String reporterNickname) {
+		this.reporterNickname = reporterNickname;
 	}
 
 	public String getReason() {
@@ -38,4 +40,19 @@ public class ReportDTO {
 		this.reason = reason;
 	}
 
+	public java.sql.Date getReportDate() {
+		return reportDate;
+	}
+
+	public void setReportDate(java.sql.Date reportDate) {
+		this.reportDate = reportDate;
+	}
+
+	public int getReportCount() {
+		return reportCount;
+	}
+
+	public void setReportCount(int reportCount) {
+		this.reportCount = reportCount;
+	}
 }

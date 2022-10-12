@@ -10,17 +10,17 @@ String num = request.getParameter("sellNum");
 SellBoardDAO dao = new SellBoardDAO();
 SellBoardDTO dto = dao.selectView(num);
 
-if (!nickname.equals(dto.getNickname())) {
-	dao.close();
-	out.println("<script>alert('본인만 삭제가능합니다.'); location.href='../tradeListPage.do?category=7';</script>");
-	return;
-} else {
+if  (session.getAttribute("UserId").equals("admin")||nickname.equals(dto.getNickname())){
 	dto.setSell_num(sell_num);
 	int result = dao.deletePost(dto);
 	dao.close();
-	
 	if(result == 1){
 		out.println("<script>alert('해당 글이 삭제되었습니다.'); location.href='../tradeListPage.do?category=7';</script>");
 	}
+} else if((!nickname.equals(dto.getNickname()))) {
+	dao.close();
+	out.println("<script>alert('본인만 삭제가능합니다.'); location.href='../tradeListPage.do?category=7';</script>");
+	return;
+	
 }
 %>

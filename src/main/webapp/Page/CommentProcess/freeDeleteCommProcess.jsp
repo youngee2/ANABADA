@@ -7,13 +7,12 @@
 CommentDAO dao = new CommentDAO(application);
 CommentDTO dto = new CommentDTO();
 
-int titleNum = Integer.parseInt(request.getParameter("title_num1"));
-String comment = request.getParameter("comm_contents1").toString();
-String nickname = (String) session.getAttribute("Nickname");
 
-dto.setComm(comment);
-dto.setNickname(nickname);
-dto.setTitle_num(titleNum);
+int titleNum = Integer.parseInt(request.getParameter("title_num2"));
+int num = Integer.parseInt(request.getParameter("comm_num2"));
+
+dto.setComm_num(num);
+
 
 int delresult = dao.free_delete_Comment(dto);
 if(delresult == 1){

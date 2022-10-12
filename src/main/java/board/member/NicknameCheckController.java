@@ -45,19 +45,20 @@ public class NicknameCheckController extends HttpServlet {
 			req.getRequestDispatcher("NicknameCheckForm.jsp").forward(req, resp);
 			nickname = "";
 		} else if (check == false) {
-
 			req.setAttribute("Msg", "공백 없이 한글, 영어, 숫자만 사용가능합니다.");
 			req.getRequestDispatcher("NicknameCheckForm.jsp").forward(req, resp);
 			nickname = "";
+		}else if(nickname == "null") {
+			req.setAttribute("Msg", "은(는) 중복된 닉네임 입니다.");
+			req.getRequestDispatcher("NicknameCheckForm.jsp").forward(req, resp);
 
 		} else {
-			// 성공 or 실패?
 			if (result == true) {
 				req.setAttribute("Msg", nickname + "은(는) 중복된 닉네임 입니다.");
 				req.getRequestDispatcher("NicknameCheckForm.jsp").forward(req, resp);
 				System.out.println("중복된 닉네임 ");
 				nickname = "";
-			} else { // 로그인 실패
+			} else { 
 				req.setAttribute("Msg", nickname + "는 사용가능합니다.");
 
 				req.setAttribute("UseMsg", nickname);

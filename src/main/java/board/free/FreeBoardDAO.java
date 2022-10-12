@@ -53,7 +53,7 @@ public class FreeBoardDAO extends DBConnPool {
 			// 반환된 게시물 목록을 List 컬렉션에 추가
 			while (rs.next()) {
 				FreeBoardDTO dto = new FreeBoardDTO();
-
+				
 				dto.setIdx(rs.getInt(1));
 				dto.setFree_num(rs.getInt(2));
 				dto.setFree_date(rs.getDate(3));
@@ -130,6 +130,7 @@ public class FreeBoardDAO extends DBConnPool {
 			result = psmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("게시물 입력 중 예외 발생");
+			e.printStackTrace();
 		}
 		return result;
 	}

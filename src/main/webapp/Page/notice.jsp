@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../Page/Header.jsp"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,8 +16,9 @@
 <meta charset="UTF-8">
 <title>공지사항</title>
 </head>
-<body style="margin:0;">
+<body style="margin: 0;">
 	<section style="margin: 0% 15% 15% 15%">
+
 		<div>
 			<p class="free_title">공지사항</p>
 		</div>
@@ -57,7 +58,7 @@
 				<c:otherwise>
 					<c:forEach items="${ boardLists }" var="row" varStatus="loop">
 						<tr align="center">
-					<td>${ map.totalCount - (((map.pageNum-1)*map.pageSize)+loop.index) }
+							<td>${ map.totalCount - (((map.pageNum-1)*map.pageSize)+loop.index) }
 							</td>
 							<td align="center"><a
 								href="../Page/NoticeView.do?n_num=${ row.n_num }">${ row.n_title }</a></td>
@@ -69,6 +70,17 @@
 				</c:otherwise>
 			</c:choose>
 		</table>
+
+		<%
+			
+				
+		if(session.getAttribute("UserId").equals("admin")){
+		%>
+		<button class="list_move_btn"
+				onclick="location.href='../Page/NoticeBoardWrite.do' ">글 쓰기</button>
+		<%
+		}
+		%>
 		<!-- 글쓰기 버튼을 누르면 해당 jsp 파일로 연결 -->
 		<div class="container2">
 			<script
@@ -78,11 +90,11 @@
 				
 			</script>
 		</div>
-		
+
 		<div class="paging">${ map.pagingImg }</div>
 
-	
-		
+
+
 	</section>
 	<%@ include file="./HeaderFooter/Footer.jsp"%>
 </body>

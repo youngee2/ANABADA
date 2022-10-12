@@ -6,6 +6,7 @@ public class NoticeBoardDTO {
 	private java.sql.Date n_date;
 	private int n_count;
 	private String n_content;
+	private int idx;
 	
 	public int getN_num() {
 		return n_num;
@@ -37,6 +38,13 @@ public class NoticeBoardDTO {
 	public void setN_content(String n_content) {
 		this.n_content = n_content;
 	}
+	public int getIdx() {
+		return idx;
+	}
+	public void setIdx(int idx) {
+		this.idx = idx;
+	}
+	
 	
 }
 

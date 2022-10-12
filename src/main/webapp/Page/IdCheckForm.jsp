@@ -14,7 +14,7 @@
 	crossorigin="anonymous"></script>
 
 </head>
-<body style="margin:0;">
+<body>
 
 	<div style="text-align: center; margin: 10vw">
 		<i class=" check_title fa-solid fa-user-check"></i>

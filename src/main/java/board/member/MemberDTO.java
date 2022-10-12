@@ -9,9 +9,10 @@ public class MemberDTO {
 	private String email;
 	private String phone_num;
 	private int report;
-	private String user_picture;
-
 	
+	
+	private int reportCount;
+
 	public MemberDTO() {
 
 	}
@@ -80,12 +81,12 @@ public class MemberDTO {
 		this.report = report;
 	}
 
-	public String getUser_picture() {
-		return user_picture;
+	public int getReportCount() {
+		return reportCount;
 	}
 
-	public void setUser_picture(String user_picture) {
-		this.user_picture = user_picture;
+	public void setReportCount(int reportCount) {
+		this.reportCount = reportCount;
 	}
 
 }

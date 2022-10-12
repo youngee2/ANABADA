@@ -17,9 +17,9 @@ FreeBoardDTO dto = dao.selectViewEdit(free_num);
 dao.close();
 
 
-
 CommentDAO dao2 = new CommentDAO(application);
 int titlenum = Integer.parseInt(request.getParameter("free_num"));
+
 List<CommentDTO> commentList = dao2.free_comm_List(titlenum);
 dao2.close();
 
@@ -95,16 +95,25 @@ function deletePost(){
 
 		<div class="btn_list">
 			<%
-		if(session.getAttribute("Nickname")!=null && session.getAttribute("Nickname").toString().equals(dto.getNickname())){
-		%>
+		
+		 if(session.getAttribute("Nickname")!=null && session.getAttribute("Nickname").toString().equals(dto.getNickname())){
+				%>
 			<button class="list_move_btn" type="button"
 				onclick="location.href='freeboard_edit.jsp?free_num=<%= dto.getFree_num() %>';">수정</button>
+		<button class="list_move_btn" type="button" onclick="deletePost();">삭제</button>
+		
+		<% }
+		else if(session.getAttribute("UserId").equals("admin")){
+		%>
+			
 			<button class="list_move_btn" type="button" onclick="deletePost();">삭제</button>
 			<%
 		}
-		%>
+			%>
 			<button class="list_move_btn" type="button"
 				onclick="location.href='../Page/freeListPage.do' ">목록</button>
+				<button class="list_move_btn" type="button"
+				onclick="location.href='../Page/freeListPage.do' ">신고</button>
 		</div>
 	</form>
 
@@ -115,6 +124,7 @@ function deletePost(){
 	<form action="./CommentProcess/freeWriteCommProcess.jsp" method="post">
 		<input type="hidden" name="title_num" value="<%=dto.getFree_num() %>">
 		<div class="comm_line">
+			
 			<input type="text" class="comm_input" name="comm_contents"
 				placeholder="댓글을 입력하세요.">
 			<button class="list_move_btn" type="submit"
@@ -127,6 +137,7 @@ function deletePost(){
 
 	<div class="comm_div_align">
 		<div class="comm_list">
+
 			<p><%=commentList.get(i).getNickname() %></p>
 			<p><%=commentList.get(i).getComm() %></p>
 			<p style="font-size: 12px; color: gray"><%=commentList.get(i).getComm_date() %></p>
@@ -138,24 +149,20 @@ function deletePost(){
 			</button>
 			<div class="dropdown-content">
 					<%
-		if (session_nick.equals(commentList.get(i).getNickname())) {
+		if (session_nick.equals(commentList.get(i).getNickname()) || session.getAttribute("UserId").equals("admin")) {
 			%>
 				<form id="CommentFrm" name="CommentFrm" method="post"
 					action="./CommentProcess/freeDeleteCommProcess.jsp">
-					<input type="hidden" name="title_num1" value=<%= dto.getFree_num() %>> 
-						<input type="hidden" name="comm_contents1" value=<%=commentList.get(i).getComm() %>>
-						<button type="submit">삭제</button>
-					<!--  <a href="#" onclick="return chk_form()">삭제하기</a>
-					<script>
-function chk_form() {
-document.getElementById('CommentFrm').submit();
-}
-</script>
--->
+						<input type="hidden" name="comm_num2" value=<%=commentList.get(i).getComm_num() %>>
+						<input type="hidden" name="title_num2" value=<%=commentList.get(i).getTitle_num() %>>
+					<div class="dropbutton"> 
+						<button type="submit" style="border:0">삭제</button>
+
 					<%
           }
           %>
-						<button type="submit">신고</button>
+						<button type="button" style="border:0">신고</button>
+						</div> 
 					
 				</form>
 			</div>

@@ -279,7 +279,7 @@ if (session_nick == null) {
 				<%
 				for (int i = 0; i < commentList.size(); i++) {
 				%>
-			<input type="hidden" value="<%=commentList.get(i).getIdx() %>" name = "idx1">
+			<input type="hidden" value="<%=commentList.get(i).getNickname() %>" name = "reportedNickname">
 			<%} %>
 	<div class="modal fade" id="moaModal1" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">

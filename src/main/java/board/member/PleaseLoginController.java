@@ -32,16 +32,14 @@ public class PleaseLoginController extends HttpServlet {
 		HttpSession session = req.getSession();
 		String UserId = req.getParameter("user_id");
 		String userPwd = req.getParameter("user_passwd");
+
 		MemberDAO dao = new MemberDAO();
 		MemberDTO memberDTO = dao.getMemberDTO(UserId, userPwd);
-		int idx = memberDTO.getIdx();
+		int report = memberDTO.getReport();
 		dao.close();
 
-		ReportDAO reportDao = new ReportDAO();
-		ReportDTO reportDto = reportDao.getReportDTO(idx);
-		reportDao.close();
-
-		if (reportDto.getReport() >= 5) {
+		// 정지된 회원
+		if (report == 1) {
 			session.invalidate();
 			req.getRequestDispatcher("report.jsp").forward(req, resp);
 			System.out.println("정지된 회원입니다.");
@@ -50,11 +48,9 @@ public class PleaseLoginController extends HttpServlet {
 			session.setAttribute("UserId", memberDTO.getUser_id());
 			session.setAttribute("Idx", memberDTO.getIdx());
 			session.setAttribute("Nickname", memberDTO.getNickname());
-			session.setAttribute("report", reportDto.getReport());
 			resp.sendRedirect("tradeListPage.jsp");
 		} else {
 			// 로그인 실패
-
 			req.setAttribute("ErrMsg", "아이디/비밀번호를 확인해주세요.");
 			req.getRequestDispatcher("Login.jsp").forward(req, resp);
 

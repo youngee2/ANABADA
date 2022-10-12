@@ -27,7 +27,6 @@
          out.println("<script>alert('로그인 후 사용해주세요.'); location.href='Login.jsp';</script>");
       }
       %>
-
 			<p class="free_title">자유게시판</p>
 		</div>
 		<div class="container2">
@@ -53,7 +52,7 @@
 		<table class="table table-hover">
 			<tr align="center" style="background-color: #4C6D81;">
 				<th>번호</th>
-				<th>제목</th>
+				<th style="width:40%">제목</th>
 				<th>작성자</th>
 				<th>작성일</th>
 				<th>조회수</th>

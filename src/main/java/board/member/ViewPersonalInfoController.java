@@ -20,13 +20,11 @@ public class ViewPersonalInfoController extends HttpServlet {
 		HttpSession session = req.getSession();
 		String user_id = (String) session.getAttribute("UserId");
 		 
-		// 게시물 불러오기
-		MemberDAO dao = new MemberDAO(); // 다오 객체 생성
-		MemberDTO dto = dao.PersonalInfo(user_id); // 게시물 내용을 가져온다.
+		MemberDAO dao = new MemberDAO(); 
+		MemberDTO dto = dao.PersonalInfo(user_id); 
 		dao.close();
 
-		// 게시물 저장 후 뷰로 포워드
-		req.setAttribute("dto", dto);// DTO 객체를 request 영역에 저장
+		req.setAttribute("dto", dto);
 		req.getRequestDispatcher("../Page/PersonalInformation.jsp").forward(req, resp);
 	}
 

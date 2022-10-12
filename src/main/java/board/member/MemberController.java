@@ -29,7 +29,6 @@ public class MemberController extends HttpServlet {
 
 		req.setCharacterEncoding("utf-8");
 
-		// 폼값을 DTO에 저장
 		MemberDTO dto = new MemberDTO();
 		
 		dto.setName(req.getParameter("name"));
@@ -46,7 +45,6 @@ public class MemberController extends HttpServlet {
 		System.out.println(req.getParameter("email"));
 		System.out.println(req.getParameter("phone_num"));
 
-		// DAO를 통해 DB에 게시 내용 저장
 		MemberDAO dao = new MemberDAO();
 
 		int signUpResult = dao.signUp(dto);

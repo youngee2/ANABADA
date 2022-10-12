@@ -84,7 +84,7 @@ if (session_nick == null) {
 			href="./tradeListPage.do?category=7" class="a link">거래</a> > 물품 상세보기
 	</div>
 
-	<a href="./MessageChatProcess/chatMessageList.jsp" onClick="window.open(this.href, '', 'width=820, height=350'); return false;"]>쪽지테스트용링크</a>
+	
 	
 	
 	<c:set var="session_nick" value="<%=session_nick%>" />
@@ -195,7 +195,7 @@ if (session_nick == null) {
 	<!--신고버튼(모달)-->
 	<form name="report" method="post" action="../Page/ReportReceived.do"
 		onsubmit="return reportCheck()">
-		<input type="hidden" value="${sell_idx }" name="idx1">
+		<input type="hidden" value="${dto.nickname }" name="reportedNickname">
 		<div class="modal fade" id="moaModal1" tabindex="-1" role="dialog"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
