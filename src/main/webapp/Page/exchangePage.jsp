@@ -17,11 +17,12 @@ List<CommentDTO> commentList = dao.select_exc_comm_List(title_num);
 dao.close();
 
 String session_nick = (String) session.getAttribute("Nickname");
-int session_idx = (int) session.getAttribute("Idx");
+
 
 if (session_nick == null) {
 	session_nick = "null";
 }
+
 
 %>
 <!DOCTYPE html>
@@ -254,7 +255,6 @@ if (session_nick == null) {
 										<form method="post" target="popwin" name="chatMessageFrm">
 											<%
 											for (int j = 0; j < commentList.size(); j++) {
-												if(commentList.get(j).getIdx() == session_idx){} else{
 											%>
 											<input type="hidden" name="receive_idx" value=<%= commentList.get(j).getIdx()%>>
 											<input type="hidden" name="receive_nickname" value=<%= commentList.get(j).getNickname() %>>
@@ -267,7 +267,7 @@ if (session_nick == null) {
 											">
 												쪽지보내기</a>
 											<%
-											}}
+											}
 											%>
 											<a class="dropdown-item" href="#" data-toggle="modal"
 												data-target="#moaModal2">신고하기</a>
@@ -293,13 +293,14 @@ if (session_nick == null) {
 
 	<!--댓글신고버튼(모달)-->
 	<form name="report" method="post" action="../Page/ReportReceived.do"
-		onsubmit="return reportCheck()">
+		onsubmit="return commentCheck()">
 
 		<%
 		for (int i = 0; i < commentList.size(); i++) {
 		%>
 		<input type="hidden" value="<%=commentList.get(i).getNickname()%>"
 			name="reportedNickname">
+			<input type="hidden" value="<%= commentList.get(i).getIdx() %>" name="idx">
 		<%
 		}
 		%>
@@ -317,7 +318,8 @@ if (session_nick == null) {
 						<h4>🚨 신고하기</h4>
 						<div>
 							<textarea style="width: 100%; height: 100px; resize: none;"
-								placeholder="신고 사유를 작성해주세요." name="reason"></textarea>
+								placeholder="신고 사유를 작성해주세요." id="reason"  name="reason"></textarea>
+								<div id="commentreasonError" class="error"></div>
 							<hr>
 						</div>
 						<div style="color: #bebebe;">
@@ -338,6 +340,7 @@ if (session_nick == null) {
 	<form name="report" method="post" action="../Page/ReportReceived.do"
 		onsubmit="return reportCheck()">
 		<input type="hidden" value="${dto.nickname}" name="reportedNickname">
+		<input type="hidden" value="${dto.idx }" name="idx">
 		<div class="modal fade" id="moaModal1" tabindex="-1" role="dialog"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
@@ -352,7 +355,8 @@ if (session_nick == null) {
 						<h4>🚨 신고하기</h4>
 						<div>
 							<textarea style="width: 100%; height: 100px; resize: none;"
-								placeholder="신고 사유를 작성해주세요." name="reason"></textarea>
+								placeholder="신고 사유를 작성해주세요."  id="reason" name="reason"></textarea>
+								<div id="reasonError" class="error"></div>
 							<hr>
 						</div>
 						<div style="color: #bebebe;">
@@ -378,6 +382,47 @@ if (session_nick == null) {
 		</span>
 		</a>
 	</div>
+	
+	
+	<script>
+	function reportCheck() {
+	      let reportReason = document.getElementById("reason").value;
+
+	      if (reason === "") {
+	         document.getElementById("reasonError").innerHTML = "신고 사유를 입력해주세요."
+	         return false;
+	      } else if (reportReason.length < 30) {
+	         document.getElementById("reasonError").innerHTML = "신고 사유가 너무 짧습니다. 최소 30자 이상으로 적어주세요."
+	         return false;
+	      } else if (reportReason.length > 200) {
+	         document.getElementById("reasonError").innerHTML = "200자 이내로 적어주세요."
+	         return false;
+	      } else {
+	         document.getElementById("reasonError").innerHTML = ""
+	      }
+
+	   }
+	</script>
+	
+	<script>
+	function commentCheck() {
+	      let reportReason = document.getElementById("reason").value;
+
+	      if (reason === "") {
+	         document.getElementById("commentreasonError").innerHTML = "신고 사유를 입력해주세요."
+	         return false;
+	      } else if (reportReason.length < 30) {
+	         document.getElementById("commentreasonError").innerHTML = "신고 사유가 너무 짧습니다. 최소 30자 이상으로 적어주세요."
+	         return false;
+	      } else if (reportReason.length > 200) {
+	         document.getElementById("commentreasonError").innerHTML = "200자 이내로 적어주세요."
+	         return false;
+	      } else {
+	         document.getElementById("commentreasonError").innerHTML = ""
+	      }
+
+	   }
+	</script>
 	<%@ include file="./HeaderFooter/Footer.jsp"%>
 </body>
 
