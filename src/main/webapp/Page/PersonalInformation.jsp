@@ -15,7 +15,7 @@
 
 </head>
 
-<body>
+<body style="margin:0;">
 	<section class="Personalinfo">
 		<h1 class="personalA-title">회원정보</h1>
 		<hr class="personal-lineA">

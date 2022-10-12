@@ -50,133 +50,130 @@ var swear_words_arr = new Array("시발", "새끼", "쌔끼", "후장뚫어18세
 var swear_alert_arr = new Array;
 var swear_alert_count = 0;
 function reset_alert_count() {
-	swear_alert_count = 0;
+   swear_alert_count = 0;
 }
+
 function validate_text() {
 
-	// 가입부분 체크 
-	let namechk = document.getElementById("namechk").value;
-	let nickname = document.getElementById("nickname").value;
-	let id = document.getElementById("id").value;
-	let pwd = document.getElementById("pwd").value;
-	let pwdChk = document.getElementById("pwdChk").value;
-	let email = document.getElementById("email").value;
-	let phone_num = document.getElementById("phone_num").value;
-	let check = true;
-	let idvalcheck = /^[a-z0-9]+$/
-	let pwdcheck = /^[a-zA-Z0-9]+$/
+   // 가입부분 체크 
+   let namechk = document.getElementById("namechk").value;
+   let nickname = document.getElementById("nickname").value;
+   let id = document.getElementById("id").value;
+   let pwd = document.getElementById("pwd").value;
+   let pwdChk = document.getElementById("pwdChk").value;
+   let email = document.getElementById("email").value;
+   let phone_num = document.getElementById("phone_num").value;
+   let check = true;
+   let idvalcheck = /^[a-z0-9]+$/
+   let pwdcheck = /^[a-zA-Z0-9]+$/
 
-	let num = /[0-9]/
-	let eng = /[a-z]/
-	let spe = /[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/
+   let num = /[0-9]/
+   let eng = /[a-z]/
+   let spe = /[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/
 
-	let mailCheck = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-	let pwdOK = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,15}$/;
+   let mailCheck = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+   let pwdOK = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,15}$/;
 
-	// 이름확인
-	if (namechk === "") {
-		document.getElementById("nameError").innerHTML = "이름은 필수 정보입니다."
-		return false;
-	} else if (spe.test(namechk) || namechk.length > 10) {
-		document.getElementById("nameError").innerHTML = "이름을 정확히 입력해주세요."
-		return false;
-	} else {
-		document.getElementById("nameError").innerHTML = ""
-	}
+   // 이름확인
+   if (namechk === "") {
+      document.getElementById("nameError").innerHTML = "이름은 필수 정보입니다."
+      return false;
+   } else if (spe.test(namechk) || namechk.length > 10) {
+      document.getElementById("nameError").innerHTML = "이름을 정확히 입력해주세요."
+      return false;
+   } else {
+      document.getElementById("nameError").innerHTML = ""
+   }
 
-	//아이디
-	if (id === "") {
-		document.getElementById("idError").innerHTML = "아이디는 필수 정보입니다."
-		return false;
-	} else {
-		document.getElementById("idError").innerHTML = "멋진 아이디네요!"
-	}
+   //아이디
+   if (id === "") {
+      document.getElementById("idError").innerHTML = "아이디는 필수 정보입니다."
+      return false;
+   } else {
+      document.getElementById("idError").innerHTML = "멋진 아이디네요!"
+   }
 
-	//닉네임
-	if (nickname === "") {
-		document.getElementById("nicknameError").innerHTML = "별명은 필수 정보입니다."
-		return false;
-	} else {
-		document.getElementById("nicknameError").innerHTML = "멋진 별명이네요!"
-	}
-
-
-//욕설 감지
-	reset_alert_count();
-	var compare_text = document.form1.nickname.value;
-	for (var i = 0; i < swear_words_arr.length; i++) {
-		for (var j = 0; j < (compare_text.length); j++) {
-			if (swear_words_arr[i] == compare_text.substring(j, (j + swear_words_arr[i].length)).toLowerCase()) {
-				swear_alert_arr[swear_alert_count] = compare_text.substring(j, (j + swear_words_arr[i].length));
-				swear_alert_count++;
-			}
-		}
-	}
-	var alert_text = "";
-	for (var k = 1; k <= swear_alert_count; k++) {
-		alert_text += "\n" + "(" + k + ")  " + swear_alert_arr[k - 1];
-	}
-	if (swear_alert_count > 0) {
-		alert("닉네임에서 욕설이 감지 되었습니다.\n다른 사용자의 불쾌감을 조성할 수 있으니 다시 입력해주세요.:\n_______________________________\n" + alert_text + "\n_______________________________");
-		document.form1.nickname.select();
-		document.getElementById("nicknameError").innerHTML = "닉네임에서 욕설이 감지되었습니다. 다시 입력해주세요."
-	}
-	else {
-		document.form1.submit();
-	}
+   //닉네임
+   if (nickname === "") {
+      document.getElementById("nicknameError").innerHTML = "별명은 필수 정보입니다."
+      return false;
+   } else {
+      document.getElementById("nicknameError").innerHTML = "멋진 별명이네요!"
+   }
 
 
+   //욕설 감지
+   reset_alert_count();
+   var compare_text = document.form1.nickname.value;
+   for (var i = 0; i < swear_words_arr.length; i++) {
+      for (var j = 0; j < (compare_text.length); j++) {
+         if (swear_words_arr[i] == compare_text.substring(j, (j + swear_words_arr[i].length)).toLowerCase()) {
+            swear_alert_arr[swear_alert_count] = compare_text.substring(j, (j + swear_words_arr[i].length));
+            swear_alert_count++;
+         }
+      }
+   }
+   var alert_text = "";
+   for (var k = 1; k <= swear_alert_count; k++) {
+      alert_text += "\n" + "(" + k + ")  " + swear_alert_arr[k - 1];
+   }
 
 
-	// 비밀번호 확인
-	if (pwd === "") {
-		document.getElementById("pwdError").innerHTML = "비밀번호를 입력해주세요."
-		return false;
-	} else if (!pwdOK.test(pwd)) {
-		document.getElementById("pwdError").innerHTML = "8~15자의 영문 소문자, 숫자, 사용 가능한 특수문자만을 필수로 모두 조합하여 입력해주세요"
-		return false;
-	} else {
-		document.getElementById("pwdError").innerHTML = ""
-	}
+   if (swear_alert_count > 0) {
+      alert("닉네임에서 욕설이 감지 되었습니다.\n다른 사용자의 불쾌감을 조성할 수 있으니 다시 입력해주세요.:\n_______________________________\n" + alert_text + "\n_______________________________");
+      //document.form1.nickname.select();
+      document.getElementById("nicknameError").innerHTML = "닉네임에서 욕설이 감지되었습니다. 다시 입력해주세요."
+      return false;
+   } else {
+      document.getElementById("nicknameError").innerHTML = ""
+   }
 
-	if (pwd !== pwdChk) {
-		document.getElementById("pwdError").innerHTML = ""
-		document.getElementById("pwdChkError").innerHTML = "비밀번호가 동일하지 않습니다."
-		return false;
-	} else {
-		document.getElementById("pwdError").innerHTML = ""
-		document.getElementById("pwdChkError").innerHTML = ""
-	}
+   // 비밀번호 확인
+   if (pwd === "") {
+      document.getElementById("pwdError").innerHTML = "비밀번호를 입력해주세요."
+      return false;
+   } else if (!pwdOK.test(pwd)) {
+      document.getElementById("pwdError").innerHTML = "8~15자의 영문 소문자, 숫자, 사용 가능한 특수문자만을 필수로 모두 조합하여 입력해주세요"
+      return false;
+   } else {
+      document.getElementById("pwdError").innerHTML = ""
+   }
 
-	if (pwdChk === "") {
-		document.getElementById("pwdChkError").innerHTML = "비밀번호를 다시 입력해주세요."
-		return false;
-	} else {
-		document.getElementById("passwordCheckError").innerHTML = ""
-	}
+   if (pwd !== pwdChk) {
+      document.getElementById("pwdError").innerHTML = ""
+      document.getElementById("pwdChkError").innerHTML = "비밀번호가 동일하지 않습니다."
+      return false;
+   } else {
+      document.getElementById("pwdError").innerHTML = ""
+      document.getElementById("pwdChkError").innerHTML = ""
+   }
 
-	if (email === "") {
-		document.getElementById("emailError").innerHTML = ""
-	} else if ((email.match(mailCheck) == null)) {
-		document.getElementById("emailError").innerHTML = "이메일을 정확히 입력해주세요."
-		return false;
-	} else {
-		document.getElementById("emailError").innerHTML = ""
-	}
+   if (pwdChk === "") {
+      document.getElementById("pwdChkError").innerHTML = "비밀번호를 다시 입력해주세요."
+      return false;
+   } else {
+      document.getElementById("pwdChkError").innerHTML = ""
+   }
 
-	//전화번호
-	if (phone_num === "") {
-		document.getElementById("phoneNumError").innerHTML = "전화번호는 필수 정보입니다."
-		return false;
-	} else if (num.test(phone_num) || id.length < 12) {
-		document.getElementById("phoneNumError").innerHTML = "전화번호는 숫자만 입력해주세요."
-		return false;
-	} else {
-		document.getElementById("phoneNumError").innerHTML = ""
-	}
+   if (email === "") {
+      document.getElementById("emailError").innerHTML = ""
+   } else if ((email.match(mailCheck) == null)) {
+      document.getElementById("emailError").innerHTML = "이메일을 정확히 입력해주세요."
+      return false;
+   } else {
+      document.getElementById("emailError").innerHTML = ""
+   }
+
+   //전화번호
+   if (phone_num === "") {
+      document.getElementById("phoneNumError").innerHTML = "전화번호는 필수 정보입니다."
+      return false;
+   } else {
+      document.getElementById("phoneNumError").innerHTML = ""
+   }
 
 }
 function select_area() {
-	document.form1.nickname.select();
+   document.form1.nickname.select();
 }
 window.onload = reset_alert_count;

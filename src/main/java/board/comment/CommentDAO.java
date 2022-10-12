@@ -60,7 +60,6 @@ public class CommentDAO extends DBConnPool {
 			psmt.setString(5, dto.getNickname());
 
 			result = psmt.executeUpdate();
-			System.out.println(result);
 		}catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("게시판 댓글 작성 중 오류");
@@ -77,7 +76,6 @@ public class CommentDAO extends DBConnPool {
 			psmt.setInt(1,dto.getComm_num());
 			
 			result = psmt.executeUpdate();
-			System.out.println(result);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -134,7 +132,6 @@ public class CommentDAO extends DBConnPool {
 			psmt.setString(5, dto.getNickname());
 
 			result = psmt.executeUpdate();
-			System.out.println(result);
 		}catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("게시판 댓글 작성 중 오류");

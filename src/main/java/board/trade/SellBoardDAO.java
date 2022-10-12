@@ -214,8 +214,6 @@ public List<SellBoardDTO> selectListPage(Map<String, Object> map){
 			board.add(dto);
 		}
 
-		System.out.println(map.get("category")+"DAO");
-		System.out.println(map.get("searchWord") +": DAO");
 	} catch(Exception e) {
 		System.out.println("게시물 조회 중 예외 발생");
 		e.printStackTrace();
