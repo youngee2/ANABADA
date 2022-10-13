@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import board.member.MemberDAO;
+
 @WebServlet("/Page/deleteReport.do")
 public class ManageDeleteReportController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -22,6 +24,11 @@ public class ManageDeleteReportController extends HttpServlet {
 		ReportDAO dao = new ReportDAO();
 		int result = dao.deleteReport(reportedNickname, reporterNickname);
 		dao.close();
+
+		// 총 신고수 업데이트
+		MemberDAO totaldao = new MemberDAO();
+		totaldao.totalReportCount(reportedNickname,reportedNickname );
+		totaldao.close();
 
 		if (result == 1) {
 			req.getRequestDispatcher("MemberManagement.do").forward(req, resp);

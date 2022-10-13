@@ -14,7 +14,7 @@ public class ReportDAO extends DBConnPool {
 	}
 
 	public ReportDTO getReportDTO(int idx) {
-		ReportDTO dto = new ReportDTO(); 
+		ReportDTO dto = new ReportDTO();
 		String query = "SELECT * FROM reportTB WHERE idx=?";
 
 		try {
@@ -38,12 +38,14 @@ public class ReportDAO extends DBConnPool {
 		return dto;
 	}
 
-	// 신고 접수
+	//신고 접수
 	public int reportReceived(ReportDTO dto) {
 		int result = 0;
 
-		String query = "INSERT INTO reportTB (idx, reportedNickname, reporterNickname, reason, reportDate) "
-				+ "VALUES ( ?,?,?,?,sysdate)";
+		String query = "INSERT INTO reportTB( "
+				+ " idx, reportedNickname , reporterNickname , reason , reportDate , countReport ) "
+				+ " VALUES (?,?,?,?,sysdate , " + " ( SELECT NVL(COUNT(countReport)+1, 0) cnt"
+				+ " FROM reportTB WHERE idx = ? ))";
 
 		try {
 			psmt = con.prepareStatement(query);
@@ -51,6 +53,7 @@ public class ReportDAO extends DBConnPool {
 			psmt.setString(2, dto.getReportedNickname());
 			psmt.setString(3, dto.getReporterNickname());
 			psmt.setString(4, dto.getReason());
+			psmt.setInt(5, dto.getIdx());
 			result = psmt.executeUpdate();
 
 			System.out.println(query);
@@ -101,16 +104,14 @@ public class ReportDAO extends DBConnPool {
 			psmt = con.prepareStatement(query);
 			stmt = con.createStatement();
 			rs = psmt.executeQuery();
-
 			while (rs.next()) {
-				ReportDAO dao = new ReportDAO();
 				ReportDTO dto = new ReportDTO();
 				dto.setIdx(rs.getInt(1));
 				dto.setReportedNickname(rs.getString(2));
 				dto.setReporterNickname(rs.getString(3));
 				dto.setReason(rs.getString(4));
 				dto.setReportDate(rs.getDate(5));
-				dto.setReportCount(dao.reportCount(dto.getIdx()));
+				dto.setCountReport(rs.getInt(6));
 				reportList.add(dto);
 			}
 		} catch (Exception e) {
@@ -138,29 +139,6 @@ public class ReportDAO extends DBConnPool {
 			e.printStackTrace();
 		}
 		return result;
-	}
-
-//	
-	// 총 몇 번의 신고인지
-	public int reportCount(int idx) {
-		String query = "SELECT COUNT(*) FROM reportTB WHERE idx =?";
-		int totalCount = 0;
-
-		try {
-			psmt = con.prepareStatement(query);
-			psmt.setInt(1, idx);
-			rs = psmt.executeQuery();
-			System.out.println(query);
-
-			if (rs.next()) {
-				totalCount = rs.getInt(1);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("총 신고 수 조회 오류");
-		}
-
-		return totalCount; 
 	}
 
 }

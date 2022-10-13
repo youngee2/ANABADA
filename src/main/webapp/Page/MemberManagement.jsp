@@ -56,7 +56,7 @@ caption {
 }
 </style>
 </head>
-<body>
+<body style="margin:0;">
 
 
 	<section class="viewAllMember">
@@ -111,7 +111,7 @@ caption {
 										<td><c:out value="${row.user_passwd}" /></td>
 										<td><c:out value="${row.email}" /></td>
 										<td><c:out value="${row.phone_num}" /></td>
-										<td><c:out value="${row.reportCount}" /></td>
+										<td><c:out value="${row.countReport }" /></td>
 									</tr>
 								</c:when>
 								<c:otherwise>
@@ -123,7 +123,7 @@ caption {
 										<td><c:out value="${row.user_passwd}" /></td>
 										<td><c:out value="${row.email}" /></td>
 										<td><c:out value="${row.phone_num}" /></td>
-										<td><c:out value="${row.reportCount}" /></td>
+										<td><c:out value="${row.countReport}" /></td>
 									</tr>
 								</c:otherwise>
 							</c:choose>
@@ -180,7 +180,7 @@ caption {
 					<th>신고자</th>
 					<th>신고 사유</th>
 					<th>신고 날짜</th>
-					<th>받은 신고 수</th>
+					<th>누적 신고 번호</th>
 
 				</tr>
 				<c:choose>
@@ -196,7 +196,7 @@ caption {
 								<td><c:out value="${row.reporterNickname }" /></td>
 								<td><c:out value="${row.reason }" /></td>
 								<td><c:out value="${row.reportDate }" /></td>
-								<td><c:out value="${row.reportCount}" /></td>
+								<td><c:out value="${row.countReport }" /></td>
 							</tr>
 
 						</c:forEach>

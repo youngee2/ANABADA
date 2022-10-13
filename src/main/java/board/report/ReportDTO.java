@@ -6,7 +6,7 @@ public class ReportDTO {
 	private String reporterNickname;
 	private String reason;
 	private java.sql.Date reportDate;
-	private int reportCount;
+	private int countReport ;
 
 	public int getIdx() {
 		return idx;
@@ -48,11 +48,11 @@ public class ReportDTO {
 		this.reportDate = reportDate;
 	}
 
-	public int getReportCount() {
-		return reportCount;
+	public int getCountReport() {
+		return countReport;
 	}
 
-	public void setReportCount(int reportCount) {
-		this.reportCount = reportCount;
+	public void setCountReport(int countReport) {
+		this.countReport = countReport;
 	}
 }

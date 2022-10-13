@@ -318,8 +318,8 @@ if (session_nick == null) {
 						<h4>🚨 신고하기</h4>
 						<div>
 							<textarea style="width: 100%; height: 100px; resize: none;"
-								placeholder="신고 사유를 작성해주세요." id="reason"  name="reason"></textarea>
-								<div id="commentreasonError" class="error"></div>
+								placeholder="신고 사유를 작성해주세요." id="commentreason"  name="reason"></textarea>
+								<div id="commentreasonError" class="error" style="color:red;"></div>
 							<hr>
 						</div>
 						<div style="color: #bebebe;">
@@ -356,7 +356,7 @@ if (session_nick == null) {
 						<div>
 							<textarea style="width: 100%; height: 100px; resize: none;"
 								placeholder="신고 사유를 작성해주세요."  id="reason" name="reason"></textarea>
-								<div id="reasonError" class="error"></div>
+								<div id="reasonError" class="error" style="color:red;"></div>
 							<hr>
 						</div>
 						<div style="color: #bebebe;">
@@ -388,7 +388,7 @@ if (session_nick == null) {
 	function reportCheck() {
 	      let reportReason = document.getElementById("reason").value;
 
-	      if (reason === "") {
+	      if (reportReason.length === "") {
 	         document.getElementById("reasonError").innerHTML = "신고 사유를 입력해주세요."
 	         return false;
 	      } else if (reportReason.length < 30) {
@@ -398,7 +398,8 @@ if (session_nick == null) {
 	         document.getElementById("reasonError").innerHTML = "200자 이내로 적어주세요."
 	         return false;
 	      } else {
-	         document.getElementById("reasonError").innerHTML = ""
+	    	  alert("신고 접수가 완료되었습니다.\n(중복된 신고는 접수되지 않습니다.)")
+				document.getElementById("reasonError").innerHTML = ""
 	      }
 
 	   }
@@ -406,9 +407,9 @@ if (session_nick == null) {
 	
 	<script>
 	function commentCheck() {
-	      let reportReason = document.getElementById("reason").value;
+	      let reportReason = document.getElementById("commentreason").value;
 
-	      if (reason === "") {
+	      if (reportReason.length === "") {
 	         document.getElementById("commentreasonError").innerHTML = "신고 사유를 입력해주세요."
 	         return false;
 	      } else if (reportReason.length < 30) {
@@ -418,7 +419,8 @@ if (session_nick == null) {
 	         document.getElementById("commentreasonError").innerHTML = "200자 이내로 적어주세요."
 	         return false;
 	      } else {
-	         document.getElementById("commentreasonError").innerHTML = ""
+	    	  alert("신고 접수가 완료되었습니다.\n(중복된 신고는 접수되지 않습니다.)")
+				document.getElementById("reasonError").innerHTML = ""
 	      }
 
 	   }
