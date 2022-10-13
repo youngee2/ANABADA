@@ -188,24 +188,24 @@ public class MemberDAO extends DBConnPool {
 	}
 
 	// 신고당할때마다 총 신고수 업데이트 해주기
-	public int totalReportCount(String nickname1, String nickname2) {
-		int result = 0;
-		String query = "UPDATE MEMBERTB M SET countReport =" + " ( SELECT MAX(countReport) "
-				+ " FROM REPORTTB R WHERE reportedNickname =?)" + "WHERE NICKNAME = ?";
-		try {
-			psmt = con.prepareStatement(query);
-			psmt.setString(1, nickname1);
-			psmt.setString(2, nickname2);
-			result = psmt.executeUpdate();
-			rs = psmt.executeQuery();
-			System.out.println(query);
+	   public int totalReportCount(String nickname1, String nickname2) {
+	      int result = 0;
+	      String query = "UPDATE MEMBERTB M SET countReport =" + " ( SELECT COUNT(reportedNickname)"
+	            + " FROM REPORTTB R WHERE reportedNickname =?)" + "WHERE NICKNAME = ?";
+	      try {
+	         psmt = con.prepareStatement(query);
+	         psmt.setString(1, nickname1);
+	         psmt.setString(2, nickname2);
+	         result = psmt.executeUpdate();
+	         rs = psmt.executeQuery();
+	         System.out.println(query);
 
-		} catch (Exception e) {
-			System.out.println("총 신고수 업데이트 예외 발생");
-			e.printStackTrace();
-		}
-		return result;
-	}
+	      } catch (Exception e) {
+	         System.out.println("총 신고수 업데이트 예외 발생");
+	         e.printStackTrace();
+	      }
+	      return result;
+	   }
 
 	// ***************** 관리자 ******************//
 

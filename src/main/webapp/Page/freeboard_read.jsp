@@ -275,7 +275,7 @@ dao.close();
 			form.action = "../Page/SellEditDelete/FreeDeleteProcess.jsp"
 			form.submit();
 		}
-	}
+	} 
 </script>
 <script>
 			function reportCheck() {
