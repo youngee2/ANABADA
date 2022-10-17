@@ -20,9 +20,10 @@ public class ManageDeleteReportController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String reportedNickname = req.getParameter("reportedNickname");
 		String reporterNickname = req.getParameter("reporterNickname");
+		String reason = req.getParameter("reason");
 
 		ReportDAO dao = new ReportDAO();
-		int result = dao.deleteReport(reportedNickname, reporterNickname);
+		int result = dao.deleteReport(reportedNickname, reporterNickname, reason);
 		dao.close();
 
 		// 총 신고수 업데이트

@@ -6,7 +6,7 @@ public class ReportDTO {
 	private String reporterNickname;
 	private String reason;
 	private java.sql.Date reportDate;
-	private int countReport ;
+	private int countReport;
 
 	public int getIdx() {
 		return idx;

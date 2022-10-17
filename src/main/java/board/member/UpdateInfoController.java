@@ -46,7 +46,7 @@ public class UpdateInfoController extends HttpServlet {
 			resp.sendRedirect("PersonalInformation.do");
 			System.out.println("개인정보 수정 성공");
 		} else {
-			resp.sendRedirect("UpdateInfo.jsp");
+			resp.sendRedirect("PersonalInformation.do");
 			System.out.println("개인정보 수정 실패");
 		}
 

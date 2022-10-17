@@ -13,6 +13,7 @@ public class ReportDAO extends DBConnPool {
 		super();
 	}
 
+	// idx에 해당하는 모든 신고 컬럼 조회
 	public ReportDTO getReportDTO(int idx) {
 		ReportDTO dto = new ReportDTO();
 		String query = "SELECT * FROM reportTB WHERE idx=?";
@@ -22,9 +23,7 @@ public class ReportDAO extends DBConnPool {
 			psmt.setInt(1, idx);
 			rs = psmt.executeQuery();
 			System.out.println(query);
-			// 결과 처리
 			if (rs.next()) {
-
 				dto.setIdx(rs.getInt("idx"));
 				dto.setReportedNickname(rs.getString("reportedNickname"));
 				dto.setReporterNickname(rs.getString("reporterNickname"));
@@ -38,7 +37,7 @@ public class ReportDAO extends DBConnPool {
 		return dto;
 	}
 
-	//신고 접수
+	// 신고 접수
 	public int reportReceived(ReportDTO dto) {
 		int result = 0;
 
@@ -62,28 +61,6 @@ public class ReportDAO extends DBConnPool {
 			e.printStackTrace();
 		}
 		return result;
-	}
-
-	// 한 회원을 한 번만 신고할 수 있게 하기
-	public boolean reporterIdxCheck(String reporterNickname, String reportedNickname) {
-		boolean check = false;
-		try {
-			String query = " SELECT * FROM reportTB WHERE reporterNickname=? AND reportedNickname =?";
-			psmt = con.prepareStatement(query);
-			psmt.setString(1, reporterNickname);
-			psmt.setString(2, reportedNickname);
-			rs = psmt.executeQuery();
-
-			check = rs.next();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("신고자 중복확인 오류");
-
-		} finally {
-			close();
-		}
-		return check;
 	}
 
 	// *************관리자*****************
@@ -122,13 +99,14 @@ public class ReportDAO extends DBConnPool {
 	}
 
 	// 정지 내역 삭제
-	public int deleteReport(String reportedNickname, String reporterNickname) {
+	public int deleteReport(String reportedNickname, String reporterNickname, String reason) {
 		int result = 0;
-		String query = "DELETE FROM REPORTTB r WHERE reportedNickname=? AND reporterNickname =?";
+		String query = "DELETE FROM REPORTTB r WHERE reportedNickname=? AND reporterNickname =? AND reason=?";
 		try {
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, reportedNickname);
 			psmt.setString(2, reporterNickname);
+			psmt.setString(3, reason);
 			result = psmt.executeUpdate();
 			rs = psmt.executeQuery();
 			System.out.println(query);

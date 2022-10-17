@@ -90,7 +90,6 @@ public class MemberDAO extends DBConnPool {
 	}
 
 	// 회원가입
-
 	public int signUp(MemberDTO dto) {
 		int result = 0;
 
@@ -188,24 +187,24 @@ public class MemberDAO extends DBConnPool {
 	}
 
 	// 신고당할때마다 총 신고수 업데이트 해주기
-	   public int totalReportCount(String nickname1, String nickname2) {
-	      int result = 0;
-	      String query = "UPDATE MEMBERTB M SET countReport =" + " ( SELECT COUNT(reportedNickname)"
-	            + " FROM REPORTTB R WHERE reportedNickname =?)" + "WHERE NICKNAME = ?";
-	      try {
-	         psmt = con.prepareStatement(query);
-	         psmt.setString(1, nickname1);
-	         psmt.setString(2, nickname2);
-	         result = psmt.executeUpdate();
-	         rs = psmt.executeQuery();
-	         System.out.println(query);
+	public int totalReportCount(String nickname1, String nickname2) {
+		int result = 0;
+		String query = "UPDATE MEMBERTB M SET countReport =" + " ( SELECT COUNT(reportedNickname)"
+				+ " FROM REPORTTB R WHERE reportedNickname =?)" + "WHERE NICKNAME = ?";
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, nickname1);
+			psmt.setString(2, nickname2);
+			result = psmt.executeUpdate();
+			rs = psmt.executeQuery();
+			System.out.println(query);
 
-	      } catch (Exception e) {
-	         System.out.println("총 신고수 업데이트 예외 발생");
-	         e.printStackTrace();
-	      }
-	      return result;
-	   }
+		} catch (Exception e) {
+			System.out.println("총 신고수 업데이트 예외 발생");
+			e.printStackTrace();
+		}
+		return result;
+	}
 
 	// ***************** 관리자 ******************//
 
@@ -220,7 +219,7 @@ public class MemberDAO extends DBConnPool {
 			query += " and " + map.get("searchField") + " LIKE '%" + map.get("searchWord") + "%' ";
 		}
 
-		query += " ORDER BY REPORT ";
+		query += " ORDER BY REPORT , COUNTREPORT DESC  ";
 		System.out.println(query);
 		try {
 			psmt = con.prepareStatement(query);
@@ -265,7 +264,7 @@ public class MemberDAO extends DBConnPool {
 		return result;
 	}
 
-	// 회원 정지 해제하기(기존 신고수 0으로 초기화 + reporttable 신고수 삭제)
+	// 회원 정지 해제하기
 	public int liftOff(String user_id) {
 		int result = 0;
 		String query = "UPDATE MEMBERTB SET REPORT = 0 WHERE USER_ID =?";

@@ -32,18 +32,15 @@ public class ReportReceivedController extends HttpServlet {
 		String reporterNickname = (String) session.getAttribute("Nickname");
 		String reportedNickname = req.getParameter("reportedNickname");
 
+		// 신고 사유 업데이트
 		ReportDTO reportdto = new ReportDTO();
-		reportdto.setIdx(idx); // idx
+		reportdto.setIdx(idx);
 		reportdto.setReportedNickname(req.getParameter("reportedNickname")); // 피신고자 닉네임
 		reportdto.setReporterNickname(reporterNickname); // 신고자 닉네임
 		reportdto.setReason(req.getParameter("reason")); // 신고 사유
 
 		ReportDAO reportdao = new ReportDAO();
 		int result = reportdao.reportReceived(reportdto);
-
-		// 만약 신고한 적이 있다면?
-		boolean reporterResult = reportdao.reporterIdxCheck(reporterNickname, reportedNickname);
-		reportdao.close();
 
 		// 총 신고수 업데이트
 		MemberDAO dao = new MemberDAO();
