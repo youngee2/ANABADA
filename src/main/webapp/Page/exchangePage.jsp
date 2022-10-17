@@ -252,23 +252,12 @@ if (session_nick == null) {
 									
 									
 									<div class="dropdown-menu">
-										<form method="post" target="popwin" name="chatMessageFrm">
-											<%
-											for (int j = 0; j < commentList.size(); j++) {
-											%>
-											<input type="hidden" name="receive_idx" value=<%= commentList.get(j).getIdx()%>>
-											<input type="hidden" name="receive_nickname" value=<%= commentList.get(j).getNickname() %>>
-												 <a class="dropdown-item"
-												href="#"
-												onClick="
-												window.open('about:blank','popwin','width=550,height=750,resizable=no');
-											document.chatMessageFrm.action='./Chat.jsp?received_idx=<%=commentList.get(j).getIdx()%>';
-										 document.chatMessageFrm.submit();
-											">
-												쪽지보내기</a>
-											<%
-											}
-											%>
+										<form method="post" target="popwin" name="chatMessageFrm" action="./Chat.jsp?received_idx=<%=commentList.get(i).getIdx()%>" >
+											<input type="hidden" name="receive_idx" value=<%= commentList.get(i).getIdx()%>>
+											<input type="hidden" name="receive_nickname" value=<%= commentList.get(i).getNickname() %>>
+												 <button type="submit" class="dropdown-item" onClick="
+												window.open('about:blank','popwin','width=550,height=750,resizable=no');">
+												쪽지보내기</button>
 											<a class="dropdown-item" href="#" data-toggle="modal"
 												data-target="#moaModal2">신고하기</a>
 										</form>
@@ -277,9 +266,10 @@ if (session_nick == null) {
 
 							</ul>
 						</div>
-					</div> <%
- }
- %>
+					</div> 
+					<% 
+					}
+					%>
 				</li>
 			</ul>
 		</div>

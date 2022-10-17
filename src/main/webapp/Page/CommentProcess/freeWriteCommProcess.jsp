@@ -12,7 +12,7 @@ int idx = (int)session.getAttribute("Idx");
 int titleNum = Integer.parseInt(request.getParameter("title_num"));
 
 
-int board_num = 1;
+int board_num = 2;
 CommentDTO dto = new CommentDTO();
 dto.setComm(content);
 dto.setTitle_num(titleNum);

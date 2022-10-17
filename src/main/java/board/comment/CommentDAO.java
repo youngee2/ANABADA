@@ -80,7 +80,7 @@ public class CommentDAO extends DBConnPool {
 
 	public List<CommentDTO> free_comm_List(int titlenum) {
 		List<CommentDTO> list = new Vector<CommentDTO>();
-		String sql = "select * from CommentTB where board_num=1 and title_num =" + titlenum;
+		String sql = "select * from CommentTB where board_num=2 and title_num =" + titlenum;
 
 		try {
 			stmt = con.createStatement();
