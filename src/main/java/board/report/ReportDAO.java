@@ -42,17 +42,18 @@ public class ReportDAO extends DBConnPool {
 		int result = 0;
 
 		String query = "INSERT INTO reportTB( "
-				+ " idx, reportedNickname , reporterNickname , reason , reportDate , countReport ) "
-				+ " VALUES (?,?,?,?,sysdate , " + " ( SELECT NVL(COUNT(countReport)+1, 0) cnt"
+				+ " idx, boardName, reportedNickname ,reporterNickname , reason , reportDate , countReport ) "
+				+ " VALUES (?,?,?,?,?,sysdate , " + " ( SELECT NVL(COUNT(countReport)+1, 0) cnt"
 				+ " FROM reportTB WHERE idx = ? ))";
 
 		try {
 			psmt = con.prepareStatement(query);
 			psmt.setInt(1, dto.getIdx());
-			psmt.setString(2, dto.getReportedNickname());
-			psmt.setString(3, dto.getReporterNickname());
-			psmt.setString(4, dto.getReason());
-			psmt.setInt(5, dto.getIdx());
+			psmt.setString(2, dto.getBoardName());
+			psmt.setString(3, dto.getReportedNickname());
+			psmt.setString(4, dto.getReporterNickname());
+			psmt.setString(5, dto.getReason());
+			psmt.setInt(6, dto.getIdx());
 			result = psmt.executeUpdate();
 
 			System.out.println(query);
@@ -84,11 +85,12 @@ public class ReportDAO extends DBConnPool {
 			while (rs.next()) {
 				ReportDTO dto = new ReportDTO();
 				dto.setIdx(rs.getInt(1));
-				dto.setReportedNickname(rs.getString(2));
-				dto.setReporterNickname(rs.getString(3));
-				dto.setReason(rs.getString(4));
-				dto.setReportDate(rs.getDate(5));
-				dto.setCountReport(rs.getInt(6));
+				dto.setBoardName(rs.getString(2));
+				dto.setReportedNickname(rs.getString(3));
+				dto.setReporterNickname(rs.getString(4));
+				dto.setReason(rs.getString(5));
+				dto.setReportDate(rs.getDate(6));
+				dto.setCountReport(rs.getInt(7));
 				reportList.add(dto);
 			}
 		} catch (Exception e) {

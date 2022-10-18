@@ -19,6 +19,7 @@ public class UpdateInfoController extends HttpServlet {
 
 		HttpSession session = req.getSession();
 		String user_id = (String) session.getAttribute("UserId");
+		String Nickname = (String) session.getAttribute("Nickname");
 
 		MemberDAO dao = new MemberDAO();
 		MemberDTO dto = dao.PersonalInfo(user_id);
@@ -41,6 +42,7 @@ public class UpdateInfoController extends HttpServlet {
 		MemberDAO dao = new MemberDAO();
 		int result = dao.UpdatePersonalnfo(dto);
 		dao.close();
+
 
 		if (result == 1) {
 			resp.sendRedirect("PersonalInformation.do");

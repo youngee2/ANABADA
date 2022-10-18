@@ -28,13 +28,23 @@ public class ReportReceivedController extends HttpServlet {
 
 		HttpSession session = req.getSession();
 
-		int idx = Integer.parseInt(req.getParameter("idx"));
+		String boardName = "";
+		if (Integer.parseInt(req.getParameter("boardName")) == 0) {
+			boardName = "교환게시판";
+		} else if (Integer.parseInt(req.getParameter("boardName")) == 1) {
+			boardName = "판매게시판";
+		} else {
+			boardName = "자유게시판";
+		}
+		System.out.println(boardName + "게시판 이름");
+
 		String reporterNickname = (String) session.getAttribute("Nickname");
 		String reportedNickname = req.getParameter("reportedNickname");
 
 		// 신고 사유 업데이트
 		ReportDTO reportdto = new ReportDTO();
-		reportdto.setIdx(idx);
+		reportdto.setIdx(Integer.parseInt(req.getParameter("idx")));
+		reportdto.setBoardName(boardName);
 		reportdto.setReportedNickname(req.getParameter("reportedNickname")); // 피신고자 닉네임
 		reportdto.setReporterNickname(reporterNickname); // 신고자 닉네임
 		reportdto.setReason(req.getParameter("reason")); // 신고 사유

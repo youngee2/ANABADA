@@ -218,7 +218,7 @@ button:hover {
 		<form method="get">
 			<tr>
 				<td><select class="form-control" name="reportSearchField">
-
+						<option value="boardName">신고 게시판</option>
 						<option value="reportedNickname">피신고자 닉네임</option>
 						<option value="reporterNickname">신고자 닉네임</option>
 						<option value="reason">신고 사유</option>
@@ -227,6 +227,7 @@ button:hover {
 				<td><input type="text" class="form-control"
 					placeholder="검색어 입력" name="reportSearchWord" maxlength="100"></td>
 				<td><button type="submit">검색</button></td>
+					<p>* 게시판은 교환, 거래, 판매 게시판으로 나누어져 있습니다.</p>
 			</tr>
 		</form>
 
@@ -234,6 +235,7 @@ button:hover {
 			<table id="reportTable">
 				<caption class="total">총 신고 수: ${fn:length(reportList)} 회</caption>
 				<tr class="title_report">
+					<th>신고 위치</th>
 					<th>피신고자</th>
 					<th>신고자</th>
 					<th>신고 사유</th>
@@ -250,6 +252,7 @@ button:hover {
 					<c:otherwise>
 						<c:forEach items="${reportList}" var="row" varStatus="loop">
 							<tr>
+								<td><c:out value="${row.boardName }" /></td>
 								<td><c:out value="${row.reportedNickname }" /></td>
 								<td><c:out value="${row.reporterNickname }" /></td>
 								<td><c:out value="${row.reason }" /></td>
@@ -391,13 +394,16 @@ button:hover {
 						var tr = $(this);
 						var td = tr.children();
 
-						var reportedNickname = td.eq(0).text();
-						var reporterNickname = td.eq(1).text();
-						var reason = td.eq(2).text();
-						var reportDate = td.eq(3).text();
-						var reportCount = td.eq(4).text();
+						var boardName = td.eq(0).text();
+						var reportedNickname = td.eq(1).text();
+						var reporterNickname = td.eq(2).text();
+						var reason = td.eq(3).text();
+						var reportDate = td.eq(4).text();
+						var reportCount = td.eq(5).text();
 
-						str += " *선택한 회원 : 피신고자 : <font color='blue'>"
+						str += " *선택한 회원 : 신고 게시판 : <font color='blue'>"
+								+ boardName + "</font>"
+								+ ", 피신고자 : <font color='blue'>"
 								+ reportedNickname + "</font>"
 								+ ", 신고자 : <font color='blue'>"
 								+ reporterNickname + "</font>"

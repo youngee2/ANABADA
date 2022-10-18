@@ -156,7 +156,7 @@ if (session_nick == null) {
 			<ul>
 				상품정보
 				<hr>
-				<li class="li-tradePage content li">${dto.sell_contents }</li>
+				<li class="li-tradePage content li">${dto.sell_contents}</li>
 			</ul>
 		</div>
 
@@ -194,8 +194,9 @@ if (session_nick == null) {
 
 	<!--신고버튼(모달)-->
 	<form name="report" method="post" action="../Page/ReportReceived.do" onsubmit="return reportCheck()">
-		<input type="hidden" value="${dto.nickname }" name="reportedNickname">
 		<input type="hidden" value="${dto.idx }" name="idx">
+		<input type="hidden" value="${dto.board_num }" name="boardName">
+		<input type="hidden" value="${dto.nickname }" name="reportedNickname">
 		<div class="modal fade" id="moaModal1" tabindex="-1" role="dialog"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
@@ -210,7 +211,7 @@ if (session_nick == null) {
 						<h4>🚨 신고하기</h4>
 						<div>
 							<textarea style="width: 100%; height: 100px; resize: none;"
-								placeholder="신고 사유를 작성해주세요." id="reason" name="reason"></textarea>
+								placeholder="신고 사유를 작성해주세요." id="reason" name="reason" maxlength="200"></textarea>
 								<div id="reasonError" class="error" style="color:red;"></div>
 							<hr>
 						</div>

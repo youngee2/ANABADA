@@ -2,6 +2,7 @@ package board.report;
 
 public class ReportDTO {
 	private int idx;
+	private String boardName;
 	private String reportedNickname;
 	private String reporterNickname;
 	private String reason;
@@ -14,6 +15,14 @@ public class ReportDTO {
 
 	public void setIdx(int idx) {
 		this.idx = idx;
+	}
+
+	public String getBoardName() {
+		return boardName;
+	}
+
+	public void setBoardName(String boardName) {
+		this.boardName = boardName;
 	}
 
 	public String getReportedNickname() {
@@ -55,4 +64,5 @@ public class ReportDTO {
 	public void setCountReport(int countReport) {
 		this.countReport = countReport;
 	}
+
 }

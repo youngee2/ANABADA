@@ -48,7 +48,7 @@ dao.close();
 <meta charset="UTF-8">
 <title>자유게시판 보기</title>
 
-		
+
 </head>
 
 
@@ -134,7 +134,7 @@ dao.close();
 		<div class="comm_div_align">
 			<div class="comm_list">
 
-				<p><%=commentList.get(i).getNickname()%></p>
+				<p>작성자 : <span style="color:blue;"><%=commentList.get(i).getNickname()%></span></p>
 				<p><%=commentList.get(i).getComm()%></p>
 				<p style="font-size: 12px; color: gray"><%=commentList.get(i).getComm_date()%></p>
 			</div>
@@ -149,7 +149,7 @@ dao.close();
 					%>
 					<form id="CommentFrm" name="CommentFrm" method="post"
 						action="./CommentProcess/freeDeleteCommProcess.jsp">
-					
+
 						<input type="hidden" name="comm_num2"
 							value=<%=commentList.get(i).getComm_num()%>> <input
 							type="hidden" name="title_num2"
@@ -161,14 +161,13 @@ dao.close();
 							}
 							%>
 							<button type="button" style="border: 0" data-toggle="modal"
-								data-target="#moaModal2">신고</button>
+								data-target="#moaModal2" class="chat-btn btnFade btnRed">신고</button>
 						</div>
 
 					</form>
 				</div>
 
 			</div>
-
 
 
 
@@ -183,7 +182,8 @@ dao.close();
 
 			<input type="hidden" value="<%=dto.getNickname()%>"
 				name="reportedNickname"> <input type="hidden"
-				value="<%=dto.getIdx()%>" name="idx">
+				value="<%=dto.getIdx()%>" name="idx"> <input type="hidden"
+				value="<%=dto.getBoard_num()%>" name="boardName">
 			<div class="modal fade" id="moaModal1" tabindex="-1" role="dialog"
 				aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog" role="document">
@@ -197,17 +197,17 @@ dao.close();
 						<div class="modal-body">
 							<h4>🚨 신고하기</h4>
 							<div>
-								<textarea style="width: 100%; height: 100px; resize: none;"
+								<textarea style="width: 100%; height: 100px; resize: none;" maxlength="200"
 									placeholder="신고 사유를 작성해주세요." name="reason" id="reason"></textarea>
 								<hr>
 							</div>
 							<div style="color: #bebebe;">
 								· 정상적인 게시물을 신고하는 경우 본인이 제재를 당할 수 있습니다. <br> · 신고하게 된 이유를
 								자세히 써주시면 운영자의 관련 결정에 도움이 됩니다.
-								<div id="reasonError" class="error" style="color:red"></div>
+								<div id="reasonError" class="error" style="color: red"></div>
 							</div>
-							<div>
-								<button type="submit" class="chat-btn btnFade btnRed">신고하기</button>
+							<div class="reportBtn">
+								<button type="submit">신고하기</button>
 							</div>
 						</div>
 					</div>
@@ -224,6 +224,8 @@ dao.close();
 			<input type="hidden" value="<%=commentList.get(i).getNickname()%>"
 				name="reportedNickname"> <input type="hidden"
 				value="<%=commentList.get(i).getIdx()%>" name="idx">
+				<input type="hidden"
+				value="<%=commentList.get(i).getBoard_num()%>" name="boardName">
 			<%
 			}
 			%>
@@ -240,17 +242,17 @@ dao.close();
 						<div class="modal-body">
 							<h4>🚨 신고하기</h4>
 							<div>
-								<textarea style="width: 100%; height: 100px; resize: none;"
+								<textarea style="width: 100%; height: 100px; resize: none;" maxlength="200"
 									placeholder="신고 사유를 작성해주세요." name="reason" id="reason1"></textarea>
 								<hr>
 							</div>
 							<div style="color: #bebebe;">
 								· 정상적인 게시물을 신고하는 경우 본인이 제재를 당할 수 있습니다. <br> · 신고하게 된 이유를
 								자세히 써주시면 운영자의 관련 결정에 도움이 됩니다.
-							<div id="reason1Error" class="error" style="color:red"></div>
+								<div id="reason1Error" class="error" style="color: red"></div>
 							</div>
 							<div>
-								<button type="submit" class="chat-btn btnFade btnRed">신고하기</button>
+								<button type="submit">신고하기</button>
 							</div>
 						</div>
 					</div>
@@ -266,18 +268,18 @@ dao.close();
 			
 		</script>
 
-<script>
-	function deletePost() {
-		var confirmed = confirm("정말로 삭제하겠습니까?");
-		if (confirmed) {
-			var form = document.writeFrm;
-			form.method = "post";
-			form.action = "../Page/SellEditDelete/FreeDeleteProcess.jsp"
-			form.submit();
-		}
-	} 
-</script>
-<script>
+		<script>
+			function deletePost() {
+				var confirmed = confirm("정말로 삭제하겠습니까?");
+				if (confirmed) {
+					var form = document.writeFrm;
+					form.method = "post";
+					form.action = "../Page/SellEditDelete/FreeDeleteProcess.jsp"
+					form.submit();
+				}
+			}
+		</script>
+		<script>
 			function reportCheck() {
 				let reportReason = document.getElementById("reason").value;
 
@@ -291,13 +293,13 @@ dao.close();
 					document.getElementById("reasonError").innerHTML = "200자 이내로 적어주세요."
 					return false;
 				} else {
-					 alert("신고 접수가 완료되었습니다.\n(중복된 신고는 접수되지 않습니다.)")
-						document.getElementById("reasonError").innerHTML = ""
+					alert("신고 접수가 완료되었습니다.\n(중복된 신고는 접수되지 않습니다.)")
+					document.getElementById("reasonError").innerHTML = ""
 				}
 
 			}
-			</script>
-			<script>
+		</script>
+		<script>
 			function reportCheck1() {
 				let reportReason1 = document.getElementById("reason1").value;
 
@@ -311,12 +313,12 @@ dao.close();
 					document.getElementById("reason1Error").innerHTML = "200자 이내로 적어주세요."
 					return false;
 				} else {
-					 alert("신고 접수가 완료되었습니다.\n(중복된 신고는 접수되지 않습니다.)")
-						document.getElementById("reason1Error").innerHTML = ""
+					alert("신고 접수가 완료되었습니다.\n(중복된 신고는 접수되지 않습니다.)")
+					document.getElementById("reason1Error").innerHTML = ""
 				}
 
 			}
-</script>
+		</script>
 
 
 	</section>

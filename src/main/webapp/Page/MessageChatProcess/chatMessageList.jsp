@@ -59,7 +59,7 @@ dao.close();
 							value=<%=messageList.get(i).getSend_nickname()%>
 							name="send_nickname">
 						<tr>
-							<td><%=messageList.get(i).getSend_nickname()%></td>
+							<td><%=messageList.get(i).getSend_nickname()%> <%=messageList.get(i).getSend_idx()%></td>
 							<td><a href="#"
 								onClick="
 								window.open('about:blank','popwin','width=550,height=750,resizable=no');
