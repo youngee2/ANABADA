@@ -79,10 +79,10 @@ dao.close();
 
 	<!--채팅 입력-->
 	<form name="messageFrm" method="post"
-		action="./MessageChatProcess/sendMessage.jsp">
+		action="./MessageChatProcess/sendMessage.jsp"  onsubmit="return validateForm(this)";>
 		<div class="chat input">
 			<input type="text" class="input-chatbox" placeholder="최대 500자"
-				name="content"> <input type="hidden"
+				name="content" id="content"> <input type="hidden"
 				value="<%= receiveidx %>" name="receive_idx"> <input
 				type="hidden" value="<%= receive_nickname %>"
 				name="receive_nickname">
@@ -91,6 +91,15 @@ dao.close();
 		</div>
 	</form>
 
+	<script type="text/javascript">
+function validateForm(form){
+	if(form.content.value==""){
+		alert("내용을 입력하세요.");
+		form.content.focus();
+		return false;
+	}
+}
+	</script>
 
 </body>
 

@@ -47,7 +47,15 @@ dao.close();
 <link rel="stylesheet" href="./css/Freeboard_style.css">
 <meta charset="UTF-8">
 <title>자유게시판 보기</title>
-
+<script type="text/javascript">
+function validateForm(form){
+	if(form.comm_contents.value==""){
+		alert("댓글을 입력하세요.");
+		form.comm_contents.focus();
+		return false;
+	}
+}
+	</script>
 
 </head>
 
@@ -117,7 +125,7 @@ dao.close();
 			<h4>댓글</h4>
 		</div>
 		<hr style="color: #4C6D81; height: 4px;">
-		<form action="./CommentProcess/freeWriteCommProcess.jsp" method="post">
+		<form action="./CommentProcess/freeWriteCommProcess.jsp" method="post" onsubmit="return validateForm(this)";>
 			<div class="comm_line">
 				<input type="hidden" name="title_num" value="<%=dto.getFree_num()%>">
 
@@ -319,6 +327,7 @@ dao.close();
 
 			}
 		</script>
+
 
 
 	</section>

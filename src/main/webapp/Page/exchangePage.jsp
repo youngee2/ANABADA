@@ -203,10 +203,10 @@ if (session_nick == null) {
          <br>
          <div class="comment-box">
             <form name="commentFrm" method="post"
-               action="./CommentProcess/writeCommentProcess.jsp">
+               action="./CommentProcess/writeCommentProcess.jsp" onsubmit="return validateForm(this)">
                <input type="hidden" name="titleNum" value="${dto.exc_num}">
                <input type="text" placeholder="댓글을 입력해주세요." class="comment-text"
-                  name="content" maxlength="200">
+                  name="content" maxlength="200" >
                <button class="comment-btn" type="submit">등록</button>
             </form>
          </div>
@@ -415,6 +415,16 @@ if (session_nick == null) {
 			}
 
 		}
+	</script>
+	
+	<script type="text/javascript">
+function validateForm(form){
+	if(form.content.value==""){
+		alert("댓글을 입력하세요.");
+		form.content.focus();
+		return false;
+	}
+}
 	</script>
 	<%@ include file="./HeaderFooter/Footer.jsp"%>
 </body>
