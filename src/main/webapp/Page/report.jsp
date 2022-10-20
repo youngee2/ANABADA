@@ -28,7 +28,7 @@ if (user_id != null) {
 				계정입니다.</span><hr>
 		</div>
 		<div style="font-size: 1rem">
-		일정 기준 이상의 신고 수 누적 혹은 규칙 위반으로 계정이 정지되었습니다.<br> 계정이 비활성화 되었으므로 로그인할 수 없습니다.<br>
+		규칙 위반으로 계정이 정지되었습니다.<br> 계정이 비활성화 되었으므로 로그인할 수 없습니다.<br>
 		이용제한 사유 조회 및 해제 혹은 계정 탈퇴 진행을 요청하고 싶으시다면 아래로 문의 주세요. <br>
 		<hr></div> <span
 			class="fa-solid fa-envelope"></span> : songsunkite@gmail.com<br>

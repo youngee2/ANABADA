@@ -26,7 +26,7 @@
 
             <div class="TitleA">
                 <img class="LogoImg" src="./img//LogoPolarBear.png">
-                <span><a href="#"> ANABADA</a></span>
+                <span><a href="tradeListPage.do?category=7"> ANABADA</a></span>
             </div>
 
             <div class="TitleB">

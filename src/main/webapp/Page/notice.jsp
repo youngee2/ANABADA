@@ -77,7 +77,7 @@
 		<%
 		}else if (session.getAttribute("UserId").equals("admin")){
 		%>			
-		<button class="list_move_btn"
+		<button class="list_move_btn1"
 				onclick="location.href='../Page/NoticeBoardWrite.do' ">글 쓰기</button>
 		<%
 		}

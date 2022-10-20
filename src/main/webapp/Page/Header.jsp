@@ -38,13 +38,12 @@ if (!loginId.equals("")) {
 	<!--헤더 부분-->
 	<header class="header">
 		<div class="HeaderA">
-			<ul class="login">
-
-				<a href="../Page/LoadingMain.jsp"> <span
+			<div class="HeaderA_login">
+				<a class="headerTitle" href="../Page/LoadingMain.jsp"> <span
 					class="metaverse fa-solid fa-gamepad" title="metaverse">
-						click </span></a>
-				</a>
-
+						click </span></a> </a>
+			</div>
+			<ul class="login">
 				<c:choose>
 					<c:when test="${sessionScope.UserId eq null}">
 
@@ -103,9 +102,10 @@ if (!loginId.equals("")) {
 						<li><a href="../Page/LoginSession/Logout.jsp">LOGOUT</a></li>
 						<li><a href="../Page/PersonalInformation.do">MY PAGE</a></li>
 						<!-- 쪽지함-->
-						<li><a href="./MessageChatProcess/chatMessageList.jsp" onClick="window.open(this.href, '', 'width=820, height=350'); return false;"><i
+						<li><a href="./MessageChatProcess/chatMessageList.jsp"
+							onClick="window.open(this.href, '', 'width=820, height=350'); return false;"><i
 								class="fa-solid fa-envelope-circle-check"></i></a></li>
-					
+
 					</c:otherwise>
 				</c:choose>
 			</ul>
@@ -119,53 +119,53 @@ if (!loginId.equals("")) {
 				}
 			}
 		</script>
- <div class="HeaderB">
-         <img class="LogoImg" src="./img/LogoPolarBear.png"> <span><a
-            href="./tradeListPage.do?category=7"> 아나바다</a></span>
-      </div>
+		<div class="HeaderB">
+			<img class="LogoImg" src="./img/LogoPolarBear.png"> <span><a
+				href="./tradeListPage.do?category=7"> 아나바다</a></span>
+		</div>
 
-      <div class="HeaderC">
+		<div class="HeaderC">
 
-         <ul class="subA">
-            <li><a href="./whoWeArePage.jsp">아나바다란?</a>
-               <ol class="subDetailA">
-                  <li><a href="./whoWeArePage.jsp">회사소개</a></li>
-                  <li><a href="./Introduce.jsp">개발자</a></li>
-               </ol></li>
-         </ul>
+			<ul class="subA">
+				<li><a href="./whoWeArePage.jsp">아나바다란?</a>
+					<ol class="subDetailA">
+						<li><a href="./whoWeArePage.jsp">회사소개</a></li>
+						<li><a href="./Introduce.jsp">개발자</a></li>
+					</ol></li>
+			</ul>
 
-		<ul class="subB">
-            <li><a href="./tradeListPage.do?category=7">거래하기</a>
-               <ol class="subDetailB">
-                  <li><a href="./tradeListPage.do?category=7">전체</a></li>
-                  <li><a href="./tradeListPage.do?category=1">테크/가전</a></li>
-                  <li><a href="./tradeListPage.do?category=0">패션/잡화/뷰티</a></li>
-                  <li><a href="./tradeListPage.do?category=2">홈/리빙</a></li>
-                  <li><a href="./tradeListPage.do?category=3">베이비/키즈</a></li>
-                  <li><a href="./tradeListPage.do?category=4">반려동물</a></li>
-                  <li><a href="./tradeListPage.do?category=5">게임/취미/문화</a></li>
-                  <li><a href="./tradeListPage.do?category=6">기타</a></li>
-               </ol></li>
-         </ul>
+			<ul class="subB">
+				<li><a href="./tradeListPage.do?category=7">거래하기</a>
+					<ol class="subDetailB">
+						<li><a href="./tradeListPage.do?category=7">전체</a></li>
+						<li><a href="./tradeListPage.do?category=1">테크/가전</a></li>
+						<li><a href="./tradeListPage.do?category=0">패션/잡화/뷰티</a></li>
+						<li><a href="./tradeListPage.do?category=2">홈/리빙</a></li>
+						<li><a href="./tradeListPage.do?category=3">베이비/키즈</a></li>
+						<li><a href="./tradeListPage.do?category=4">반려동물</a></li>
+						<li><a href="./tradeListPage.do?category=5">게임/취미/문화</a></li>
+						<li><a href="./tradeListPage.do?category=6">기타</a></li>
+					</ol></li>
+			</ul>
 
-         <ul class="subC">
-            <li><a href="./exchangeListPage.do">교환</a></li>
-         </ul>
-         <ul class="subD">
-            <li><a href="../Page/freeListPage.do">자유게시판</a></li>
-         </ul>
-         <ul class="subE">
-            <li><a href="./donationPage.jsp">후원하기</a></li>
-         </ul>
+			<ul class="subC">
+				<li><a href="./exchangeListPage.do">교환</a></li>
+			</ul>
+			<ul class="subD">
+				<li><a href="../Page/freeListPage.do">자유게시판</a></li>
+			</ul>
+			<ul class="subE">
+				<li><a href="./donationPage.jsp">후원하기</a></li>
+			</ul>
 
-         <ul class="subF">
-            <li><a href="../Page/faqListPage.do">고객센터</a>
-               <ol class="subDetailF">
-                  <li><a href="../Page/faqListPage.do">F&Q</a></li>
-                  <li><a href="../Page/list.do">공지사항</a></li>
-               </ol></li>
-         </ul>
-      </div>
+			<ul class="subF">
+				<li><a href="../Page/faqListPage.do">고객센터</a>
+					<ol class="subDetailF">
+						<li><a href="../Page/faqListPage.do">F&Q</a></li>
+						<li><a href="../Page/list.do">공지사항</a></li>
+					</ol></li>
+			</ul>
+		</div>
 		<script>
 			var modals = document.getElementsByClassName("modal1");
 			var btns = document.getElementsByClassName("btn");

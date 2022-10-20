@@ -59,7 +59,7 @@ public class NicknameCheckController extends HttpServlet {
 				System.out.println("중복된 닉네임 ");
 				nickname = "";
 			} else { 
-				req.setAttribute("Msg", nickname + "는 사용가능합니다.");
+				req.setAttribute("Msg", nickname + "은(는) 사용가능합니다.");
 
 				req.setAttribute("UseMsg", nickname);
 				req.getRequestDispatcher("NicknameCheckForm.jsp").forward(req, resp);

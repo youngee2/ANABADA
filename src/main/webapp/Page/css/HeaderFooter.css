@@ -6,6 +6,12 @@
     font-family: 'NanumBarunGothic';
 }
 
+.note-modal .note-modal-body label{
+   margin-bottom: 2px;
+    padding: 2px 5px;
+    display: none;
+}
+
 /* body{ overflow: auto;
 } */
 
@@ -38,7 +44,10 @@ a {
     text-decoration: none;
     color: inherit
 }
-
+a:hover  {
+    text-decoration: none;
+    color: inherit
+}
 
 :root {
     --main-color: #c3d8dc;
@@ -54,7 +63,8 @@ a {
 /*HeaderA 로그인, 회원가입*/
 .HeaderA {
     background-color: var(--main-color);
-    display: block;
+    display: flex;
+    justify-content: space-between;
     width: 100%;
 
 }
@@ -74,13 +84,20 @@ a {
 }
 
 .HeaderA a {
-    font-size: 0.8rem;
+    font-size: 1.2vw;
     padding: 10px;
     display: flex;
 }
 
+.metaverse{
+	padding:10px;
+}
 
-
+.HeaderA_login{
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+}
 /* 로그인 버튼 누르면 모달창 뜨기*/
 
 .btn {
@@ -103,35 +120,25 @@ a {
 
 .modal1 {
     display: none;
-    /* Hidden by default */
     position: fixed;
-    /* Stay in place */
     z-index: 1;
-    /* Sit on top */
     left: 0;
     top: 0;
     width: 100%;
-    /* Full width */
     height: 100%;
-    /* Full height */
     background-color: rgb(0, 0, 0);
-    /* Fallback color */
     background-color: rgba(0, 0, 0, 0.4);
-    /* Black w/ opacity */
 }
 
-/* Modal Content/Box */
 .login-modal {
     background-color: #fefefe;
     margin: 5% auto;
-    /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 40%;
     height: 35vw;
 }
 
-/* The Close Button */
 .close {
     color: #aaa;
     float: right;
@@ -334,10 +341,13 @@ a {
 .HeaderC li:hover {
     text-decoration: none;
     transition: 0.2s linear;
-    border-bottom: 1.5px solid rgb(68, 129, 208);
-    color: var(--dark-main-color)
+    border-bottom: 1.5px solid #4c6d81;
+   
 }
 
+.headerTitle:hover{
+	 color: #4c6d81;
+}
 /*subA 호버하면 소개메뉴나오게*/
 
 .HeaderC .subA {

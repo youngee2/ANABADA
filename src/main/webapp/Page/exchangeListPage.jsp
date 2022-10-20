@@ -163,7 +163,7 @@
 							<div class="ex-list">
 								<a
 									href="/webproject/Page/exchangePage.do?exc_num=${list_item.exc_num }"><p
-										style="background-image: url('${list_item.user_picture}');"
+										style="background-image: url('${list_item.user_picture}'); background-position: center center;"
 										class="listimg"></p></a>
 								<ul>
 									<li class="li-tradePage" style="color: #ff6666;">♥</li>

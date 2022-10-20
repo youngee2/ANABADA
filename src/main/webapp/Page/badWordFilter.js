@@ -133,7 +133,7 @@ function validate_text() {
       document.getElementById("pwdError").innerHTML = "비밀번호를 입력해주세요."
       return false;
    } else if (!pwdOK.test(pwd)) {
-      document.getElementById("pwdError").innerHTML = "8~15자의 영문 소문자, 숫자, 사용 가능한 특수문자만을 필수로 모두 조합하여 입력해주세요"
+      document.getElementById("pwdError").innerHTML = "8~15자의 영문 소문자, 숫자, 사용 가능한"+'<br>'+" 특수문자만을 필수로 모두 조합하여 입력해주세요"
       return false;
    } else {
       document.getElementById("pwdError").innerHTML = ""

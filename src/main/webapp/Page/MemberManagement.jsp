@@ -215,6 +215,7 @@ button:hover {
 		</div>
 		<hr>
 		<h2>신고 테이블</h2>
+
 		<form method="get">
 			<tr>
 				<td><select class="form-control" name="reportSearchField">
@@ -227,21 +228,20 @@ button:hover {
 				<td><input type="text" class="form-control"
 					placeholder="검색어 입력" name="reportSearchWord" maxlength="100"></td>
 				<td><button type="submit">검색</button></td>
-					<p>* 게시판은 교환, 거래, 판매 게시판으로 나누어져 있습니다.</p>
+				<p>* 게시판은 교환, 거래, 판매 게시판으로 나누어져 있습니다.</p>
 			</tr>
 		</form>
 
-		<div style="width: 100%; height: 300px; overflow: auto">
+		<div style="width: 100%; height: 500px; overflow: auto">
 			<table id="reportTable">
 				<caption class="total">총 신고 수: ${fn:length(reportList)} 회</caption>
 				<tr class="title_report">
 					<th>신고 위치</th>
 					<th>피신고자</th>
 					<th>신고자</th>
-					<th>신고 사유</th>
+					<th style="width: 57%;">신고 사유</th>
 					<th>신고 날짜</th>
 					<th>누적 신고 번호</th>
-
 				</tr>
 				<c:choose>
 					<c:when test="${ empty reportList }">
@@ -251,6 +251,7 @@ button:hover {
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${reportList}" var="row" varStatus="loop">
+							
 							<tr>
 								<td><c:out value="${row.boardName }" /></td>
 								<td><c:out value="${row.reportedNickname }" /></td>
@@ -259,12 +260,16 @@ button:hover {
 								<td><c:out value="${row.reportDate }" /></td>
 								<td><c:out value="${row.countReport }" /></td>
 							</tr>
-
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
+			
+
 			</table>
 		</div>
+
+
+
 		<div id="clickReport">* 신고내역을 선택해주세요.</div>
 
 		<form name="deleteReport" method="get"
@@ -427,7 +432,7 @@ button:hover {
 		} else {
 			var confirm_check = confirm("선택하신 '" + reporterNickname.value
 					+ "'님이 신고한 '" + reportedNickname.value
-					+ "'님의 신고내역을 삭제하시겠습니까?\n이는 회원 정지 유무에 영향을 미칠 수 있습니다.");
+					+ "'님의 신고내역을 삭제하시겠습니까?");
 
 			if (!confirm_check) {
 				return false;

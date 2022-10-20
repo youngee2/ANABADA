@@ -48,11 +48,11 @@ public class IdCheckController extends HttpServlet {
 		
 		} else {
 			if (result == true) {
-				req.setAttribute("Msg", user_id + "는 중복된 아이디 입니다.");
+				req.setAttribute("Msg", user_id + "은(는) 중복된 아이디 입니다.");
 				req.getRequestDispatcher("IdCheckForm.jsp").forward(req, resp);
 				System.out.println("중복된 아이디 ");
 			} else { 
-				req.setAttribute("Msg", user_id + "는 사용가능합니다.");
+				req.setAttribute("Msg", user_id + "은(는) 사용가능합니다.");
 				req.setAttribute("UseMsg", user_id);
 				req.getRequestDispatcher("IdCheckForm.jsp").forward(req, resp);
 				System.out.println("사용 가능 아이디");

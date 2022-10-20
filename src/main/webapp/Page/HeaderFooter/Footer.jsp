@@ -24,11 +24,11 @@
 
         <nav class="footB">
             <div>
-                <h3>ABOUT</h3>
+                <h3>INTRODUCE</h3>
                 <ul>
-                    <li><a href="#">설립</a></li>
-                    <li><a href="#">주소</a></li>
-                    <li><a href="#">개발자</a></li>
+                    <li><a href="../Page/whoWeArePage.jsp">회사 소개</a></li>
+                    <li><a href="../Page/donationPage.jsp">후원 소개</a></li>
+                    <li><a href="../Page/Introduce.jsp">개발자 소개</a></li>
                 </ul>
             </div>
 
@@ -36,17 +36,15 @@
                 <h3>SUPPORT</h3>
                 <ul>
                     <li><a href="../Page/faqListPage.do">자주묻는 질문</a></li>
-                    <li><a href="#">문의</a></li>
+                    <li><a href="../Page/list.do">공지사항</a></li>
                 </ul>
             </div>
 
             <div>
                 <h3>CONTENTS</h3>
                 <ul>
-                    <li><a href="../Page/list.do">공지사항</a></li>
-                    <li><a href="#">비즈니스</a></li>
-                    <li><a href="#">프로필</a></li>
-                    <li><a href="#">블로그</a></li>
+                    <li><a href="../Page/PersonalInformation.do">마이페이지</a></li>
+                    <li><a href="../Page/freeListPage.do">자유게시판</a></li>
                 </ul>
             </div>
         </nav>

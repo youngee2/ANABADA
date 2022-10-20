@@ -22,7 +22,7 @@
 			<p class="confirmSignOutA">정말 탈퇴하시겠습니까?</p>
 			<p class="confirmSignOutB">비밀번호를 입력해주세요.</p>
 			<input type="password" name="user_passwd" /> <span
-				style="color: red; font-size: 1.2em;"> <%=request.getAttribute("ErrMsg") == null ? "" : request.getAttribute("ErrMsg")%>
+				style="color: red; font-size: 1.2em;"><br> <%=request.getAttribute("ErrMsg") == null ? "" : request.getAttribute("ErrMsg")%>
 			</span>
 			<button type="submit" onclick="SignOutbtn()" class="SignoutBtn">탈퇴하기</button>
 		</div>
