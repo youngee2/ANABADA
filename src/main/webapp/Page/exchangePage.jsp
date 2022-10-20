@@ -206,7 +206,7 @@ if (session_nick == null) {
                action="./CommentProcess/writeCommentProcess.jsp">
                <input type="hidden" name="titleNum" value="${dto.exc_num}">
                <input type="text" placeholder="댓글을 입력해주세요." class="comment-text"
-                  name="content">
+                  name="content" maxlength="200">
                <button class="comment-btn" type="submit">등록</button>
             </form>
          </div>

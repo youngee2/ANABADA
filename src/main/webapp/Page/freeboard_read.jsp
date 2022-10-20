@@ -122,7 +122,7 @@ dao.close();
 				<input type="hidden" name="title_num" value="<%=dto.getFree_num()%>">
 
 				<input type="text" class="comm_input" name="comm_contents"
-					placeholder="댓글을 입력하세요.">
+					placeholder="댓글을 입력하세요." maxlength="200">
 				<button class="list_move_btn" type="submit"
 					style="font-size: 18px; margin-left: 3%; padding: 20px;">등록</button>
 			</div>

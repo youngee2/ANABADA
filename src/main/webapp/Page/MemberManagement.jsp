@@ -214,7 +214,7 @@ button:hover {
 			</form>
 		</div>
 		<hr>
-		<h2>신고 테이블</h2>
+		<h2>전체 신고 테이블</h2>
 
 		<form method="get">
 			<tr>
@@ -270,7 +270,7 @@ button:hover {
 
 
 
-		<div id="clickReport">* 신고내역을 선택해주세요.</div>
+		<div id="clickReport">* 신고 내역을 선택해주세요.</div>
 
 		<form name="deleteReport" method="get"
 			action="../Page/deleteReport.do" onsubmit="return check6()">
@@ -278,7 +278,7 @@ button:hover {
 				value="" /> <input type="hidden" name=reporterNickname
 				id="reporterNickname" value="" /> <input type="hidden" name=reason
 				id="reason" value="" />
-			<button type="submit" id='btn6'>신고내역 삭제하기</button>
+			<button type="submit" id='btn6'>신고 내역 삭제하기</button>
 		</form>
 		<hr>
 

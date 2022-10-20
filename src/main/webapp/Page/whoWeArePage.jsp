@@ -100,7 +100,7 @@
                 <h1 class="title lineA"> 01. Why We Made 'ANABADA'?</h1>
                 <div class="ANABADA_mean">
                     <p><strong><span style="color: rgb(255, 255, 255); background-color: rgb(100, 132, 196);">&nbsp;
-                                아: 아껴쓰고 &nbsp;</span></strong></span></p>
+                                아: 아껴 쓰고 &nbsp;</span></strong></span></p>
                     <pre></pre>
                     <p>깨끗하게 아껴쓴 물품, 이제 버리지 말고 거래하세요!</p>
                     <pre></pre>
@@ -108,7 +108,7 @@
 
                     <p style="text-align: center;"><span style="font-size: 18px;"><strong><span
                                     style="color: rgb(255, 255, 255); background-color: rgb(100, 132, 196);">&nbsp;
-                                    나: 나눠쓰고 &nbsp;</span></strong></span></p>
+                                    나: 나눠 쓰고 &nbsp;</span></strong></span></p>
                     <pre></pre>
                     <p>무료나눔으로 이웃과 나눠써요.</p>
                     <pre></pre>
@@ -116,15 +116,15 @@
 
                     <p style="text-align: center;"><span style="font-size: 18px;"><strong><span
                                     style="color: rgb(255, 255, 255); background-color: rgb(100, 132, 196);">&nbsp;
-                                    바: 바꿔쓰고 &nbsp;</span></strong></span></p>
+                                    바: 바꿔 쓰고 &nbsp;</span></strong></span></p>
                     <pre></pre>
-                    <p>물물교환으로 안쓰는 물건을 바꿔써요.</p>
+                    <p>물물교환으로 안쓰는 물건을 바꿔 써요.</p>
                     <pre></pre>
                     <pre></pre>
 
                     <p style="text-align: center;"><span style="font-size: 18px;"><strong><span
                                     style="color: rgb(255, 255, 255); background-color: rgb(100, 132, 196);">&nbsp;
-                                    다: 다시쓰자 &nbsp;</span></strong></span></p>
+                                    다: 다시 쓰자 &nbsp;</span></strong></span></p>
                     <pre></pre>
                     <p>재사용함으로써 환경을 보호해요.</p>
                     <pre></pre>
@@ -132,7 +132,7 @@
                 </div>
 
                 <div class="WhyDo">
-                    <h3> '아껴쓰고, 나눠쓰고, 바꿔쓰고, 다시쓰고'</h3>
+                    <h3> '아껴 쓰고, 나눠 쓰고, 바꿔 쓰고, 다시 쓰고'</h3>
                     <span>
                         이제는 나와 이웃, 지구를 위해 아나바다를 실천할 때입니다.<br>
                         지구온난화로 인한 이상기후, 자연 생태계 파괴, 심각한 식량안보의 위협까지...
