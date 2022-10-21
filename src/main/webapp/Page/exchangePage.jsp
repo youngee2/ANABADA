@@ -132,6 +132,8 @@ if (session_nick == null) {
 								<form method="post" name="deleteFrm"
 									action="./SellEditDelete/excDeleteProcess.jsp">
 									<input type="hidden" value="${dto.exc_num }" name="excNum">
+									<button class="chat-btn btnFade btnGray" type="submit">글
+										삭제</button>
 									<button class="chat-btn btnFade btnRed" type="submit">글
 										삭제</button>
 								</form>

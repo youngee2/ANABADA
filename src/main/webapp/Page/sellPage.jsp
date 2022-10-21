@@ -169,6 +169,7 @@ if (session_nick == null) {
 					<form method="post" name="deleteFrm"
 						action="./SellEditDelete/sellDeleteProcess.jsp">
 						<input type="hidden" value="${dto.sell_num }" name="sellNum">
+									<button class="chat-btn btnFade btnGray" type="submit">거래완료</button>
 						<button class="chat-btn btnFade btnRed" type="submit">글
 							삭제</button>
 					</form>
@@ -184,6 +185,7 @@ if (session_nick == null) {
 						<input type="hidden" value="${dto.sell_num }" name="sellNum">
 						<button class="chat-btn btnFade btnRed" type="submit">글
 							삭제</button>
+				
 					</form>
 
 				</c:when>

@@ -216,6 +216,10 @@ a.button {
     background-color: #cc5353;
 }
 
+.btnGray{
+    background-color: #b0c4de;
+}
+
 .btnNormal {
     background: transparent;
     border: none;
